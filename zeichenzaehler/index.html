@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeichenzähler Online Kostenlos – Zeichen Zählen | TextHelfer</title>
+  <meta name="description" content="Zeichenzähler kostenlos: Zeichen, Wörter, Sätze und Absätze in Echtzeit zählen. Mit Zeichenlimits für Twitter, Instagram, LinkedIn und Google Ads. 100% im Browser.">
+  <link rel="canonical" href="https://texthelfer.net/zeichenzaehler/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+   "name":"Zeichenzähler",
+   "description":"Kostenloser Zeichenzähler – Zeichen, Wörter, Sätze und Absätze in Echtzeit zählen. Mit Zeichenlimits für Social Media und Ads. 100% im Browser.",
+   "url":"https://texthelfer.net/zeichenzaehler/",
+   "applicationCategory":"UtilityApplication",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage",
+   "mainEntity":[
+     {"@type":"Question","name":"Werden Leerzeichen mitgezählt?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja, unser Zeichenzähler zeigt sowohl die Anzahl der Zeichen mit Leerzeichen als auch ohne Leerzeichen an. So können Sie je nach Bedarf den passenden Wert nutzen – zum Beispiel zählt Twitter Leerzeichen mit, während manche andere Plattformen sie ausschließen."}},
+     {"@type":"Question","name":"Wie werden Wörter gezählt?",
+      "acceptedAnswer":{"@type":"Answer","text":"Wörter werden anhand von Leerzeichen und Zeilenumbrüchen getrennt gezählt. Zusammengesetzte Wörter mit Bindestrich wie „Zeichenzähler-Tool" werden als ein Wort gezählt. Leere Eingaben ergeben null Wörter."}},
+     {"@type":"Question","name":"Funktioniert der Zeichenzähler auch auf dem Handy?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja, der Zeichenzähler ist vollständig responsiv und funktioniert auf allen Geräten – Smartphone, Tablet und Desktop. Die Benutzeroberfläche passt sich automatisch an die Bildschirmgröße an."}},
+     {"@type":"Question","name":"Wie viele Zeichen erlaubt Twitter/X?",
+      "acceptedAnswer":{"@type":"Answer","text":"Twitter (jetzt X) erlaubt maximal 280 Zeichen pro Tweet. Unser Zeichenzähler zeigt Ihnen in Echtzeit an, wie viele Zeichen Sie bereits verwendet haben und wie nah Sie am Limit sind – mit farbiger Fortschrittsanzeige."}},
+     {"@type":"Question","name":"Werden meine Texte gespeichert?",
+      "acceptedAnswer":{"@type":"Answer","text":"Nein, Ihre Texte werden zu keinem Zeitpunkt gespeichert oder an einen Server übertragen. Der Zeichenzähler läuft vollständig in Ihrem Browser. Sobald Sie die Seite schließen oder den Text löschen, sind die Daten unwiderruflich weg."}},
+     {"@type":"Question","name":"Wie wird die Lesezeit berechnet?",
+      "acceptedAnswer":{"@type":"Answer","text":"Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird „unter 1 Min." angezeigt."}}
+   ]}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+      --success: #22C55E;
+      --warning: #F97316;
+      --danger: #EF4444;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    /* === MAIN === */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* === TOOL LAYOUT === */
+    .tool-layout {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .tool-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tool-sidebar {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    /* === CARD === */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    /* === TEXTAREA === */
+    .textarea-wrap { margin-bottom: 16px; }
+
+    #textInput {
+      width: 100%;
+      min-height: 280px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      resize: vertical;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    #textInput:focus {
+      border-color: var(--accent);
+    }
+    #textInput::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* === STATS GRID === */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 12px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* === BUTTONS === */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      height: 48px;
+      background: var(--accent);
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:active { transform: scale(0.98); }
+    [data-theme="dark"] .btn-primary { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-primary:hover { background: #3B82F6; }
+
+    .btn-secondary {
+      flex: 1;
+      height: 48px;
+      background: transparent;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-secondary:hover { border-color: var(--text-muted); background: var(--bg-card); }
+
+    /* === CONFIRM DIALOG === */
+    .confirm-dialog {
+      display: none;
+      background: var(--bg-card);
+      border: 2px solid var(--danger);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 12px;
+      animation: fadeIn 0.15s ease;
+    }
+    .confirm-dialog.visible { display: block; }
+
+    .confirm-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .confirm-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-confirm-yes {
+      height: 36px;
+      padding: 0 20px;
+      background: var(--danger);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-confirm-yes:hover { background: #DC2626; }
+
+    .btn-confirm-no {
+      height: 36px;
+      padding: 0 20px;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .btn-confirm-no:hover { border-color: var(--text-muted); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === SIDEBAR: PLATFORM LIMITS === */
+    .sidebar-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .limit-item {
+      margin-bottom: 14px;
+    }
+    .limit-item:last-child { margin-bottom: 0; }
+
+    .limit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .limit-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .limit-count {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .limit-bar {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .limit-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--success);
+      transition: width 0.2s, background 0.2s;
+      width: 0%;
+    }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: #F1F5F9;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 9999;
+      pointer-events: none;
+      animation: toastIn 0.15s ease, toastOut 0.3s ease 1.7s forwards;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    /* === AD PLACEHOLDERS === */
+    .ad-placeholder {
+      border: 2px dashed var(--border);
+      min-height: 90px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 24px 0;
+      background: var(--bg-card);
+    }
+
+    /* === SEO CONTENT === */
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 12px;
+    }
+    .seo-section p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .seo-section ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .seo-section li {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .seo-section a { color: var(--accent); text-decoration: none; }
+    .seo-section a:hover { text-decoration: underline; }
+
+    /* === FAQ ACCORDION === */
+    .faq-section { border-top: 1px solid var(--border); }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-section summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
+    }
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform 0.2s;
+    }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
+
+    .faq-answer {
+      padding: 0 0 16px 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 48px;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer a:hover { color: var(--accent); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 767px) {
+      .nav-links { display: none !important; }
+      .page-title { font-size: 22px; }
+      .main { padding: 16px; }
+      .card { padding: 16px; }
+      .tool-layout {
+        flex-direction: column;
+      }
+      .tool-sidebar {
+        width: 100%;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      #textInput {
+        min-height: 200px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/" class="active">Zeichen</a>
+        <a href="/woerter-zaehlen/">Wörter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">🌙</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <h1 class="page-title">Zeichenzähler – Zeichen online zählen</h1>
+    <p class="page-subtitle">Zeichen, Wörter, Sätze und Absätze in Echtzeit zählen. Mit Zeichenlimits für Social Media und Ads.</p>
+
+    <!-- AD: TOP -->
+    <div class="ad-placeholder" id="ad-top">Werbung</div>
+
+    <!-- TOOL LAYOUT: 2-COLUMN -->
+    <div class="tool-layout">
+
+      <!-- LEFT: TEXTAREA + STATS -->
+      <div class="tool-main">
+        <div class="card">
+          <!-- Textarea -->
+          <div class="textarea-wrap">
+            <textarea id="textInput" placeholder="Text hier eingeben oder einfügen..." aria-label="Text eingeben"></textarea>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value" id="statChars">0</span>
+              <span class="stat-label">Zeichen</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statCharsNoSpace">0</span>
+              <span class="stat-label">Ohne Leerzeichen</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statWords">0</span>
+              <span class="stat-label">Wörter</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statSentences">0</span>
+              <span class="stat-label">Sätze</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statParagraphs">0</span>
+              <span class="stat-label">Absätze</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="statReadTime">0 Min.</span>
+              <span class="stat-label">Lesezeit</span>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="btn-row">
+            <button class="btn-primary" id="btnCopy" aria-label="Text kopieren">
+              <span>📋</span> Kopieren
+            </button>
+            <button class="btn-secondary" id="btnDelete" aria-label="Text löschen">
+              <span>🗑️</span> Löschen
+            </button>
+          </div>
+
+          <!-- Confirm Dialog -->
+          <div class="confirm-dialog" id="confirmDialog">
+            <div class="confirm-text">Gesamten Text löschen?</div>
+            <div class="confirm-buttons">
+              <button class="btn-confirm-yes" id="btnConfirmYes">Ja, löschen</button>
+              <button class="btn-confirm-no" id="btnConfirmNo">Abbrechen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SIDEBAR — PLATFORM LIMITS -->
+      <div class="tool-sidebar">
+        <div class="card">
+          <div class="sidebar-title">Zeichenlimits</div>
+
+          <div class="limit-item" data-limit="280">
+            <div class="limit-header">
+              <span class="limit-name">Twitter / X</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 280</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="150">
+            <div class="limit-header">
+              <span class="limit-name">Instagram Bio</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 150</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="2200">
+            <div class="limit-header">
+              <span class="limit-name">Instagram Caption</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 2200</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="3000">
+            <div class="limit-header">
+              <span class="limit-name">LinkedIn Post</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 3000</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="40">
+            <div class="limit-header">
+              <span class="limit-name">Meta Ads Headline</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 40</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="125">
+            <div class="limit-header">
+              <span class="limit-name">Meta Ads Beschr.</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 125</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="30">
+            <div class="limit-header">
+              <span class="limit-name">Google Ads Headline</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 30</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+
+          <div class="limit-item" data-limit="90">
+            <div class="limit-header">
+              <span class="limit-name">Google Ads Beschr.</span>
+              <span class="limit-count"><span class="limit-current">0</span> / 90</span>
+            </div>
+            <div class="limit-bar"><div class="limit-bar-fill"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AD: MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Werbung</div>
+
+    <!-- SEO CONTENT -->
+    <section class="seo-section">
+      <h2>Wie funktioniert der Zeichenzähler?</h2>
+      <p>Unser Zeichenzähler analysiert Ihren Text in Echtzeit, während Sie tippen oder einfügen. Sie sehen sofort die Anzahl der Zeichen (mit und ohne Leerzeichen), Wörter, Sätze, Absätze und die geschätzte Lesezeit. Alle Berechnungen laufen direkt in Ihrem Browser – es werden keine Daten an einen Server übertragen.</p>
+      <p>Besonders praktisch: Die Seitenleiste zeigt Ihnen die Zeichenlimits für die wichtigsten Plattformen an. So sehen Sie auf einen Blick, ob Ihr Text für einen <strong>Tweet (280 Zeichen)</strong>, eine <strong>Instagram Bio (150 Zeichen)</strong> oder eine <strong>Google Ads Headline (30 Zeichen)</strong> passt. Die farbigen Fortschrittsbalken warnen Sie rechtzeitig, bevor Sie das Limit überschreiten.</p>
+      <p>Für eine detaillierte Wortanalyse mit häufigsten Wörtern und Keyword-Dichte empfehlen wir unser <a href="/woerter-zaehlen/">Wörter zählen Tool</a>. Und wenn Sie die Verständlichkeit Ihres Textes prüfen möchten, nutzen Sie den <a href="/lesbarkeit/">Lesbarkeitsindex</a>.</p>
+    </section>
+
+    <!-- AD: BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Werbung</div>
+
+    <section class="seo-section">
+      <h2>Für wen ist der Zeichenzähler geeignet?</h2>
+      <ul>
+        <li><strong>Social-Media-Manager</strong> – für die Einhaltung von Zeichenlimits bei Twitter, Instagram und LinkedIn</li>
+        <li><strong>Online-Marketing-Experten</strong> – für die Optimierung von Google Ads und Meta Ads Texten</li>
+        <li><strong>Texter und Journalisten</strong> – für das schnelle Zählen von Zeichen und Wörtern in Artikeln</li>
+        <li><strong>Studenten und Akademiker</strong> – für die Einhaltung von Zeichenvorgaben bei Hausarbeiten und Abstracts</li>
+        <li><strong>SEO-Spezialisten</strong> – für die Optimierung von <a href="/text-formatierung/">Meta-Titles und -Descriptions</a></li>
+        <li><strong>Alle Nutzer</strong> – unser <a href="/passwort-generator/">Passwort Generator</a> und der <a href="/umlaut-konverter/">Umlaut Konverter</a> sind ebenfalls kostenlos verfügbar</li>
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="seo-section">
+      <h2>Häufige Fragen</h2>
+      <div class="faq-section">
+        <details>
+          <summary>Werden Leerzeichen mitgezählt?</summary>
+          <div class="faq-answer">Ja, unser Zeichenzähler zeigt sowohl die Anzahl der Zeichen mit Leerzeichen als auch ohne Leerzeichen an. So können Sie je nach Bedarf den passenden Wert nutzen – zum Beispiel zählt Twitter Leerzeichen mit, während manche andere Plattformen sie ausschließen.</div>
+        </details>
+        <details>
+          <summary>Wie werden Wörter gezählt?</summary>
+          <div class="faq-answer">Wörter werden anhand von Leerzeichen und Zeilenumbrüchen getrennt gezählt. Zusammengesetzte Wörter mit Bindestrich wie „Zeichenzähler-Tool" werden als ein Wort gezählt. Leere Eingaben ergeben null Wörter.</div>
+        </details>
+        <details>
+          <summary>Funktioniert der Zeichenzähler auch auf dem Handy?</summary>
+          <div class="faq-answer">Ja, der Zeichenzähler ist vollständig responsiv und funktioniert auf allen Geräten – Smartphone, Tablet und Desktop. Die Benutzeroberfläche passt sich automatisch an die Bildschirmgröße an.</div>
+        </details>
+        <details>
+          <summary>Wie viele Zeichen erlaubt Twitter/X?</summary>
+          <div class="faq-answer">Twitter (jetzt X) erlaubt maximal 280 Zeichen pro Tweet. Unser Zeichenzähler zeigt Ihnen in Echtzeit an, wie viele Zeichen Sie bereits verwendet haben und wie nah Sie am Limit sind – mit farbiger Fortschrittsanzeige.</div>
+        </details>
+        <details>
+          <summary>Werden meine Texte gespeichert?</summary>
+          <div class="faq-answer">Nein, Ihre Texte werden zu keinem Zeitpunkt gespeichert oder an einen Server übertragen. Der Zeichenzähler läuft vollständig in Ihrem Browser. Sobald Sie die Seite schließen oder den Text löschen, sind die Daten unwiderruflich weg.</div>
+        </details>
+        <details>
+          <summary>Wie wird die Lesezeit berechnet?</summary>
+          <div class="faq-answer">Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird „unter 1 Min." angezeigt.</div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenzähler</a> |
+    <a href="/woerter-zaehlen/">Wörter zählen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
+  </footer>
+
+  <script>
+    /* === DARK MODE TOGGLE === */
+    const themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+    updateThemeIcon();
+
+    themeToggle.addEventListener('click', function() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+
+    /* === TEXT ANALYSIS FUNCTIONS (reusable for TASK-003) === */
+    function countChars(text) {
+      return text.length;
+    }
+
+    function countCharsNoSpaces(text) {
+      return text.replace(/\s/g, '').length;
+    }
+
+    function countWords(text) {
+      var trimmed = text.trim();
+      if (trimmed === '') return 0;
+      return trimmed.split(/\s+/).length;
+    }
+
+    function countSentences(text) {
+      var trimmed = text.trim();
+      if (trimmed === '') return 0;
+      /* Match sentence-ending punctuation: . ! ? and German „ marks */
+      var matches = trimmed.match(/[.!?]+/g);
+      return matches ? matches.length : 0;
+    }
+
+    function countParagraphs(text) {
+      var trimmed = text.trim();
+      if (trimmed === '') return 0;
+      /* Split by one or more newlines, filter empty */
+      return trimmed.split(/\n\s*\n|\n/).filter(function(p) {
+        return p.trim().length > 0;
+      }).length;
+    }
+
+    function calcReadTime(wordCount) {
+      /* Average reading speed: 200 words per minute (German) */
+      var minutes = Math.ceil(wordCount / 200);
+      if (wordCount === 0) return '0 Min.';
+      if (minutes < 1) return 'unter 1 Min.';
+      return minutes + ' Min.';
+    }
+
+    /* === DOM ELEMENTS === */
+    var textInput = document.getElementById('textInput');
+    var statChars = document.getElementById('statChars');
+    var statCharsNoSpace = document.getElementById('statCharsNoSpace');
+    var statWords = document.getElementById('statWords');
+    var statSentences = document.getElementById('statSentences');
+    var statParagraphs = document.getElementById('statParagraphs');
+    var statReadTime = document.getElementById('statReadTime');
+    var btnCopy = document.getElementById('btnCopy');
+    var btnDelete = document.getElementById('btnDelete');
+    var confirmDialog = document.getElementById('confirmDialog');
+    var btnConfirmYes = document.getElementById('btnConfirmYes');
+    var btnConfirmNo = document.getElementById('btnConfirmNo');
+
+    /* === PLATFORM LIMIT ITEMS === */
+    var limitItems = document.querySelectorAll('.limit-item');
+
+    /* === UPDATE STATS === */
+    function updateStats() {
+      var text = textInput.value;
+      var chars = countChars(text);
+      var charsNoSpace = countCharsNoSpaces(text);
+      var words = countWords(text);
+      var sentences = countSentences(text);
+      var paragraphs = countParagraphs(text);
+      var readTime = calcReadTime(words);
+
+      statChars.textContent = chars;
+      statCharsNoSpace.textContent = charsNoSpace;
+      statWords.textContent = words;
+      statSentences.textContent = sentences;
+      statParagraphs.textContent = paragraphs;
+      statReadTime.textContent = readTime;
+
+      /* Update platform limits */
+      limitItems.forEach(function(item) {
+        var limit = parseInt(item.getAttribute('data-limit'));
+        var currentEl = item.querySelector('.limit-current');
+        var fillEl = item.querySelector('.limit-bar-fill');
+
+        currentEl.textContent = chars;
+
+        var percent = limit > 0 ? (chars / limit) * 100 : 0;
+        if (percent > 100) percent = 100;
+        fillEl.style.width = percent + '%';
+
+        /* Color thresholds */
+        if (chars > limit) {
+          fillEl.style.background = 'var(--danger)';
+        } else if (percent > 90) {
+          fillEl.style.background = 'var(--danger)';
+        } else if (percent > 75) {
+          fillEl.style.background = 'var(--warning)';
+        } else {
+          fillEl.style.background = 'var(--success)';
+        }
+      });
+    }
+
+    /* === REAL-TIME COUNTING === */
+    textInput.addEventListener('input', updateStats);
+
+    /* === COPY BUTTON === */
+    btnCopy.addEventListener('click', function() {
+      var text = textInput.value;
+      if (!text) {
+        showToast('Kein Text zum Kopieren');
+        return;
+      }
+
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('Text kopiert!');
+      }).catch(function() {
+        /* Fallback */
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Text kopiert!');
+      });
+    });
+
+    /* === DELETE BUTTON WITH CONFIRM === */
+    btnDelete.addEventListener('click', function() {
+      var text = textInput.value;
+      if (!text) return;
+
+      if (text.length > 50) {
+        /* Show inline confirm dialog */
+        confirmDialog.classList.add('visible');
+      } else {
+        /* Short text: delete immediately */
+        clearText();
+      }
+    });
+
+    btnConfirmYes.addEventListener('click', function() {
+      clearText();
+      confirmDialog.classList.remove('visible');
+    });
+
+    btnConfirmNo.addEventListener('click', function() {
+      confirmDialog.classList.remove('visible');
+    });
+
+    function clearText() {
+      textInput.value = '';
+      updateStats();
+      textInput.focus();
+      showToast('Text gelöscht');
+    }
+
+    /* === TOAST === */
+    function showToast(message) {
+      var existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+
+      var toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(function() {
+        toast.remove();
+      }, 2200);
+    }
+
+    /* === INIT === */
+    updateStats();
+  </script>
+
+</body>
+</html>
