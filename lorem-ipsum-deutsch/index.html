@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorem Ipsum Deutsch Online Kostenlos | TextHelfer</title>
+  <meta name="description" content="Deutschen Blindtext kostenlos generieren: Nat&#252;rliche Platzhalterw&#246;rter statt lateinischem Lorem Ipsum. Anzahl und L&#228;nge w&#228;hlbar, mit HTML-Tags. Keine Anmeldung.">
+  <link rel="canonical" href="https://texthelfer.net/lorem-ipsum-deutsch/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+   "name":"Lorem Ipsum Deutsch",
+   "description":"Deutschen Blindtext kostenlos generieren. Nat\u00fcrliche Platzhalterw\u00f6rter statt lateinischem Lorem Ipsum.",
+   "url":"https://texthelfer.net/lorem-ipsum-deutsch/",
+   "applicationCategory":"UtilityApplication",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage",
+   "mainEntity":[
+     {"@type":"Question","name":"Was ist Lorem Ipsum und warum gibt es eine deutsche Version?",
+      "acceptedAnswer":{"@type":"Answer","text":"Lorem Ipsum ist ein seit dem 16. Jahrhundert verwendeter lateinischer Platzhaltertext f\u00fcr Layouts und Druckvorlagen. Das Problem: Lateinische Texte sind f\u00fcr deutsche Kunden und Stakeholder unlesbar, was bei Pr\u00e4sentationen zu Verwirrung f\u00fchrt. Unser Blindtext Generator erstellt nat\u00fcrliche deutsche Platzhalterw\u00f6rter, die im Layout genauso wirken wie echter Inhalt."}},
+     {"@type":"Question","name":"Was ist ein Blindtext?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein Blindtext ist ein sinnfreier oder bedeutungsarmer Text, der in der Gestaltung als Platzhalter f\u00fcr sp\u00e4teren echten Inhalt verwendet wird. Er hilft Designern, das visuelle Erscheinungsbild eines Layouts zu beurteilen, ohne auf fertigen Inhalt angewiesen zu sein. Im Unterschied zu Lorem Ipsum sind unsere deutschen Blindtexte lesbar und erzeugen einen realistischeren Eindruck."}},
+     {"@type":"Question","name":"Kann ich den generierten Text kommerziell verwenden?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja, der generierte Blindtext ist lizenzfrei und kann f\u00fcr kommerzielle und private Projekte beliebig verwendet werden. Die Texte wurden speziell f\u00fcr diesen Zweck erstellt und enthalten keine urheberrechtlich gesch\u00fctzten Inhalte. Du kannst ihn f\u00fcr Websites, Apps, Pr\u00e4sentationen, Druckerzeugnisse und alle anderen Zwecke einsetzen."}},
+     {"@type":"Question","name":"Was bewirkt die HTML-Tags-Option?",
+      "acceptedAnswer":{"@type":"Answer","text":"Wenn du die Option \u201eHTML-Tags hinzuf\u00fcgen\u201c aktivierst, wird jeder Absatz automatisch in <p>-Tags eingeschlossen, und vor dem ersten Absatz wird ein <h2>-Tag eingef\u00fcgt. Das ist praktisch f\u00fcr Entwickler, die den Text direkt in ihren HTML-Code einf\u00fcgen m\u00f6chten, ohne Tags manuell hinzuf\u00fcgen zu m\u00fcssen."}},
+     {"@type":"Question","name":"Wie unterscheiden sich die L\u00e4ngenoptionen Kurz, Mittel und Lang?",
+      "acceptedAnswer":{"@type":"Answer","text":"\u201eKurz\u201c generiert Abs\u00e4tze mit etwa 3 bis 4 S\u00e4tzen und rund 50 W\u00f6rtern \u2014 ideal f\u00fcr Teasertexte oder Kartenlayouts. \u201eMittel\u201c erzeugt 6 bis 7 S\u00e4tze mit etwa 100 W\u00f6rtern, passend f\u00fcr Standard-Inhaltsseiten. \u201eLang\u201c erstellt 10 bis 12 S\u00e4tze mit rund 200 W\u00f6rtern, geeignet f\u00fcr Artikel oder ausf\u00fchrliche Textbereiche."}},
+     {"@type":"Question","name":"Warum sind die Texte auf Deutsch statt auf Latein?",
+      "acceptedAnswer":{"@type":"Answer","text":"Lateinische Lorem-Ipsum-Texte haben einen entscheidenden Nachteil: Kunden und Auftraggeber k\u00f6nnen den Inhalt nicht lesen und beurteilen daher oft nur das visuelle Erscheinungsbild. Deutsche Platzhalterw\u00f6rter erm\u00f6glichen es, Layout und Lesbarkeit gleichzeitig zu beurteilen. Au\u00dferdem entsprechen deutsche Texte besser der tats\u00e4chlichen Wortl\u00e4nge und Zeilenstruktur, die sp\u00e4ter im fertigen Produkt erscheinen wird."}}
+   ]}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    /* === MAIN === */
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .page-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    /* === CONTROLS CARD === */
+    .controls-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .control-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .num-input {
+      width: 72px;
+      height: 44px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .num-input:focus { border-color: var(--accent); }
+
+    .length-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .radio-item input[type="radio"] {
+      accent-color: var(--accent);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .radio-item label {
+      font-size: 16px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .checkbox-label {
+      font-size: 16px;
+      color: var(--text);
+    }
+    .checkbox-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-left: 30px;
+      margin-top: -16px;
+      margin-bottom: 24px;
+    }
+
+    .btn-generate {
+      width: 100%;
+      height: 52px;
+      background: var(--accent);
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-generate:hover { background: var(--accent-hover); }
+    .btn-generate:active { transform: scale(0.98); }
+    [data-theme="dark"] .btn-generate { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-generate:hover { background: #3B82F6; }
+
+    /* === OUTPUT CARD === */
+    .output-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .output-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      height: 48px;
+    }
+
+    .tab-group {
+      display: flex;
+      height: 48px;
+    }
+
+    .tab-btn {
+      height: 48px;
+      padding: 0 16px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .btn-copy {
+      height: 36px;
+      padding: 0 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
+
+    .output-content {
+      padding: 24px;
+      min-height: 200px;
+    }
+
+    /* Vorschau tab styles */
+    .preview-area h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .preview-area p {
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    /* Quelltext tab styles */
+    .source-area {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: none;
+      width: 100%;
+      resize: none;
+      outline: none;
+      min-height: 200px;
+      padding: 0;
+    }
+
+    /* === AD PLACEHOLDERS === */
+    .ad-placeholder {
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* === SEO SECTIONS === */
+    .seo-section {
+      margin-bottom: 32px;
+    }
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .seo-section p, .seo-section li {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .seo-section ul {
+      list-style: disc;
+      padding-left: 24px;
+    }
+    .seo-section ul li {
+      margin-bottom: 6px;
+    }
+    .seo-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .seo-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* === FAQ === */
+    .faq-section { margin-bottom: 32px; }
+    .faq-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: var(--bg-card);
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-question:hover { background: var(--border); }
+    .faq-arrow {
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 16px 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      background: var(--bg-card);
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* === FOOTER === */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+    .footer a:hover { color: var(--accent); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 767px) {
+      .header { padding: 0 16px; }
+      .nav-links { display: none; }
+      .main { padding: 24px 16px 40px; }
+      .page-title { font-size: 22px; }
+      .controls-card { padding: 16px; }
+      .output-content { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">W&ouml;rter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/" class="active">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">&#127769;</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <h1 class="page-title">Lorem Ipsum Deutsch &ndash; Deutschen Blindtext generieren</h1>
+    <p class="page-subtitle">Nat&uuml;rlichen deutschen Platzhaltertext generieren &mdash; kostenlos, sofort, ohne Anmeldung.</p>
+
+    <!-- CONTROLS CARD -->
+    <div class="controls-card">
+      <div class="control-row">
+        <span class="control-label">Anzahl Abs&auml;tze:</span>
+        <input type="number" id="numParagraphs" class="num-input" min="1" max="10" value="3">
+      </div>
+
+      <div class="length-label">L&auml;nge:</div>
+      <div class="radio-group">
+        <div class="radio-item">
+          <input type="radio" name="length" id="lenKurz" value="kurz">
+          <label for="lenKurz">Kurz</label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="length" id="lenMittel" value="mittel" checked>
+          <label for="lenMittel">Mittel</label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="length" id="lenLang" value="lang">
+          <label for="lenLang">Lang</label>
+        </div>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="htmlTags">
+        <span class="checkbox-label">HTML-Tags hinzuf&uuml;gen (&lt;p&gt;, &lt;h2&gt;)</span>
+      </div>
+      <div class="checkbox-sub">F&uuml;gt &lt;p&gt; und &lt;h2&gt; Tags zum generierten Text hinzu</div>
+
+      <button class="btn-generate" id="btnGenerate">Neu generieren</button>
+    </div>
+
+    <!-- OUTPUT CARD -->
+    <div class="output-card">
+      <div class="output-bar">
+        <div class="tab-group">
+          <button class="tab-btn active" id="tabVorschau" data-tab="vorschau">Vorschau</button>
+          <button class="tab-btn" id="tabQuelltext" data-tab="quelltext">Quelltext</button>
+        </div>
+        <button class="btn-copy" id="btnCopy">Alles kopieren</button>
+      </div>
+      <div class="output-content" id="outputContent"></div>
+    </div>
+
+    <!-- AD TOP -->
+    <div class="ad-placeholder" id="ad-top">Anzeige</div>
+
+    <!-- SEO SECTION 1 -->
+    <section class="seo-section">
+      <h2>Wie funktioniert der Blindtext-Generator?</h2>
+      <p>
+        Unser Lorem Ipsum Deutsch Generator erstellt nat&uuml;rliche deutsche Platzhaltertexte, die echten Inhalten &auml;hneln &mdash;
+        ganz ohne das unleserliche Latein. Der Blindtext wird aus einem Corpus von 60 sorgf&auml;ltig verfassten deutschen S&auml;tzen
+        zusammengestellt, die thematisch neutral und grammatisch korrekt sind. So k&ouml;nnen Designer und Entwickler Layouts
+        mit realistischem Text testen, den auch Stakeholder und Kunden sofort verstehen.
+      </p>
+      <p>
+        W&auml;hle die gew&uuml;nschte Anzahl an Abs&auml;tzen (1&ndash;10) und die L&auml;nge (Kurz, Mittel oder Lang). Mit der
+        HTML-Tags-Option werden automatisch <code>&lt;p&gt;</code> und <code>&lt;h2&gt;</code> Tags eingef&uuml;gt &mdash; ideal f&uuml;r
+        Entwickler, die den Blindtext direkt in ihren Code einf&uuml;gen m&ouml;chten. Im Vorschau-Tab siehst du den Text gerendert,
+        im Quelltext-Tab den rohen Text zum Kopieren. Teste deine Layouts mit dem
+        <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> oder z&auml;hle die W&ouml;rter mit dem
+        <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> Tool.
+      </p>
+    </section>
+
+    <!-- AD MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Anzeige</div>
+
+    <!-- SEO SECTION 2 -->
+    <section class="seo-section">
+      <h2>F&uuml;r wen ist der Blindtext-Generator geeignet?</h2>
+      <ul>
+        <li>Webdesigner und UI/UX-Designer, die realistische Layouts mit deutschen Texten gestalten</li>
+        <li>Frontend-Entwickler, die Komponenten mit authentischem Platzhaltertext testen</li>
+        <li>Grafikdesigner, die Print-Layouts und Pr&auml;sentationen mit lesbarem F&uuml;lltext bef&uuml;llen</li>
+        <li>Agenturen, die Kunden-Mockups pr&auml;sentieren, die ohne technisches Vorwissen verstanden werden</li>
+        <li>Alle, die professionelle Dummy-Texte auf Deutsch ben&ouml;tigen</li>
+      </ul>
+      <p style="margin-top: 12px;">
+        Vergleiche deinen generierten Text mit echten Inhalten &uuml;ber den <a href="/textvergleich/">Textvergleich</a>.
+      </p>
+    </section>
+
+    <!-- AD BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Anzeige</div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>H&auml;ufige Fragen</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was ist Lorem Ipsum und warum gibt es eine deutsche Version?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Lorem Ipsum ist ein seit dem 16. Jahrhundert verwendeter lateinischer Platzhaltertext f&uuml;r Layouts und Druckvorlagen. Das Problem: Lateinische Texte sind f&uuml;r deutsche Kunden und Stakeholder unlesbar, was bei Pr&auml;sentationen zu Verwirrung f&uuml;hrt. Unser Blindtext Generator erstellt nat&uuml;rliche deutsche Platzhalterw&ouml;rter, die im Layout genauso wirken wie echter Inhalt.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was ist ein Blindtext?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ein Blindtext ist ein sinnfreier oder bedeutungsarmer Text, der in der Gestaltung als Platzhalter f&uuml;r sp&auml;teren echten Inhalt verwendet wird. Er hilft Designern, das visuelle Erscheinungsbild eines Layouts zu beurteilen, ohne auf fertigen Inhalt angewiesen zu sein. Im Unterschied zu Lorem Ipsum sind unsere deutschen Blindtexte lesbar und erzeugen einen realistischeren Eindruck.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Kann ich den generierten Text kommerziell verwenden?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja, der generierte Blindtext ist lizenzfrei und kann f&uuml;r kommerzielle und private Projekte beliebig verwendet werden. Die Texte wurden speziell f&uuml;r diesen Zweck erstellt und enthalten keine urheberrechtlich gesch&uuml;tzten Inhalte. Du kannst ihn f&uuml;r Websites, Apps, Pr&auml;sentationen, Druckerzeugnisse und alle anderen Zwecke einsetzen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was bewirkt die HTML-Tags-Option?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Wenn du die Option &bdquo;HTML-Tags hinzuf&uuml;gen&ldquo; aktivierst, wird jeder Absatz automatisch in &lt;p&gt;-Tags eingeschlossen, und vor dem ersten Absatz wird ein &lt;h2&gt;-Tag eingef&uuml;gt. Das ist praktisch f&uuml;r Entwickler, die den Text direkt in ihren HTML-Code einf&uuml;gen m&ouml;chten, ohne Tags manuell hinzuf&uuml;gen zu m&uuml;ssen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie unterscheiden sich die L&auml;ngenoptionen Kurz, Mittel und Lang?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">&bdquo;Kurz&ldquo; generiert Abs&auml;tze mit etwa 3 bis 4 S&auml;tzen und rund 50 W&ouml;rtern &mdash; ideal f&uuml;r Teasertexte oder Kartenlayouts. &bdquo;Mittel&ldquo; erzeugt 6 bis 7 S&auml;tze mit etwa 100 W&ouml;rtern, passend f&uuml;r Standard-Inhaltsseiten. &bdquo;Lang&ldquo; erstellt 10 bis 12 S&auml;tze mit rund 200 W&ouml;rtern, geeignet f&uuml;r Artikel oder ausf&uuml;hrliche Textbereiche.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Warum sind die Texte auf Deutsch statt auf Latein?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Lateinische Lorem-Ipsum-Texte haben einen entscheidenden Nachteil: Kunden und Auftraggeber k&ouml;nnen den Inhalt nicht lesen und beurteilen daher oft nur das visuelle Erscheinungsbild. Deutsche Platzhalterw&ouml;rter erm&ouml;glichen es, Layout und Lesbarkeit gleichzeitig zu beurteilen. Au&szlig;erdem entsprechen deutsche Texte besser der tats&auml;chlichen Wortl&auml;nge und Zeilenstruktur, die sp&auml;ter im fertigen Produkt erscheinen wird.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
+    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
+  </footer>
+
+  <script>
+    /* === CORPUS === */
+    var CORPUS = [
+      "Die moderne Gestaltung verbindet Funktionalit\u00e4t mit \u00e4sthetischer Sch\u00f6nheit.",
+      "Jedes Detail wurde sorgf\u00e4ltig ausgew\u00e4hlt, um ein harmonisches Gesamtbild zu schaffen.",
+      "Die Benutzeroberfl\u00e4che wurde intuitiv gestaltet, damit alle Nutzer sie sofort verstehen.",
+      "Durch klare Strukturen wird die Navigation erheblich vereinfacht.",
+      "Das Design spricht sowohl junge als auch erfahrene Nutzer gleicherma\u00dfen an.",
+      "Farben und Formen wurden aufeinander abgestimmt, um eine angenehme Atmosph\u00e4re zu erzeugen.",
+      "Die Typografie spielt eine entscheidende Rolle f\u00fcr die Lesbarkeit des Inhalts.",
+      "Jede Seite erz\u00e4hlt ihre eigene Geschichte durch sorgf\u00e4ltig platzierte Elemente.",
+      "Das Layout passt sich flexibel an verschiedene Bildschirmgr\u00f6\u00dfen an.",
+      "Benutzerfreundlichkeit steht im Mittelpunkt aller Designentscheidungen.",
+      "Die Farbpalette wurde bewusst gew\u00e4hlt, um Vertrauen und Seriosit\u00e4t auszustrahlen.",
+      "Moderne Webtechnologien erm\u00f6glichen ein reibungsloses Nutzererlebnis auf allen Ger\u00e4ten.",
+      "Der erste Eindruck entscheidet dar\u00fcber, ob ein Besucher bleibt oder die Seite verl\u00e4sst.",
+      "Konsistenz in der Gestaltung schafft Vertrauen und Wiedererkennungswert.",
+      "Gutes Design l\u00f6st Probleme, ohne dass der Nutzer es bewusst wahrnimmt.",
+      "Die Balance zwischen Text und Bildern sorgt f\u00fcr ein ausgewogenes Erscheinungsbild.",
+      "Wei\u00dfraum ist kein leerer Raum, sondern ein aktives Gestaltungsmittel.",
+      "Jedes Element hat seinen Platz und seinen Zweck im Gesamtkonzept.",
+      "Die Navigation f\u00fchrt den Nutzer intuitiv durch alle Bereiche der Anwendung.",
+      "Schnelle Ladezeiten sind ein wesentlicher Bestandteil einer guten Nutzererfahrung.",
+      "Das Produkt \u00fcberzeugt durch seine klare und durchdachte Struktur.",
+      "Innovation und Tradition verbinden sich zu einem einzigartigen Ergebnis.",
+      "Die Zusammenarbeit verschiedener Disziplinen f\u00fchrt zu besseren L\u00f6sungen.",
+      "Nachhaltigkeit und Effizienz sind die Grundpfeiler des modernen Designs.",
+      "Kreativit\u00e4t entfaltet sich am besten innerhalb klar definierter Grenzen.",
+      "Das Projekt wurde von Anfang an mit dem Nutzer im Mittelpunkt entwickelt.",
+      "Technologie sollte dem Menschen dienen, nicht umgekehrt.",
+      "Die einfachsten L\u00f6sungen sind oft die elegantesten und wirkungsvollsten.",
+      "Qualit\u00e4t zeigt sich in den Details, die auf den ersten Blick unsichtbar sind.",
+      "Ein durchdachtes Konzept bildet die Grundlage f\u00fcr jedes erfolgreiche Projekt.",
+      "Die Kombination aus Form und Funktion schafft bleibende Eindr\u00fccke.",
+      "Nutzerforschung liefert wertvolle Einblicke f\u00fcr eine zielgerichtete Gestaltung.",
+      "Prototypen helfen dabei, Ideen schnell zu testen und zu verfeinern.",
+      "Feedback von echten Nutzern ist unbezahlbar f\u00fcr die Produktentwicklung.",
+      "Iterative Prozesse f\u00fchren zu stetig verbesserten Ergebnissen.",
+      "Die visuelle Hierarchie lenkt den Blick des Betrachters gezielt durch den Inhalt.",
+      "Barrierefreiheit ist kein Kompromiss, sondern eine Bereicherung f\u00fcr alle.",
+      "Responsive Design stellt sicher, dass Inhalte auf jedem Ger\u00e4t optimal dargestellt werden.",
+      "Die Markenidentit\u00e4t spiegelt sich in jedem visuellen Element wider.",
+      "Storytelling durch Design schafft emotionale Verbindungen mit dem Publikum.",
+      "Das Zusammenspiel von Inhalt und Form entscheidet \u00fcber den Erfolg einer Seite.",
+      "Durchdachte Mikrointeraktionen verbessern das Nutzererlebnis sp\u00fcrbar.",
+      "Eine starke visuelle Sprache kommuniziert Werte ohne Worte.",
+      "Das Interface wurde so gestaltet, dass es sich nat\u00fcrlich und vertraut anf\u00fchlt.",
+      "Komplexe Informationen werden durch kluge Visualisierungen leicht verst\u00e4ndlich.",
+      "Die St\u00e4rke eines Designs liegt in seiner Einfachheit und Klarheit.",
+      "Jede Entscheidung im Designprozess hat Auswirkungen auf das Endergebnis.",
+      "Geduld und Sorgfalt sind die wichtigsten Werkzeuge im kreativen Prozess.",
+      "Das fertige Produkt ist das Ergebnis unz\u00e4hliger kleiner Entscheidungen.",
+      "Design ist keine Dekoration, sondern eine strategische Disziplin.",
+      "Die besten Designs entstehen durch enge Zusammenarbeit zwischen allen Beteiligten.",
+      "Verst\u00e4ndliche Sprache und klares Design gehen Hand in Hand.",
+      "Der Nutzer steht immer im Zentrum jeder guten Gestaltungsentscheidung.",
+      "Mut zur Vereinfachung f\u00fchrt oft zu den \u00fcberzeugendsten Ergebnissen.",
+      "Ein konsistentes Design schafft Orientierung und Vertrauen beim Nutzer.",
+      "Die digitale Welt bietet unz\u00e4hlige M\u00f6glichkeiten f\u00fcr kreative Gestaltung.",
+      "Gutes Design ist zeitlos und \u00fcbersteht den Wandel der Moden.",
+      "Die Zusammenf\u00fchrung verschiedener Perspektiven bereichert den kreativen Prozess.",
+      "Technische Exzellenz und gestalterische Qualit\u00e4t sind kein Widerspruch.",
+      "Am Ende entscheidet der Nutzer, ob ein Design erfolgreich ist oder nicht."
+    ];
+
+    /* === STATE === */
+    var currentParagraphs = [];
+    var activeTab = 'vorschau';
+
+    /* === SHUFFLE (Fisher-Yates with crypto) === */
+    function shuffleArray(arr) {
+      var a = arr.slice();
+      var rand = new Uint32Array(a.length);
+      crypto.getRandomValues(rand);
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = rand[i] % (i + 1);
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+      }
+      return a;
+    }
+
+    /* === GENERATE TEXT === */
+    function generateText(numParagraphs, length) {
+      var sentenceCounts = { kurz: 4, mittel: 7, lang: 11 };
+      var count = sentenceCounts[length];
+      var result = [];
+      var shuffled = shuffleArray(CORPUS);
+      var idx = 0;
+
+      for (var i = 0; i < numParagraphs; i++) {
+        var sentences = [];
+        for (var j = 0; j < count; j++) {
+          sentences.push(shuffled[idx % shuffled.length]);
+          idx++;
+          if (idx > 0 && idx % shuffled.length === 0) {
+            shuffled = shuffleArray(CORPUS);
+          }
+        }
+        result.push(sentences.join(' '));
+      }
+      return result;
+    }
+
+    /* === FORMAT OUTPUT === */
+    function getFormattedText(paragraphs, withHtml) {
+      if (withHtml) {
+        return '<h2>Beispiel\u00fcberschrift</h2>\n' +
+          paragraphs.map(function(p) { return '<p>' + p + '</p>'; }).join('\n');
+      }
+      return paragraphs.join('\n\n');
+    }
+
+    /* === RENDER === */
+    function render() {
+      var htmlTags = document.getElementById('htmlTags').checked;
+      var outputContent = document.getElementById('outputContent');
+
+      if (activeTab === 'vorschau') {
+        var html = '';
+        if (htmlTags) {
+          html += '<h2>Beispiel\u00fcberschrift</h2>';
+        }
+        currentParagraphs.forEach(function(p) {
+          html += '<p>' + p + '</p>';
+        });
+        outputContent.innerHTML = '<div class="preview-area">' + html + '</div>';
+      } else {
+        var raw = getFormattedText(currentParagraphs, htmlTags);
+        var ta = document.createElement('textarea');
+        ta.className = 'source-area';
+        ta.readOnly = true;
+        ta.value = raw;
+        ta.rows = Math.max(10, raw.split('\n').length + 2);
+        outputContent.innerHTML = '';
+        outputContent.appendChild(ta);
+      }
+    }
+
+    /* === GENERATE & RENDER === */
+    function doGenerate() {
+      var num = parseInt(document.getElementById('numParagraphs').value) || 3;
+      num = Math.max(1, Math.min(10, num));
+      document.getElementById('numParagraphs').value = num;
+
+      var length = 'mittel';
+      var radios = document.querySelectorAll('input[name="length"]');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) { length = radios[i].value; break; }
+      }
+
+      currentParagraphs = generateText(num, length);
+      render();
+    }
+
+    /* === COPY === */
+    function doCopy() {
+      var htmlTags = document.getElementById('htmlTags').checked;
+      var text = getFormattedText(currentParagraphs, htmlTags);
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('btnCopy');
+        btn.textContent = '\u2713 Kopiert';
+        btn.style.color = '#22C55E';
+        btn.style.borderColor = '#22C55E';
+        setTimeout(function() {
+          btn.textContent = 'Alles kopieren';
+          btn.style.color = '';
+          btn.style.borderColor = '';
+        }, 2000);
+      });
+    }
+
+    /* === TAB SWITCHING === */
+    function setTab(tab) {
+      activeTab = tab;
+      document.getElementById('tabVorschau').classList.toggle('active', tab === 'vorschau');
+      document.getElementById('tabQuelltext').classList.toggle('active', tab === 'quelltext');
+      render();
+    }
+
+    /* === DARK MODE === */
+    var themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+    updateThemeIcon();
+
+    /* === EVENT LISTENERS === */
+    document.getElementById('btnGenerate').addEventListener('click', doGenerate);
+    document.getElementById('btnCopy').addEventListener('click', doCopy);
+    document.getElementById('tabVorschau').addEventListener('click', function() { setTab('vorschau'); });
+    document.getElementById('tabQuelltext').addEventListener('click', function() { setTab('quelltext'); });
+    document.getElementById('htmlTags').addEventListener('change', render);
+
+    /* === AUTO-GENERATE ON LOAD === */
+    doGenerate();
+  </script>
+</body>
+</html>
