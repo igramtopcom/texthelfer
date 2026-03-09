@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt &ndash; TextHelfer</title>
-  <meta name="description" content="Kontaktieren Sie TextHelfer bei Fragen oder Feedback zu unseren kostenlosen Online-Texttools.">
-  <link rel="canonical" href="https://texthelfer.net/kontakt.html">
+  <title>&Uuml;ber TextHelfer &ndash; Kostenlose Online-Texttools</title>
+  <meta name="description" content="TextHelfer bietet 9 kostenlose Online-Texttools f&uuml;r die deutsche Sprache. 100% im Browser, keine Daten&uuml;bertragung, keine Anmeldung.">
+  <link rel="canonical" href="https://texthelfer.net/about.html">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -36,10 +36,12 @@
       --border: #334155;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--text);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
@@ -72,13 +74,6 @@
     .logo-helfer { color: #1E3A5F; }
     [data-theme="dark"] .logo-helfer { color: #93C5FD; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-shrink: 0;
-    }
-
     .nav-links {
       display: flex;
       align-items: center;
@@ -94,6 +89,13 @@
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--accent); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
 
     .theme-toggle {
       width: 44px;
@@ -149,39 +151,60 @@
       transition: background 0.15s, color 0.15s;
     }
     .mobile-menu a:hover { background: var(--border); color: var(--text); }
-    .mobile-menu a.active { color: var(--accent); font-weight: 600; }
 
     .main {
-      max-width: 600px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 48px 24px;
-      text-align: center;
+      padding: 40px 20px 60px;
     }
 
-    h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
-    .kontakt-text { font-size: 18px; color: var(--text-muted); margin-bottom: 32px; }
+    .main h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
 
-    .email-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      display: inline-block;
+    .main h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 12px;
     }
-    .email-label { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
-    .email-link {
-      font-size: 20px; font-weight: 600;
-      color: var(--accent); text-decoration: none;
+
+    .main p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
     }
-    .email-link:hover { text-decoration: underline; }
+
+    .main a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .main a:hover { text-decoration: underline; }
+
+    .tool-list {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .tool-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .tool-list li strong {
+      color: var(--text);
+    }
 
     .footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px;
       text-align: center;
       font-size: 14px;
       color: var(--text-muted);
-      margin-top: 48px;
+      border-top: 1px solid var(--border);
     }
     .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
     .footer a:hover { color: var(--accent); }
@@ -189,8 +212,8 @@
     @media (max-width: 767px) {
       .nav-links { display: none !important; }
       .hamburger { display: flex; }
-      h1 { font-size: 22px; }
-      .main { padding: 32px 16px; }
+      .main { padding: 24px 16px 48px; }
+      .main h1 { font-size: 22px; }
     }
   </style>
 </head>
@@ -226,17 +249,44 @@
       <a href="/umlaut-konverter/">Umlaut Konverter</a>
       <a href="/textvergleich/">Textvergleich</a>
       <a href="/zufallszahlen/">Zufallszahlen</a>
-      <a href="/kontakt.html" class="active">Kontakt</a>
+      <a href="/kontakt.html">Kontakt</a>
     </nav>
   </header>
 
   <main class="main">
-    <h1>Kontakt</h1>
-    <p class="kontakt-text">Haben Sie Fragen, Feedback oder Vorschl&auml;ge zu unseren Tools? Schreiben Sie uns gerne eine E-Mail.</p>
-    <div class="email-card">
-      <div class="email-label">E-Mail</div>
-      <a href="mailto:texthelfer.net@gmail.com" class="email-link">texthelfer.net@gmail.com</a>
-    </div>
+    <h1>&Uuml;ber TextHelfer</h1>
+
+    <p>TextHelfer ist eine Sammlung von 9 kostenlosen Online-Texttools, die speziell f&uuml;r die deutsche Sprache entwickelt wurden. Alle Tools laufen zu 100&nbsp;% direkt in Ihrem Browser &ndash; es werden keine Texte, Passw&ouml;rter oder sonstige Daten an einen Server &uuml;bertragen. Ihre Privatsph&auml;re ist uns wichtig.</p>
+
+    <p>Unser Ziel ist es, deutschsprachigen Nutzern im DACH-Raum (Deutschland, &Ouml;sterreich, Schweiz) praktische Werkzeuge zur Verf&uuml;gung zu stellen, die schnell, zuverl&auml;ssig und ohne Anmeldung funktionieren. Ob Sie ein sicheres Passwort erstellen, Zeichen z&auml;hlen oder die Lesbarkeit Ihres Textes pr&uuml;fen m&ouml;chten &ndash; TextHelfer bietet die passende L&ouml;sung.</p>
+
+    <h2>Unsere 9 Tools</h2>
+
+    <ul class="tool-list">
+      <li><strong><a href="/passwort-generator/">Passwort Generator</a></strong> &ndash; Sichere Passw&ouml;rter online erstellen mit kryptografischem Zufallsgenerator</li>
+      <li><strong><a href="/zeichenzaehler/">Zeichenz&auml;hler</a></strong> &ndash; Zeichen, W&ouml;rter, S&auml;tze und Abs&auml;tze in Echtzeit z&auml;hlen</li>
+      <li><strong><a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a></strong> &ndash; Wortanzahl, h&auml;ufigste W&ouml;rter und Lesezeit berechnen</li>
+      <li><strong><a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a></strong> &ndash; Flesch-Index und Wiener Sachtextformel f&uuml;r deutsche Texte</li>
+      <li><strong><a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a></strong> &ndash; Deutscher Platzhaltertext f&uuml;r Mockups und Designs</li>
+      <li><strong><a href="/text-formatierung/">Text Formatierung</a></strong> &ndash; Gro&szlig;-/Kleinschreibung umwandeln und Text bereinigen</li>
+      <li><strong><a href="/umlaut-konverter/">Umlaut Konverter</a></strong> &ndash; Umlaute &auml;/&ouml;/&uuml; in ae/oe/ue umwandeln und umgekehrt</li>
+      <li><strong><a href="/textvergleich/">Textvergleich</a></strong> &ndash; Zwei Texte vergleichen und Unterschiede farblich hervorheben</li>
+      <li><strong><a href="/zufallszahlen/">Zufallszahlen Generator</a></strong> &ndash; Zuf&auml;llige Zahlen generieren und als CSV exportieren</li>
+    </ul>
+
+    <h2>Unsere Werte</h2>
+
+    <p><strong>Kostenlos:</strong> Alle Tools sind und bleiben kostenlos nutzbar &ndash; f&uuml;r private und kommerzielle Zwecke.</p>
+
+    <p><strong>Datenschutzfreundlich:</strong> Kein Text, kein Passwort und keine pers&ouml;nlichen Daten verlassen Ihren Browser. Wir setzen keine Tracking-Cookies ein und verwenden kein Google Analytics.</p>
+
+    <p><strong>Keine Anmeldung:</strong> Sie k&ouml;nnen alle Tools sofort nutzen &ndash; ohne Registrierung, ohne E-Mail-Adresse, ohne Benutzerkonto.</p>
+
+    <p><strong>Deutsche Sprache:</strong> Unsere Tools ber&uuml;cksichtigen die Besonderheiten der deutschen Sprache &ndash; von Umlauten &uuml;ber zusammengesetzte W&ouml;rter bis hin zur Wiener Sachtextformel.</p>
+
+    <h2>Kontakt</h2>
+
+    <p>Bei Fragen oder Feedback erreichen Sie uns unter: <a href="mailto:texthelfer.net@gmail.com">texthelfer.net@gmail.com</a></p>
   </main>
 
   <footer class="footer">
@@ -289,6 +339,5 @@
       }
     });
   </script>
-
 </body>
 </html>

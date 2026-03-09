@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt &ndash; TextHelfer</title>
-  <meta name="description" content="Kontaktieren Sie TextHelfer bei Fragen oder Feedback zu unseren kostenlosen Online-Texttools.">
-  <link rel="canonical" href="https://texthelfer.net/kontakt.html">
+  <title>Datenschutzerkl&auml;rung &ndash; TextHelfer</title>
+  <meta name="description" content="Datenschutzerkl&auml;rung von TextHelfer. Erfahren Sie, wie wir Ihre Daten sch&uuml;tzen und welche Rechte Sie nach DSGVO haben.">
+  <link rel="canonical" href="https://texthelfer.net/datenschutz.html">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -36,10 +36,12 @@
       --border: #334155;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--text);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
@@ -72,13 +74,6 @@
     .logo-helfer { color: #1E3A5F; }
     [data-theme="dark"] .logo-helfer { color: #93C5FD; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-shrink: 0;
-    }
-
     .nav-links {
       display: flex;
       align-items: center;
@@ -94,6 +89,13 @@
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--accent); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
 
     .theme-toggle {
       width: 44px;
@@ -149,39 +151,62 @@
       transition: background 0.15s, color 0.15s;
     }
     .mobile-menu a:hover { background: var(--border); color: var(--text); }
-    .mobile-menu a.active { color: var(--accent); font-weight: 600; }
 
     .main {
-      max-width: 600px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 48px 24px;
-      text-align: center;
+      padding: 40px 20px 60px;
     }
 
-    h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
-    .kontakt-text { font-size: 18px; color: var(--text-muted); margin-bottom: 32px; }
+    .main h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
 
-    .email-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      display: inline-block;
+    .main h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 12px;
     }
-    .email-label { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
-    .email-link {
-      font-size: 20px; font-weight: 600;
-      color: var(--accent); text-decoration: none;
+
+    .main p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
     }
-    .email-link:hover { text-decoration: underline; }
+
+    .main a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .main a:hover { text-decoration: underline; }
+
+    .main ul {
+      list-style: disc;
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .main ul li {
+      padding: 4px 0;
+      color: var(--text-muted);
+    }
+
+    .update-date {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
 
     .footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px;
       text-align: center;
       font-size: 14px;
       color: var(--text-muted);
-      margin-top: 48px;
+      border-top: 1px solid var(--border);
     }
     .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
     .footer a:hover { color: var(--accent); }
@@ -189,8 +214,8 @@
     @media (max-width: 767px) {
       .nav-links { display: none !important; }
       .hamburger { display: flex; }
-      h1 { font-size: 22px; }
-      .main { padding: 32px 16px; }
+      .main { padding: 24px 16px 48px; }
+      .main h1 { font-size: 22px; }
     }
   </style>
 </head>
@@ -226,17 +251,49 @@
       <a href="/umlaut-konverter/">Umlaut Konverter</a>
       <a href="/textvergleich/">Textvergleich</a>
       <a href="/zufallszahlen/">Zufallszahlen</a>
-      <a href="/kontakt.html" class="active">Kontakt</a>
+      <a href="/kontakt.html">Kontakt</a>
     </nav>
   </header>
 
   <main class="main">
-    <h1>Kontakt</h1>
-    <p class="kontakt-text">Haben Sie Fragen, Feedback oder Vorschl&auml;ge zu unseren Tools? Schreiben Sie uns gerne eine E-Mail.</p>
-    <div class="email-card">
-      <div class="email-label">E-Mail</div>
-      <a href="mailto:texthelfer.net@gmail.com" class="email-link">texthelfer.net@gmail.com</a>
-    </div>
+    <h1>Datenschutzerkl&auml;rung</h1>
+    <p class="update-date">Stand: M&auml;rz 2026</p>
+
+    <p>Der Schutz Ihrer pers&ouml;nlichen Daten ist uns ein wichtiges Anliegen. In dieser Datenschutzerkl&auml;rung informieren wir Sie dar&uuml;ber, wie wir mit Ihren Daten umgehen, wenn Sie unsere Website texthelfer.net nutzen.</p>
+
+    <h2>Verantwortlicher</h2>
+    <p>Verantwortlich f&uuml;r die Datenverarbeitung auf dieser Website ist:<br>
+    TextHelfer<br>
+    E-Mail: <a href="mailto:texthelfer.net@gmail.com">texthelfer.net@gmail.com</a></p>
+
+    <h2>Welche Daten wir erheben</h2>
+    <p>TextHelfer erhebt <strong>keine personenbezogenen Daten</strong>. Alle unsere 9 Texttools laufen vollst&auml;ndig in Ihrem Browser (clientseitig). Texte, Passw&ouml;rter und alle anderen Eingaben werden zu keinem Zeitpunkt an einen Server &uuml;bertragen. Es gibt keine Benutzerkonten, keine Registrierung und keine Datenbank, in der Nutzerdaten gespeichert werden.</p>
+
+    <h2>Cookies und localStorage</h2>
+    <p>TextHelfer verwendet <strong>keine Tracking-Cookies</strong> und setzt kein Google Analytics ein. Wir speichern lediglich eine einzige Einstellung in Ihrem Browser (localStorage): Ihre Pr&auml;ferenz f&uuml;r den hellen oder dunklen Anzeigemodus (Schl&uuml;ssel: <code>texthelfer-theme</code>). Diese Information verlässt Ihren Browser nicht und wird ausschlie&szlig;lich lokal verwendet.</p>
+
+    <h2>Google AdSense</h2>
+    <p>Wir nutzen Google AdSense, um auf unserer Website Werbeanzeigen einzublenden. Google AdSense verwendet Cookies, um Anzeigen basierend auf Ihren fr&uuml;heren Besuchen auf dieser oder anderen Websites zu schalten. Google und seine Partner k&ouml;nnen dabei Cookies verwenden, um Anzeigen auf Grundlage Ihrer Besuche auf dieser und anderen Websites zu schalten. Sie k&ouml;nnen personalisierte Werbung in den <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Anzeigeneinstellungen</a> deaktivieren. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerkl&auml;rung von Google</a>.</p>
+
+    <h2>Google Search Console</h2>
+    <p>Wir verwenden die Google Search Console, um die Sichtbarkeit unserer Website in den Google-Suchergebnissen zu &uuml;berwachen. Dabei werden keine personenbezogenen Daten von Ihnen erhoben. Die Search Console liefert uns ausschlie&szlig;lich anonymisierte, aggregierte Statistiken &uuml;ber Suchanfragen und Klicks.</p>
+
+    <h2>Hosting</h2>
+    <p>Unsere Website wird &uuml;ber Cloudflare Pages gehostet. Beim Besuch unserer Website erhebt Cloudflare automatisch Zugriffsdaten (z.&nbsp;B. IP-Adresse, Zeitpunkt des Zugriffs, Browsertyp). Diese Daten werden f&uuml;r den technischen Betrieb und die Sicherheit der Website ben&ouml;tigt. Weitere Informationen finden Sie in der <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Datenschutzerkl&auml;rung von Cloudflare</a>.</p>
+
+    <h2>Ihre Rechte (DSGVO)</h2>
+    <p>Nach der Datenschutz-Grundverordnung (DSGVO) haben Sie folgende Rechte:</p>
+    <ul>
+      <li><strong>Recht auf Auskunft</strong> (Art. 15 DSGVO) &ndash; Sie k&ouml;nnen Auskunft dar&uuml;ber verlangen, ob und welche personenbezogenen Daten wir von Ihnen verarbeiten.</li>
+      <li><strong>Recht auf L&ouml;schung</strong> (Art. 17 DSGVO) &ndash; Sie k&ouml;nnen die L&ouml;schung Ihrer personenbezogenen Daten verlangen.</li>
+      <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO) &ndash; Sie k&ouml;nnen die Berichtigung unrichtiger Daten verlangen.</li>
+      <li><strong>Recht auf Widerspruch</strong> (Art. 21 DSGVO) &ndash; Sie k&ouml;nnen der Verarbeitung Ihrer personenbezogenen Daten widersprechen.</li>
+      <li><strong>Recht auf Daten&uuml;bertragbarkeit</strong> (Art. 20 DSGVO) &ndash; Sie k&ouml;nnen verlangen, dass Ihre Daten in einem maschinenlesbaren Format bereitgestellt werden.</li>
+    </ul>
+    <p>Da TextHelfer keine personenbezogenen Daten erhebt oder speichert, sind diese Rechte in der Praxis bereits erf&uuml;llt.</p>
+
+    <h2>Kontakt</h2>
+    <p>Bei Fragen zum Datenschutz erreichen Sie uns unter: <a href="mailto:texthelfer.net@gmail.com">texthelfer.net@gmail.com</a></p>
   </main>
 
   <footer class="footer">
@@ -289,6 +346,5 @@
       }
     });
   </script>
-
 </body>
 </html>
