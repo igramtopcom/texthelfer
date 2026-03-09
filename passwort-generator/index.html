@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passwort Generator Online Kostenlos | TextHelfer</title>
+  <meta name="description" content="Passwort Generator kostenlos: Sichere Passwörter online erstellen. Länge & Zeichenart wählbar. Kein Passwort wird gespeichert. Keine Anmeldung erforderlich.">
+  <link rel="canonical" href="https://texthelfer.net/passwort-generator/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+   "name":"Passwort Generator",
+   "description":"Kostenloser Passwort Generator – sichere Passwörter online erstellen. 100% im Browser, keine Daten werden übertragen.",
+   "url":"https://texthelfer.net/passwort-generator/",
+   "applicationCategory":"UtilityApplication",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage",
+   "mainEntity":[
+     {"@type":"Question","name":"Wie lang soll ein sicheres Passwort sein?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein sicheres Passwort sollte mindestens 12 Zeichen lang sein, idealerweise 16 oder mehr. Unser Passwort Generator erstellt standardmäßig 16-stellige Passwörter, da diese ein ausgezeichnetes Gleichgewicht zwischen Sicherheit und Merkbarkeit bieten. Für besonders sensible Konten wie Online-Banking empfehlen wir 20 oder mehr Zeichen."}},
+     {"@type":"Question","name":"Werden meine Passwörter gespeichert oder übertragen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Nein, absolut nicht. Alle Passwörter werden ausschließlich in Ihrem Browser generiert und niemals an unsere Server übertragen oder gespeichert. Der gesamte Prozess läuft lokal auf Ihrem Gerät ab. TextHelfer hat keinen Zugriff auf die erstellten Passwörter."}},
+     {"@type":"Question","name":"Was ist ein phonetisches Passwort?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein phonetisches Passwort wechselt zwischen Konsonanten und Vokalen ab, zum Beispiel „maboni" oder „kalupe". Diese Passwörter sind leichter auszusprechen und damit einfacher zu merken, ohne dabei deutlich unsicherer zu sein. Die Option ist besonders nützlich, wenn Sie das Passwort gelegentlich manuell eingeben müssen."}},
+     {"@type":"Question","name":"Was bedeuten die Farben beim Passwortstärke-Indikator?",
+      "acceptedAnswer":{"@type":"Answer","text":"Rot (Schwach) bedeutet, das Passwort bietet kaum Schutz. Orange (Mittel) ist für weniger wichtige Konten ausreichend. Grün (Stark) eignet sich für die meisten Online-Konten. Dunkelgrün (Sehr stark) bietet maximalen Schutz und ist für E-Mail, Banking und wichtige Dienste empfohlen."}},
+     {"@type":"Question","name":"Welche Sonderzeichen werden verwendet?",
+      "acceptedAnswer":{"@type":"Answer","text":"Unser Generator verwendet die gängigsten Sonderzeichen: ! @ # $ % ^ & * ( ) _ + - = [ ] { } | ; : , . ? Diese Zeichen werden von nahezu allen Websites und Diensten akzeptiert."}},
+     {"@type":"Question","name":"Wie viele Passwörter kann ich gleichzeitig erstellen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Sie können 1, 3, 5 oder 10 Passwörter gleichzeitig generieren. Dies ist praktisch, wenn Sie mehrere neue Konten anlegen oder eine Auswahl haben möchten. Jedes Passwort hat seinen eigenen Kopieren-Button für schnellen Zugriff."}}
+   ]}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+      --success: #22C55E;
+      --warning: #F97316;
+      --danger: #EF4444;
+      --strong: #15803D;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    /* === MAIN === */
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* === CARD === */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    /* === SLIDER === */
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slider-label { font-size: 16px; font-weight: 500; }
+    .slider-value { font-size: 16px; font-weight: 700; color: var(--accent); }
+
+    .slider-input {
+      width: 100%;
+      margin: 10px 0;
+      accent-color: var(--accent);
+      height: 6px;
+      cursor: pointer;
+    }
+
+    .slider-range {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* === CHECKBOXES === */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .checkbox-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .checkbox-item span { font-size: 16px; color: var(--text); }
+
+    /* === RADIO === */
+    .radio-group-label {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .radio-item input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .radio-item span { font-size: 16px; }
+
+    /* === PHONETISCH === */
+    .phonetisch-toggle {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      margin-bottom: 24px;
+    }
+    .phonetisch-toggle input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .phonetisch-text-main { font-size: 16px; font-weight: 500; }
+    .phonetisch-text-sub { font-size: 13px; color: var(--text-muted); }
+
+    /* === GENERATE BUTTON === */
+    .btn-generate {
+      width: 100%;
+      height: 52px;
+      background: var(--accent);
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-generate:hover { background: var(--accent-hover); }
+    .btn-generate:active { transform: scale(0.98); }
+    [data-theme="dark"] .btn-generate { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-generate:hover { background: #3B82F6; }
+
+    /* === ERROR MESSAGE === */
+    .error-msg {
+      color: var(--danger);
+      font-size: 14px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* === PRIVACY BADGE === */
+    .privacy-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #F0FDF4;
+      border: 1px solid #86EFAC;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+    }
+    .privacy-badge .badge-icon { font-size: 16px; flex-shrink: 0; }
+    .privacy-badge .badge-text { font-size: 14px; font-weight: 500; color: #15803D; }
+    [data-theme="dark"] .privacy-badge { background: rgba(20, 83, 45, 0.3); border-color: #166534; }
+    [data-theme="dark"] .privacy-badge .badge-text { color: #86EFAC; }
+
+    /* === STRENGTH INDICATOR === */
+    .strength-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .strength-label-text { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+    .strength-bar {
+      width: 120px;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .strength-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s, background 0.3s;
+      width: 0%;
+    }
+    .strength-text {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* === PASSWORD ROWS === */
+    .password-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .password-row:last-child { margin-bottom: 0; }
+
+    .password-display {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 1px;
+      user-select: all;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .btn-copy {
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-copy:hover { background: var(--border); color: var(--accent); }
+    .btn-copy.copied { background: #F0FDF4; color: #15803D; border-color: #86EFAC; }
+    [data-theme="dark"] .btn-copy.copied { background: rgba(20, 83, 45, 0.3); border-color: #166534; }
+
+    /* === RESULT PLACEHOLDER (before generation) === */
+    .result-placeholder {
+      text-align: center;
+      padding: 24px 0;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: #F1F5F9;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 9999;
+      pointer-events: none;
+      animation: toastIn 0.15s ease, toastOut 0.3s ease 1.7s forwards;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    /* === AD PLACEHOLDERS === */
+    .ad-placeholder {
+      border: 2px dashed var(--border);
+      min-height: 90px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 24px 0;
+      background: var(--bg-card);
+    }
+
+    /* === SEO CONTENT === */
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 12px;
+    }
+    .seo-section p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .seo-section ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .seo-section li {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .seo-section a { color: var(--accent); text-decoration: none; }
+    .seo-section a:hover { text-decoration: underline; }
+
+    /* === FAQ ACCORDION === */
+    .faq-section { border-top: 1px solid var(--border); }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-section summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
+    }
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform 0.2s;
+    }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
+
+    .faq-answer {
+      padding: 0 0 16px 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 48px;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer a:hover { color: var(--accent); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 767px) {
+      .nav-links { display: none !important; }
+      .page-title { font-size: 22px; }
+      .main { padding: 16px; }
+      .card { padding: 16px; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .password-display { font-size: 15px; }
+    }
+
+    @media (max-width: 479px) {
+      .radio-group { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/" class="active">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">Wörter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">🌙</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <h1 class="page-title">Passwort Generator – Sicheres Passwort erstellen</h1>
+    <p class="page-subtitle">Erstelle sichere, zufällige Passwörter direkt im Browser. Keine Daten werden übertragen.</p>
+
+    <!-- CARD: CONTROLS -->
+    <div class="card">
+      <!-- Slider -->
+      <div class="slider-header">
+        <span class="slider-label">Länge:</span>
+        <span class="slider-value" id="lengthValue">16</span>
+      </div>
+      <input type="range" class="slider-input" id="lengthSlider" min="8" max="64" value="16">
+      <div class="slider-range"><span>8</span><span>64</span></div>
+
+      <!-- Checkboxes -->
+      <div class="checkbox-grid">
+        <label class="checkbox-item">
+          <input type="checkbox" id="cbUpper" checked>
+          <span>Großbuchstaben (A–Z)</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="cbLower" checked>
+          <span>Kleinbuchstaben (a–z)</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="cbNumbers" checked>
+          <span>Zahlen (0–9)</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="cbSpecial" checked>
+          <span>Sonderzeichen (!@#$%...)</span>
+        </label>
+      </div>
+
+      <!-- Radio: Anzahl -->
+      <div class="radio-group-label">Anzahl:</div>
+      <div class="radio-group">
+        <label class="radio-item">
+          <input type="radio" name="count" value="1" checked>
+          <span>1</span>
+        </label>
+        <label class="radio-item">
+          <input type="radio" name="count" value="3">
+          <span>3</span>
+        </label>
+        <label class="radio-item">
+          <input type="radio" name="count" value="5">
+          <span>5</span>
+        </label>
+        <label class="radio-item">
+          <input type="radio" name="count" value="10">
+          <span>10</span>
+        </label>
+      </div>
+
+      <!-- Phonetisch -->
+      <label class="phonetisch-toggle">
+        <input type="checkbox" id="cbPhonetisch">
+        <div>
+          <div class="phonetisch-text-main">Phonetisch</div>
+          <div class="phonetisch-text-sub">Leicht auszusprechende Passwörter aus Konsonanten und Vokalen</div>
+        </div>
+      </label>
+
+      <!-- Generate Button -->
+      <button class="btn-generate" id="btnGenerate">Passwort generieren</button>
+      <div class="error-msg" id="errorMsg">Bitte wähle mindestens eine Zeichenart aus.</div>
+    </div>
+
+    <!-- CARD: RESULTS -->
+    <div class="card" id="resultsCard">
+      <!-- Privacy Badge -->
+      <div class="privacy-badge">
+        <span class="badge-icon">🔒</span>
+        <span class="badge-text">Kein Passwort wird gespeichert oder übertragen</span>
+      </div>
+
+      <!-- Strength Indicator -->
+      <div class="strength-row" id="strengthRow" style="display:none;">
+        <span class="strength-label-text">Stärke:</span>
+        <div class="strength-bar">
+          <div class="strength-bar-fill" id="strengthFill"></div>
+        </div>
+        <span class="strength-text" id="strengthText"></span>
+      </div>
+
+      <!-- Password List -->
+      <div id="passwordList">
+        <div class="result-placeholder">Klicke auf „Passwort generieren" um zu starten.</div>
+      </div>
+    </div>
+
+    <!-- AD: TOP -->
+    <div class="ad-placeholder" id="ad-top">Werbung</div>
+
+    <!-- SEO CONTENT -->
+    <section class="seo-section">
+      <h2>Wie funktioniert der Passwort Generator?</h2>
+      <p>Unser Passwort Generator erstellt sichere, zufällige Passwörter direkt in Ihrem Browser. Der gesamte Prozess läuft lokal auf Ihrem Gerät ab – es werden keine Daten an einen Server übertragen. Die Generierung basiert auf einem kryptografisch sicheren Zufallsalgorithmus (<code>crypto.getRandomValues</code>), der deutlich stärker ist als herkömmliche Methoden.</p>
+      <p>Sie können die Passwortlänge frei zwischen 8 und 64 Zeichen wählen und entscheiden, welche Zeichenarten enthalten sein sollen: Großbuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen. Für Passwörter, die Sie sich leichter merken möchten, aktivieren Sie die Option „Phonetisch" – der Passwort Generator erzeugt dann aussprechbare Kombinationen aus Konsonanten und Vokalen.</p>
+      <p>TextHelfer speichert keine erstellten Passwörter. Sobald Sie die Seite schließen, sind die generierten Passwörter unwiderruflich gelöscht. Wir empfehlen, wichtige Passwörter sofort in einem <a href="/zeichenzaehler/">Passwortmanager</a> zu speichern. Erstellen Sie für jedes Konto ein eigenes Passwort mit mindestens 16 Zeichen – das geht mit unserem Passwort Generator in Sekundenschnelle.</p>
+    </section>
+
+    <!-- AD: MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Werbung</div>
+
+    <section class="seo-section">
+      <h2>Für wen ist der Passwort Generator geeignet?</h2>
+      <ul>
+        <li><strong>Privatpersonen</strong> – für sichere Passwörter bei E-Mail, Online-Banking und Social Media</li>
+        <li><strong>Unternehmen und IT-Administratoren</strong> – für die schnelle Erstellung sicherer Mitarbeiterpasswörter</li>
+        <li><strong>Entwickler und Designer</strong> – für Testdaten, Staging-Umgebungen und Demo-Accounts</li>
+        <li><strong>Alle, die schwache Passwörter ersetzen möchten</strong> – unser <a href="/woerter-zaehlen/">Wörter zählen Tool</a> hilft zusätzlich bei der Textarbeit</li>
+        <li><strong>Nutzer ohne technisches Wissen</strong> – keine Registrierung nötig, einfach öffnen und sofort loslegen. Entdecken Sie auch den <a href="/umlaut-konverter/">Umlaut Konverter</a> für Ihre deutschen Texte.</li>
+      </ul>
+    </section>
+
+    <!-- AD: BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Werbung</div>
+
+    <!-- FAQ -->
+    <section class="seo-section">
+      <h2>Häufige Fragen</h2>
+      <div class="faq-section">
+        <details>
+          <summary>Wie lang soll ein sicheres Passwort sein?</summary>
+          <div class="faq-answer">Ein sicheres Passwort sollte mindestens 12 Zeichen lang sein, idealerweise 16 oder mehr. Unser Passwort Generator erstellt standardmäßig 16-stellige Passwörter, da diese ein ausgezeichnetes Gleichgewicht zwischen Sicherheit und Merkbarkeit bieten. Für besonders sensible Konten wie Online-Banking empfehlen wir 20 oder mehr Zeichen.</div>
+        </details>
+        <details>
+          <summary>Werden meine Passwörter gespeichert oder übertragen?</summary>
+          <div class="faq-answer">Nein, absolut nicht. Alle Passwörter werden ausschließlich in Ihrem Browser generiert und niemals an unsere Server übertragen oder gespeichert. Der gesamte Prozess läuft lokal auf Ihrem Gerät ab. TextHelfer hat keinen Zugriff auf die erstellten Passwörter.</div>
+        </details>
+        <details>
+          <summary>Was ist ein phonetisches Passwort?</summary>
+          <div class="faq-answer">Ein phonetisches Passwort wechselt zwischen Konsonanten und Vokalen ab, zum Beispiel „maboni" oder „kalupe". Diese Passwörter sind leichter auszusprechen und damit einfacher zu merken, ohne dabei deutlich unsicherer zu sein. Die Option ist besonders nützlich, wenn Sie das Passwort gelegentlich manuell eingeben müssen.</div>
+        </details>
+        <details>
+          <summary>Was bedeuten die Farben beim Passwortstärke-Indikator?</summary>
+          <div class="faq-answer">Rot (Schwach) bedeutet, das Passwort bietet kaum Schutz. Orange (Mittel) ist für weniger wichtige Konten ausreichend. Grün (Stark) eignet sich für die meisten Online-Konten. Dunkelgrün (Sehr stark) bietet maximalen Schutz und ist für E-Mail, Banking und wichtige Dienste empfohlen.</div>
+        </details>
+        <details>
+          <summary>Welche Sonderzeichen werden verwendet?</summary>
+          <div class="faq-answer">Unser Generator verwendet die gängigsten Sonderzeichen: ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | ; : , . ? Diese Zeichen werden von nahezu allen Websites und Diensten akzeptiert. Zeichen wie Backslash oder Anführungszeichen wurden bewusst ausgeschlossen, da sie manchmal zu Kompatibilitätsproblemen führen können.</div>
+        </details>
+        <details>
+          <summary>Wie viele Passwörter kann ich gleichzeitig erstellen?</summary>
+          <div class="faq-answer">Sie können 1, 3, 5 oder 10 Passwörter gleichzeitig generieren. Dies ist praktisch, wenn Sie mehrere neue Konten anlegen oder eine Auswahl haben möchten. Jedes Passwort hat seinen eigenen Kopieren-Button für schnellen Zugriff.</div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenzähler</a> |
+    <a href="/woerter-zaehlen/">Wörter zählen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">© 2026 TextHelfer</div>
+  </footer>
+
+  <script>
+    /* === DARK MODE TOGGLE === */
+    const themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+    }
+    updateThemeIcon();
+
+    themeToggle.addEventListener('click', function() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+
+    /* === SLIDER === */
+    const lengthSlider = document.getElementById('lengthSlider');
+    const lengthValue = document.getElementById('lengthValue');
+    lengthSlider.addEventListener('input', function() {
+      lengthValue.textContent = this.value;
+    });
+
+    /* === CHARACTER POOLS === */
+    const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    const NUMBERS = '0123456789';
+    const SPECIAL = '!@#$%^&*()_+-=[]{}|;:,.?';
+
+    const VOWELS = 'aeiou';
+    const CONSONANTS = 'bdfghklmnprstvw';
+    const VOWELS_UPPER = 'AEIOU';
+    const CONSONANTS_UPPER = 'BDFGHKLMNPRSTVW';
+
+    /* === CRYPTO RANDOM === */
+    function secureRandom(max) {
+      const array = new Uint32Array(1);
+      crypto.getRandomValues(array);
+      return array[0] % max;
+    }
+
+    function secureRandomChar(pool) {
+      return pool[secureRandom(pool.length)];
+    }
+
+    /* === GENERATE PASSWORD === */
+    function generatePassword(length, useUpper, useLower, useNumbers, useSpecial, phonetisch) {
+      if (phonetisch) {
+        return generatePhoneticPassword(length, useUpper, useLower, useNumbers, useSpecial);
+      }
+
+      let pool = '';
+      const required = [];
+
+      if (useUpper)   { pool += UPPER;   required.push(secureRandomChar(UPPER)); }
+      if (useLower)   { pool += LOWER;   required.push(secureRandomChar(LOWER)); }
+      if (useNumbers) { pool += NUMBERS; required.push(secureRandomChar(NUMBERS)); }
+      if (useSpecial) { pool += SPECIAL; required.push(secureRandomChar(SPECIAL)); }
+
+      if (pool.length === 0) return '';
+
+      const result = [];
+      for (let i = 0; i < length; i++) {
+        result.push(secureRandomChar(pool));
+      }
+
+      /* Ensure at least one char from each selected type */
+      for (let i = 0; i < required.length && i < length; i++) {
+        const pos = secureRandom(length);
+        result[pos] = required[i];
+      }
+
+      return result.join('');
+    }
+
+    function generatePhoneticPassword(length, useUpper, useLower, useNumbers, useSpecial) {
+      const result = [];
+      let isConsonant = secureRandom(2) === 0;
+
+      for (let i = 0; i < length; i++) {
+        /* Randomly insert a number or special char (~20% chance if enabled) */
+        if ((useNumbers || useSpecial) && result.length > 0 && secureRandom(5) === 0) {
+          let extras = '';
+          if (useNumbers) extras += NUMBERS;
+          if (useSpecial) extras += SPECIAL;
+          if (extras.length > 0) {
+            result.push(secureRandomChar(extras));
+            continue;
+          }
+        }
+
+        if (isConsonant) {
+          if (useUpper && useLower) {
+            result.push(secureRandom(4) === 0 ? secureRandomChar(CONSONANTS_UPPER) : secureRandomChar(CONSONANTS));
+          } else if (useUpper) {
+            result.push(secureRandomChar(CONSONANTS_UPPER));
+          } else {
+            result.push(secureRandomChar(CONSONANTS));
+          }
+        } else {
+          if (useUpper && useLower) {
+            result.push(secureRandom(4) === 0 ? secureRandomChar(VOWELS_UPPER) : secureRandomChar(VOWELS));
+          } else if (useUpper) {
+            result.push(secureRandomChar(VOWELS_UPPER));
+          } else {
+            result.push(secureRandomChar(VOWELS));
+          }
+        }
+        isConsonant = !isConsonant;
+      }
+
+      return result.join('');
+    }
+
+    /* === STRENGTH CALCULATION === */
+    function calcStrength(length, typesUsed) {
+      if (length < 8 || typesUsed <= 1) return { level: 'Schwach', color: '#EF4444', width: '25%' };
+      if (length <= 11 && typesUsed >= 2) return { level: 'Mittel', color: '#F97316', width: '50%' };
+      if (length <= 15 && typesUsed >= 3) return { level: 'Stark', color: '#22C55E', width: '75%' };
+      if (length >= 16 && typesUsed >= 4) return { level: 'Sehr stark', color: '#15803D', width: '100%' };
+      /* Fallback logic for edge cases */
+      if (length >= 16 && typesUsed >= 3) return { level: 'Stark', color: '#22C55E', width: '75%' };
+      if (length >= 12 && typesUsed >= 2) return { level: 'Stark', color: '#22C55E', width: '75%' };
+      return { level: 'Mittel', color: '#F97316', width: '50%' };
+    }
+
+    /* === UI ELEMENTS === */
+    const cbUpper = document.getElementById('cbUpper');
+    const cbLower = document.getElementById('cbLower');
+    const cbNumbers = document.getElementById('cbNumbers');
+    const cbSpecial = document.getElementById('cbSpecial');
+    const cbPhonetisch = document.getElementById('cbPhonetisch');
+    const btnGenerate = document.getElementById('btnGenerate');
+    const errorMsg = document.getElementById('errorMsg');
+    const passwordList = document.getElementById('passwordList');
+    const strengthRow = document.getElementById('strengthRow');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
+
+    function getSelectedCount() {
+      const radios = document.querySelectorAll('input[name="count"]');
+      for (const r of radios) {
+        if (r.checked) return parseInt(r.value);
+      }
+      return 1;
+    }
+
+    /* === MAIN GENERATE HANDLER === */
+    btnGenerate.addEventListener('click', function() {
+      const useUpper = cbUpper.checked;
+      const useLower = cbLower.checked;
+      const useNumbers = cbNumbers.checked;
+      const useSpecial = cbSpecial.checked;
+      const phonetisch = cbPhonetisch.checked;
+      const length = parseInt(lengthSlider.value);
+      const count = getSelectedCount();
+
+      /* Validation */
+      if (!useUpper && !useLower && !useNumbers && !useSpecial) {
+        errorMsg.style.display = 'block';
+        return;
+      }
+      errorMsg.style.display = 'none';
+
+      /* Count character types */
+      let typesUsed = 0;
+      if (useUpper) typesUsed++;
+      if (useLower) typesUsed++;
+      if (useNumbers) typesUsed++;
+      if (useSpecial) typesUsed++;
+
+      /* Strength */
+      const strength = calcStrength(length, typesUsed);
+      strengthRow.style.display = 'flex';
+      strengthFill.style.width = strength.width;
+      strengthFill.style.background = strength.color;
+      strengthText.textContent = strength.level;
+      strengthText.style.color = strength.color;
+
+      /* Generate passwords */
+      const passwords = [];
+      for (let i = 0; i < count; i++) {
+        passwords.push(generatePassword(length, useUpper, useLower, useNumbers, useSpecial, phonetisch));
+      }
+
+      /* Render */
+      passwordList.innerHTML = '';
+      passwords.forEach(function(pw, idx) {
+        const row = document.createElement('div');
+        row.className = 'password-row';
+
+        const display = document.createElement('div');
+        display.className = 'password-display';
+        display.textContent = pw;
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'btn-copy';
+        copyBtn.innerHTML = '📋';
+        copyBtn.setAttribute('aria-label', 'Passwort kopieren');
+        copyBtn.addEventListener('click', function() {
+          copyToClipboard(pw, copyBtn);
+        });
+
+        row.appendChild(display);
+        row.appendChild(copyBtn);
+        passwordList.appendChild(row);
+      });
+    });
+
+    /* === COPY TO CLIPBOARD === */
+    function copyToClipboard(text, btn) {
+      navigator.clipboard.writeText(text).then(function() {
+        btn.innerHTML = '✓';
+        btn.classList.add('copied');
+        showToast('Kopiert!');
+        setTimeout(function() {
+          btn.innerHTML = '📋';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        /* Fallback */
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.innerHTML = '✓';
+        btn.classList.add('copied');
+        showToast('Kopiert!');
+        setTimeout(function() {
+          btn.innerHTML = '📋';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    /* === TOAST === */
+    function showToast(message) {
+      const existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(function() {
+        toast.remove();
+      }, 2200);
+    }
+
+    /* === HIDE ERROR ON CHECKBOX CHANGE === */
+    [cbUpper, cbLower, cbNumbers, cbSpecial].forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        if (cbUpper.checked || cbLower.checked || cbNumbers.checked || cbSpecial.checked) {
+          errorMsg.style.display = 'none';
+        }
+      });
+    });
+
+    /* === AUTO-GENERATE ON LOAD === */
+    btnGenerate.click();
+  </script>
+
+</body>
+</html>

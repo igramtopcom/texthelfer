@@ -4,21 +4,334 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TextHelfer – Kostenlose Online-Texttools auf Deutsch</title>
-  <meta name="description" content="TextHelfer bietet 9 kostenlose Online-Texttools auf Deutsch: Passwort Generator, Zeichenzähler, Wörter zählen und mehr. Keine Anmeldung erforderlich.">
+  <meta name="description" content="TextHelfer bietet 9 kostenlose Online-Texttools auf Deutsch: Passwort Generator, Zeichenzähler, Wörter zählen und mehr. 100% im Browser, keine Anmeldung erforderlich.">
   <link rel="canonical" href="https://texthelfer.net/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite",
+   "name":"TextHelfer",
+   "url":"https://texthelfer.net/",
+   "description":"Kostenlose Online-Texttools auf Deutsch – Passwort Generator, Zeichenzähler, Wörter zählen und mehr.",
+   "inLanguage":"de"}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #FFFFFF; color: #111827; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 2rem; }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    h1 span:first-child { color: #2563EB; }
-    h1 span:last-child { color: #1E3A5F; }
-    p { font-size: 1.25rem; color: #6B7280; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .hero-title {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .hero-title .logo-text { color: #2563EB; }
+    .hero-title .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .hero-title .logo-helfer { color: #F1F5F9; }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .tool-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .tool-card:hover {
+      box-shadow: 0 4px 16px rgba(96, 165, 250, 0.1);
+    }
+
+    .tool-card .tool-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+    .tool-card .tool-name { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .tool-card .tool-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+    .tool-card.hero {
+      border: 2px solid var(--accent);
+      position: relative;
+    }
+    .hero-badge {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .seo-section {
+      margin-top: 48px;
+    }
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .seo-section p {
+      font-size: 18px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .seo-section a { color: var(--accent); text-decoration: none; }
+    .seo-section a:hover { text-decoration: underline; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 48px;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 767px) {
+      .nav-links { display: none !important; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 28px; }
+      .main { padding: 32px 16px; }
+    }
+
+    @media (min-width: 768px) and (max-width: 900px) {
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
-  <div>
-    <h1><span>Text</span><span>Helfer</span></h1>
-    <p>Kommt bald – Kostenlose Online-Texttools auf Deutsch.</p>
-  </div>
+
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">Wörter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">🌙</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <h1 class="hero-title"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></h1>
+    <p class="hero-subtitle">9 kostenlose Online-Texttools auf Deutsch – 100% im Browser, keine Anmeldung.</p>
+
+    <div class="tools-grid">
+      <a href="/passwort-generator/" class="tool-card hero">
+        <span class="hero-badge">Beliebt</span>
+        <span class="tool-icon">🔐</span>
+        <div class="tool-name">Passwort Generator</div>
+        <div class="tool-desc">Sichere Passwörter online erstellen. Kein Passwort wird gespeichert.</div>
+      </a>
+      <a href="/zeichenzaehler/" class="tool-card">
+        <span class="tool-icon">🔤</span>
+        <div class="tool-name">Zeichenzähler</div>
+        <div class="tool-desc">Zeichen, Wörter und Sätze in Echtzeit zählen.</div>
+      </a>
+      <a href="/woerter-zaehlen/" class="tool-card">
+        <span class="tool-icon">📝</span>
+        <div class="tool-name">Wörter zählen</div>
+        <div class="tool-desc">Wortanzahl, häufigste Wörter und Lesezeit berechnen.</div>
+      </a>
+      <a href="/lesbarkeit/" class="tool-card">
+        <span class="tool-icon">📊</span>
+        <div class="tool-name">Lesbarkeit prüfen</div>
+        <div class="tool-desc">Flesch-Index und Wiener Sachtextformel für deutsche Texte.</div>
+      </a>
+      <a href="/lorem-ipsum-deutsch/" class="tool-card">
+        <span class="tool-icon">📄</span>
+        <div class="tool-name">Lorem Ipsum Deutsch</div>
+        <div class="tool-desc">Deutscher Platzhaltertext für Mockups und Designs.</div>
+      </a>
+      <a href="/text-formatierung/" class="tool-card">
+        <span class="tool-icon">🔠</span>
+        <div class="tool-name">Text Formatierung</div>
+        <div class="tool-desc">Groß-/Kleinschreibung umwandeln und Text bereinigen.</div>
+      </a>
+      <a href="/umlaut-konverter/" class="tool-card">
+        <span class="tool-icon">🔄</span>
+        <div class="tool-name">Umlaut Konverter</div>
+        <div class="tool-desc">Umlaute ä/ö/ü in ae/oe/ue umwandeln und umgekehrt.</div>
+      </a>
+      <a href="/textvergleich/" class="tool-card">
+        <span class="tool-icon">🔍</span>
+        <div class="tool-name">Textvergleich</div>
+        <div class="tool-desc">Zwei Texte vergleichen und Unterschiede hervorheben.</div>
+      </a>
+      <a href="/zufallszahlen/" class="tool-card">
+        <span class="tool-icon">🎲</span>
+        <div class="tool-name">Zufallszahlen Generator</div>
+        <div class="tool-desc">Zufällige Zahlen generieren und als CSV exportieren.</div>
+      </a>
+    </div>
+
+    <section class="seo-section">
+      <h2>Was ist TextHelfer?</h2>
+      <p>TextHelfer ist eine Sammlung von 9 kostenlosen Online-Texttools, die speziell für die deutsche Sprache entwickelt wurden. Alle Tools laufen zu 100% in Ihrem Browser – es werden keine Daten an einen Server übertragen. Ob Sie ein <a href="/passwort-generator/">sicheres Passwort erstellen</a>, <a href="/zeichenzaehler/">Zeichen zählen</a> oder die <a href="/lesbarkeit/">Lesbarkeit Ihres Textes prüfen</a> möchten: TextHelfer bietet die passende Lösung, kostenlos und ohne Anmeldung.</p>
+      <p>Unsere Tools berücksichtigen die Besonderheiten der deutschen Sprache – von Umlauten über zusammengesetzte Wörter bis hin zur Wiener Sachtextformel. Entwickelt für Texter, Studenten, Marketing-Manager und alle, die mit deutschen Texten arbeiten.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenzähler</a> |
+    <a href="/woerter-zaehlen/">Wörter zählen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">© 2026 TextHelfer</div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+    }
+    updateThemeIcon();
+    themeToggle.addEventListener('click', function() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+  </script>
+
 </body>
 </html>
