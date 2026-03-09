@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Vergleichen Online Kostenlos – Textvergleich | TextHelfer</title>
+  <meta name="description" content="Zwei Texte online vergleichen und Unterschiede finden. Kostenloser Textvergleich mit Wort- und Zeilenvergleich – direkt im Browser, keine Anmeldung n&ouml;tig.">
+  <link rel="canonical" href="https://texthelfer.net/textvergleich/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+   "name":"Textvergleich",
+   "description":"Zwei Texte online vergleichen und Unterschiede finden. Kostenloser Textvergleich mit Wort- und Zeilenvergleich.",
+   "url":"https://texthelfer.net/textvergleich/",
+   "applicationCategory":"UtilityApplication",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage",
+   "mainEntity":[
+     {"@type":"Question","name":"Wie vergleiche ich zwei Texte online?",
+      "acceptedAnswer":{"@type":"Answer","text":"Mit dem TextHelfer Textvergleich f\u00fcgen Sie einfach beide Texte in die jeweiligen Felder ein und klicken auf \u201eVergleichen\u201c. Unterschiede werden sofort farblich hervorgehoben: Gr\u00fcn zeigt hinzugef\u00fcgte Inhalte, Rot zeigt entfernte Inhalte."}},
+     {"@type":"Question","name":"Was ist der Unterschied zwischen Wort- und Zeilenvergleich?",
+      "acceptedAnswer":{"@type":"Answer","text":"Der Wort-f\u00fcr-Wort-Vergleich hebt einzelne ge\u00e4nderte W\u00f6rter hervor und eignet sich f\u00fcr kurze Texte oder Satz\u00e4nderungen. Der Zeile-f\u00fcr-Zeile-Vergleich markiert ganze Zeilen und ist besser geeignet f\u00fcr strukturierte Texte wie Listen, Code oder Vertr\u00e4ge."}},
+     {"@type":"Question","name":"Werden meine Texte gespeichert oder \u00fcbertragen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Nein. Der gesamte Vergleich findet direkt in Ihrem Browser statt. Kein Text wird an einen Server gesendet oder gespeichert. Ihre Daten bleiben vollst\u00e4ndig auf Ihrem Ger\u00e4t."}},
+     {"@type":"Question","name":"Kann ich den Textvergleich f\u00fcr Vertr\u00e4ge oder vertrauliche Dokumente nutzen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja, da keine Daten \u00fcbertragen werden, ist der Textvergleich auch f\u00fcr vertrauliche Inhalte geeignet. Es empfiehlt sich trotzdem, bei sehr sensiblen Dokumenten auf lokale Offline-Tools zur\u00fcckzugreifen."}},
+     {"@type":"Question","name":"Gibt es eine kostenlose Alternative zu Word-Vergleichsfunktion?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Der TextHelfer Textvergleich bietet eine kostenlose, browserbasierte Alternative zur Vergleichsfunktion in Microsoft Word oder Google Docs \u2013 ohne Anmeldung und ohne Software-Installation."}},
+     {"@type":"Question","name":"Wie viel Text kann ich gleichzeitig vergleichen?",
+      "acceptedAnswer":{"@type":"Answer","text":"F\u00fcr den Zeile-f\u00fcr-Zeile-Modus gibt es keine praktische Begrenzung. Beim Wort-f\u00fcr-Wort-Vergleich empfehlen wir bis zu 2.000 W\u00f6rter pro Textfeld f\u00fcr optimale Geschwindigkeit."}}
+   ]}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+      --danger: #EF4444;
+      --diff-add: #BBF7D0;
+      --diff-del: #FECACA;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+      --danger: #F87171;
+      --diff-add: #166534;
+      --diff-del: #991B1B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    /* === MAIN === */
+    .main {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .page-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* === MODE TOGGLE === */
+    .mode-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .mode-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .mode-btn {
+      height: 40px;
+      padding: 0 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .mode-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .mode-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .mode-btn.active { background: #60A5FA; color: #0F172A; }
+
+    /* === TEXTAREA AREA === */
+    .textarea-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .textarea-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .textarea-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .textarea-input {
+      width: 100%;
+      min-height: 200px;
+      resize: vertical;
+      padding: 14px 16px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .textarea-input:focus { border-color: var(--accent); }
+
+    .textarea-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    /* === ACTION ROW === */
+    .action-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-compare {
+      height: 52px;
+      padding: 0 28px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-compare:hover { background: var(--accent-hover); }
+    [data-theme="dark"] .btn-compare { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-compare:hover { background: #3B82F6; }
+
+    .btn-swap, .btn-reset {
+      height: 44px;
+      padding: 0 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-swap:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-reset:hover { border-color: var(--danger); color: var(--danger); }
+
+    .btn-copy {
+      height: 44px;
+      padding: 0 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-copy:hover { background: var(--accent-hover); }
+    [data-theme="dark"] .btn-copy { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-copy:hover { background: #3B82F6; }
+
+    /* === STATS === */
+    .stats-row {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+      min-height: 24px;
+    }
+
+    /* === DIFF RESULT === */
+    .diff-result {
+      margin-top: 24px;
+      display: none;
+    }
+
+    .diff-result-label {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .diff-output {
+      padding: 16px;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 1.8;
+      overflow: auto;
+      max-height: 500px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .diff-add {
+      background: var(--diff-add);
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+    .diff-del {
+      background: var(--diff-del);
+      padding: 1px 3px;
+      border-radius: 3px;
+      text-decoration: line-through;
+    }
+
+    .diff-line-add {
+      background: var(--diff-add);
+      display: block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-bottom: 2px;
+    }
+    .diff-line-del {
+      background: var(--diff-del);
+      display: block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-bottom: 2px;
+      text-decoration: line-through;
+    }
+    .diff-line-same {
+      display: block;
+      padding: 2px 6px;
+      margin-bottom: 2px;
+    }
+
+    .diff-no-change {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1E293B;
+      color: #F1F5F9;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    [data-theme="dark"] .toast { background: #F1F5F9; color: #0F172A; }
+
+    /* === AD PLACEHOLDERS === */
+    .ad-placeholder {
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* === SEO SECTIONS === */
+    .seo-section { margin-bottom: 32px; }
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .seo-section p, .seo-section li {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .seo-section ul { list-style: disc; padding-left: 24px; }
+    .seo-section ul li { margin-bottom: 6px; }
+    .seo-section a { color: var(--accent); text-decoration: none; }
+    .seo-section a:hover { text-decoration: underline; }
+
+    /* === FAQ === */
+    .faq-section { margin-bottom: 32px; }
+    .faq-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: var(--bg-card);
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-question:hover { background: var(--border); }
+    .faq-arrow {
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 16px 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      background: var(--bg-card);
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* === FOOTER === */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+    .footer a:hover { color: var(--accent); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 767px) {
+      .header { padding: 0 16px; }
+      .nav-links { display: none; }
+      .main { padding: 24px 16px 40px; }
+      .page-title { font-size: 22px; }
+      .textarea-row { flex-direction: column; }
+      .textarea-input { min-height: 140px; }
+      .action-row { flex-direction: column; }
+      .btn-compare { width: 100%; }
+      .btn-swap, .btn-reset { width: 100%; height: 52px; }
+      .btn-copy { height: 52px; flex: 1; }
+      .mode-row { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">W&ouml;rter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/" class="active">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">&#127769;</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <h1 class="page-title">Textvergleich &ndash; Zwei Texte online vergleichen</h1>
+    <p class="page-subtitle">Zwei Texte nebeneinander vergleichen und Unterschiede sofort farblich hervorheben &ndash; kostenlos, ohne Anmeldung.</p>
+
+    <!-- MODE TOGGLE -->
+    <div class="mode-row">
+      <span class="mode-label">Modus:</span>
+      <button class="mode-btn active" id="modeWord" onclick="setMode('word')">Wort-f&uuml;r-Wort</button>
+      <button class="mode-btn" id="modeLine" onclick="setMode('line')">Zeile-f&uuml;r-Zeile</button>
+    </div>
+
+    <!-- TEXTAREA ROW -->
+    <div class="textarea-row">
+      <div class="textarea-col">
+        <label class="textarea-label">Text 1</label>
+        <textarea class="textarea-input" id="text1" placeholder="Ersten Text hier eingeben&hellip;"></textarea>
+        <div class="textarea-actions">
+          <button class="btn-copy" onclick="copyText('text1')">Kopieren</button>
+        </div>
+      </div>
+      <div class="textarea-col">
+        <label class="textarea-label">Text 2</label>
+        <textarea class="textarea-input" id="text2" placeholder="Zweiten Text hier eingeben&hellip;"></textarea>
+        <div class="textarea-actions">
+          <button class="btn-copy" onclick="copyText('text2')">Kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION ROW -->
+    <div class="action-row">
+      <button class="btn-swap" onclick="swapTexts()">&leftarrow; Tauschen &rightarrow;</button>
+      <button class="btn-compare" id="btnCompare" onclick="compare()">Vergleichen</button>
+      <button class="btn-reset" onclick="resetAll()">Zur&uuml;cksetzen</button>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row" id="statsRow"></div>
+
+    <!-- DIFF RESULT -->
+    <div class="diff-result" id="diffResult">
+      <div class="diff-result-label">Ergebnis</div>
+      <div class="diff-output" id="diffOutput"></div>
+    </div>
+
+    <!-- AD TOP -->
+    <div class="ad-placeholder" id="ad-top" style="margin-top: 32px;">Anzeige</div>
+
+    <!-- SEO SECTION 1 -->
+    <section class="seo-section">
+      <h2>Wie funktioniert der Textvergleich?</h2>
+      <p>
+        Der TextHelfer Textvergleich erm&ouml;glicht es Ihnen, zwei Texte direkt im Browser nebeneinander zu vergleichen.
+        F&uuml;gen Sie einfach den Originaltext in das linke Feld und die ge&auml;nderte Version in das rechte Feld ein,
+        dann klicken Sie auf &bdquo;Vergleichen&ldquo;. Unterschiede werden sofort farblich hervorgehoben:
+        <strong>Gr&uuml;n</strong> markiert hinzugef&uuml;gte Inhalte, <strong>Rot</strong> markiert entfernte Inhalte.
+      </p>
+      <p>
+        Sie k&ouml;nnen zwischen zwei Modi w&auml;hlen: <strong>Wort-f&uuml;r-Wort</strong> vergleicht einzelne W&ouml;rter
+        und eignet sich f&uuml;r kleinere &Auml;nderungen. <strong>Zeile-f&uuml;r-Zeile</strong> vergleicht ganze Zeilen
+        und ist ideal f&uuml;r strukturierte Texte. Der gesamte Vergleich l&auml;uft zu 100% in Ihrem Browser &ndash;
+        kein Text wird an einen Server &uuml;bertragen. Z&auml;hlen Sie die
+        <a href="/woerter-zaehlen/">W&ouml;rter</a> in Ihrem Text oder pr&uuml;fen Sie die
+        <a href="/zeichenzaehler/">Zeichenanzahl</a> vor dem Vergleich.
+      </p>
+    </section>
+
+    <!-- AD MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Anzeige</div>
+
+    <!-- SEO SECTION 2 -->
+    <section class="seo-section">
+      <h2>F&uuml;r wen ist der Textvergleich geeignet?</h2>
+      <ul>
+        <li>Studierende, die verschiedene Versionen ihrer Hausarbeit oder Abschlussarbeit vergleichen</li>
+        <li>Redakteure und Lektoren, die &Auml;nderungen zwischen Textversionen nachverfolgen</li>
+        <li>Juristen, die Vertrags&auml;nderungen zwischen Entwurfsversionen pr&uuml;fen</li>
+        <li>Webentwickler, die Code- oder Content-&Auml;nderungen schnell &uuml;berblicken</li>
+        <li>Alle, die zwei Texte auf Unterschiede pr&uuml;fen m&ouml;chten</li>
+      </ul>
+      <p style="margin-top: 12px;">
+        Formatieren Sie Ihren Text mit der <a href="/text-formatierung/">Text Formatierung</a> oder
+        konvertieren Sie Umlaute mit dem <a href="/umlaut-konverter/">Umlaut Konverter</a>.
+      </p>
+    </section>
+
+    <!-- AD BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Anzeige</div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>H&auml;ufige Fragen</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie vergleiche ich zwei Texte online?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Mit dem TextHelfer Textvergleich f&uuml;gen Sie einfach beide Texte in die jeweiligen Felder ein und klicken auf &bdquo;Vergleichen&ldquo;. Unterschiede werden sofort farblich hervorgehoben: Gr&uuml;n zeigt hinzugef&uuml;gte Inhalte, Rot zeigt entfernte Inhalte.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was ist der Unterschied zwischen Wort- und Zeilenvergleich?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Der Wort-f&uuml;r-Wort-Vergleich hebt einzelne ge&auml;nderte W&ouml;rter hervor und eignet sich f&uuml;r kurze Texte oder Satz&auml;nderungen. Der Zeile-f&uuml;r-Zeile-Vergleich markiert ganze Zeilen und ist besser geeignet f&uuml;r strukturierte Texte wie Listen, Code oder Vertr&auml;ge.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Werden meine Texte gespeichert oder &uuml;bertragen?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Nein. Der gesamte Vergleich findet direkt in Ihrem Browser statt. Kein Text wird an einen Server gesendet oder gespeichert. Ihre Daten bleiben vollst&auml;ndig auf Ihrem Ger&auml;t.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Kann ich den Textvergleich f&uuml;r Vertr&auml;ge oder vertrauliche Dokumente nutzen?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja, da keine Daten &uuml;bertragen werden, ist der Textvergleich auch f&uuml;r vertrauliche Inhalte geeignet. Es empfiehlt sich trotzdem, bei sehr sensiblen Dokumenten auf lokale Offline-Tools zur&uuml;ckzugreifen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Gibt es eine kostenlose Alternative zu Word-Vergleichsfunktion?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja. Der TextHelfer Textvergleich bietet eine kostenlose, browserbasierte Alternative zur Vergleichsfunktion in Microsoft Word oder Google Docs &ndash; ohne Anmeldung und ohne Software-Installation.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie viel Text kann ich gleichzeitig vergleichen?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">F&uuml;r den Zeile-f&uuml;r-Zeile-Modus gibt es keine praktische Begrenzung. Beim Wort-f&uuml;r-Wort-Vergleich empfehlen wir bis zu 2.000 W&ouml;rter pro Textfeld f&uuml;r optimale Geschwindigkeit.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
+    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Kopiert!</div>
+
+  <script>
+    /* === STATE === */
+    var currentMode = 'word'; // 'word' or 'line'
+    var hasResult = false;
+
+    /* === DARK MODE === */
+    var themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+    updateThemeIcon();
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+
+    /* === MODE TOGGLE === */
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('modeWord').classList.toggle('active', mode === 'word');
+      document.getElementById('modeLine').classList.toggle('active', mode === 'line');
+      if (hasResult) compare();
+    }
+
+    /* === LCS DIFF (Longest Common Subsequence) === */
+    function lcs(a, b) {
+      var m = a.length, n = b.length;
+      var dp = [];
+      for (var i = 0; i <= m; i++) {
+        dp[i] = [];
+        for (var j = 0; j <= n; j++) {
+          if (i === 0 || j === 0) { dp[i][j] = 0; }
+          else if (a[i - 1] === b[j - 1]) { dp[i][j] = dp[i - 1][j - 1] + 1; }
+          else { dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]); }
+        }
+      }
+      // Backtrack
+      var result = [];
+      var i = m, j = n;
+      while (i > 0 && j > 0) {
+        if (a[i - 1] === b[j - 1]) {
+          result.unshift({ val: a[i - 1], type: 'same' });
+          i--; j--;
+        } else if (dp[i - 1][j] > dp[i][j - 1]) {
+          i--;
+        } else {
+          j--;
+        }
+      }
+      return result;
+    }
+
+    function diffWords(text1, text2) {
+      var a = text1.split(/(\s+)/);
+      var b = text2.split(/(\s+)/);
+      var common = lcs(a, b);
+
+      var html = '';
+      var ai = 0, bi = 0, ci = 0;
+      var added = 0, removed = 0;
+
+      while (ai < a.length || bi < b.length) {
+        if (ci < common.length && ai < a.length && a[ai] === common[ci].val && bi < b.length && b[bi] === common[ci].val) {
+          html += escapeHtml(a[ai]);
+          ai++; bi++; ci++;
+        } else {
+          // Consume deleted from a
+          var delBatch = '';
+          while (ai < a.length && (ci >= common.length || a[ai] !== common[ci].val)) {
+            delBatch += a[ai];
+            ai++;
+          }
+          if (delBatch.trim()) {
+            html += '<span class="diff-del">' + escapeHtml(delBatch) + '</span>';
+            removed += delBatch.trim().split(/\s+/).length;
+          } else if (delBatch) {
+            html += escapeHtml(delBatch);
+          }
+
+          // Consume added from b
+          var addBatch = '';
+          while (bi < b.length && (ci >= common.length || b[bi] !== common[ci].val)) {
+            addBatch += b[bi];
+            bi++;
+          }
+          if (addBatch.trim()) {
+            html += '<span class="diff-add">' + escapeHtml(addBatch) + '</span>';
+            added += addBatch.trim().split(/\s+/).length;
+          } else if (addBatch) {
+            html += escapeHtml(addBatch);
+          }
+        }
+      }
+
+      return { html: html, added: added, removed: removed };
+    }
+
+    function diffLines(text1, text2) {
+      var a = text1.split('\n');
+      var b = text2.split('\n');
+      var common = lcs(a, b);
+
+      var html = '';
+      var ai = 0, bi = 0, ci = 0;
+      var changed = 0, added = 0, removed = 0;
+
+      while (ai < a.length || bi < b.length) {
+        if (ci < common.length && ai < a.length && a[ai] === common[ci].val && bi < b.length && b[bi] === common[ci].val) {
+          html += '<span class="diff-line-same">' + escapeHtml(a[ai]) + '</span>';
+          ai++; bi++; ci++;
+        } else {
+          while (ai < a.length && (ci >= common.length || a[ai] !== common[ci].val)) {
+            html += '<span class="diff-line-del">' + escapeHtml(a[ai]) + '</span>';
+            ai++;
+            removed++;
+          }
+          while (bi < b.length && (ci >= common.length || b[bi] !== common[ci].val)) {
+            html += '<span class="diff-line-add">' + escapeHtml(b[bi]) + '</span>';
+            bi++;
+            added++;
+          }
+        }
+      }
+
+      changed = Math.max(added, removed);
+      return { html: html, changed: changed, added: added, removed: removed };
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    /* === COMPARE === */
+    function compare() {
+      var t1 = document.getElementById('text1').value;
+      var t2 = document.getElementById('text2').value;
+      var diffOutput = document.getElementById('diffOutput');
+      var diffResult = document.getElementById('diffResult');
+      var statsRow = document.getElementById('statsRow');
+
+      if (!t1 && !t2) {
+        diffResult.style.display = 'none';
+        statsRow.textContent = '';
+        hasResult = false;
+        return;
+      }
+
+      if (t1 === t2) {
+        diffResult.style.display = 'block';
+        diffOutput.innerHTML = '<div class="diff-no-change">Kein Unterschied gefunden</div>';
+        statsRow.textContent = 'Keine \u00c4nderungen';
+        hasResult = true;
+        return;
+      }
+
+      hasResult = true;
+      diffResult.style.display = 'block';
+
+      if (currentMode === 'word') {
+        var wordCount1 = t1.trim() ? t1.trim().split(/\s+/).length : 0;
+        var wordCount2 = t2.trim() ? t2.trim().split(/\s+/).length : 0;
+        if (wordCount1 > 2000 || wordCount2 > 2000) {
+          diffOutput.innerHTML = '<div class="diff-no-change">F\u00fcr sehr lange Texte empfehlen wir den Zeile-f\u00fcr-Zeile-Modus.</div>';
+          statsRow.textContent = 'Text zu lang f\u00fcr Wort-Modus (\u00fcber 2.000 W\u00f6rter)';
+          return;
+        }
+        var result = diffWords(t1, t2);
+        diffOutput.innerHTML = result.html;
+        statsRow.textContent = result.added + ' W\u00f6rter hinzugef\u00fcgt \u00b7 ' + result.removed + ' W\u00f6rter entfernt';
+      } else {
+        var result = diffLines(t1, t2);
+        diffOutput.innerHTML = result.html;
+        statsRow.textContent = result.changed + ' Zeilen ge\u00e4ndert \u00b7 ' + result.added + ' hinzugef\u00fcgt \u00b7 ' + result.removed + ' entfernt';
+      }
+    }
+
+    /* === SWAP === */
+    function swapTexts() {
+      var t1 = document.getElementById('text1');
+      var t2 = document.getElementById('text2');
+      var tmp = t1.value;
+      t1.value = t2.value;
+      t2.value = tmp;
+      if (hasResult) compare();
+    }
+
+    /* === RESET === */
+    function resetAll() {
+      var t1 = document.getElementById('text1');
+      var t2 = document.getElementById('text2');
+      var total = t1.value.length + t2.value.length;
+      if (total > 100) {
+        if (!confirm('Alle Texte und Ergebnisse l\u00f6schen?')) return;
+      }
+      t1.value = '';
+      t2.value = '';
+      document.getElementById('diffOutput').innerHTML = '';
+      document.getElementById('diffResult').style.display = 'none';
+      document.getElementById('statsRow').textContent = '';
+      hasResult = false;
+    }
+
+    /* === COPY TEXT === */
+    function copyText(id) {
+      var el = document.getElementById(id);
+      if (!el.value) return;
+      navigator.clipboard.writeText(el.value).then(function() {
+        showToast('Kopiert!');
+      });
+    }
+
+    /* === TOAST === */
+    function showToast(msg) {
+      var toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2000);
+    }
+  </script>
+
+</body>
+</html>
