@@ -4,7 +4,7 @@
 |------|------|----------|--------|
 | TASK-001 | Passwort Generator | P0 ⭐ HERO | DONE ✅ |
 | TASK-002 | Zeichenzähler | P0 | DONE ✅ |
-| TASK-003 | Wörter zählen | P0 | TODO |
+| TASK-003 | Wörter zählen | P0 | DONE ✅ |
 | TASK-004 | Lesbarkeit prüfen | P1 | TODO |
 | TASK-005 | Lorem Ipsum Deutsch | P1 | TODO |
 | TASK-006 | Text Formatierung | P1 | TODO |
