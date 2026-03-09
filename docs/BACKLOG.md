@@ -9,5 +9,5 @@
 | TASK-005 | Lorem Ipsum Deutsch | P1 | DONE ✅ |
 | TASK-006 | Text Formatierung | P1 | DONE ✅ |
 | TASK-007 | Umlaut Konverter | P1 | DONE ✅ |
-| TASK-008 | Textvergleich | P2 | TODO |
+| TASK-008 | Textvergleich | P2 | DONE ✅ |
 | TASK-009 | Zufallszahlen Generator | P2 | TODO |
