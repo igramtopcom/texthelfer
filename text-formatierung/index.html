@@ -27,7 +27,7 @@
      {"@type":"Question","name":"Was ist ein Spiegel-Text?",
       "acceptedAnswer":{"@type":"Answer","text":"Ein Spiegel-Text entsteht durch das Umkehren der Reihenfolge aller Zeichen im Text. Aus \u201eHallo Welt\u201c wird zum Beispiel \u201etleW ollaH\u201c. Spiegel-Texte werden f\u00fcr R\u00e4tsel, kreative Projekte, Wasserzeichen-Effekte oder einfach zum Spa\u00df verwendet."}},
      {"@type":"Question","name":"Was ist der Unterschied zwischen \u201eErsten Buchstaben\u201c und \u201eJeden Satz\u201c?",
-      "acceptedAnswer":{"@type":"Answer","text":"\u201eErsten Buchstaben gro\u00dfschreiben\u201c macht nur den allerersten Buchstaben des gesamten Textes gro\u00df und setzt den Rest auf Kleinschreibung. \u201eJeden Satz gro\u00dfschreiben\u201c hingegen erkennt Satzgrenzen (nach Punkt, Ausrufezeichen und Fragezeichen) und schreibt den ersten Buchstaben jedes Satzes gro\u00df."}},
+      "acceptedAnswer":{"@type":"Answer","text":"\u201eErsten Buchstaben gro\u00dfschreiben\u201c schreibt den ersten Buchstaben jedes Wortes gro\u00df (Title Case) und den Rest auf Kleinschreibung. \u201eJeden Satz gro\u00dfschreiben\u201c hingegen erkennt Satzgrenzen (nach Punkt, Ausrufezeichen und Fragezeichen) und schreibt den ersten Buchstaben jedes Satzes gro\u00df."}},
      {"@type":"Question","name":"Werden meine Texte gespeichert?",
       "acceptedAnswer":{"@type":"Answer","text":"Nein. Alle Formatierungen werden ausschlie\u00dflich in deinem Browser durchgef\u00fchrt. Kein Text wird an unsere Server \u00fcbertragen oder gespeichert. Du kannst das Tool bedenkenlos f\u00fcr vertrauliche Dokumente, Gesch\u00e4ftstexte oder pers\u00f6nliche Inhalte verwenden."}},
      {"@type":"Question","name":"Kann ich mehrere Formatierungen nacheinander anwenden?",
@@ -562,7 +562,7 @@
           <span>Was ist der Unterschied zwischen &bdquo;Ersten Buchstaben&ldquo; und &bdquo;Jeden Satz&ldquo;?</span>
           <span class="faq-arrow">&#9660;</span>
         </button>
-        <div class="faq-answer">&bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; macht nur den allerersten Buchstaben des gesamten Textes gro&szlig; und setzt den Rest auf Kleinschreibung. &bdquo;Jeden Satz gro&szlig;schreiben&ldquo; hingegen erkennt Satzgrenzen (nach Punkt, Ausrufezeichen und Fragezeichen) und schreibt den ersten Buchstaben jedes Satzes gro&szlig;. Die zweite Option ist f&uuml;r normale Texte deutlich sinnvoller.</div>
+        <div class="faq-answer">&bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; schreibt den ersten Buchstaben jedes Wortes gro&szlig; (Title Case) und den Rest auf Kleinschreibung. &bdquo;Jeden Satz gro&szlig;schreiben&ldquo; hingegen erkennt Satzgrenzen (nach Punkt, Ausrufezeichen und Fragezeichen) und schreibt den ersten Buchstaben jedes Satzes gro&szlig;. Die zweite Option ist f&uuml;r normale Texte deutlich sinnvoller.</div>
       </div>
 
       <div class="faq-item">
@@ -1472,7 +1472,9 @@
 
     function formatFirst(text) {
       if (!text) return '';
-      return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+      return text.toLowerCase().replace(/[a-zA-Z\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc\u00df]+/g, function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      });
     }
 
     function formatSentence(text) {
@@ -1532,6 +1534,10 @@
         var action = this.getAttribute('data-action');
         var fn = FORMAT_MAP[action];
         if (fn) {
+          for (var j = 0; j < fmtBtns.length; j++) {
+            fmtBtns[j].classList.remove('highlight');
+          }
+          this.classList.add('highlight');
           textOutput.value = fn(textInput.value);
           updateCounts();
         }
