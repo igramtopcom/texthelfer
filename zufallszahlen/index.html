@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zufallszahlen Generator Online Kostenlos | TextHelfer</title>
+  <meta name="description" content="Zufallszahlen online generieren &ndash; mit oder ohne Duplikate, als CSV exportieren. Kostenloser Zufallszahlen Generator, keine Anmeldung erforderlich.">
+  <link rel="canonical" href="https://texthelfer.net/zufallszahlen/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+   "name":"Zufallszahlen Generator",
+   "description":"Kostenloser Zufallszahlen Generator – zuf\u00e4llige Zahlen online erstellen, mit oder ohne Duplikate, als CSV exportieren.",
+   "url":"https://texthelfer.net/zufallszahlen/",
+   "applicationCategory":"UtilityApplication",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage",
+   "mainEntity":[
+     {"@type":"Question","name":"Wie funktioniert ein Zufallszahlen Generator?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein Zufallszahlen Generator erstellt Zahlen, die keine erkennbare Muster oder Vorhersagbarkeit haben. Unser Generator nutzt die crypto.getRandomValues()-API des Browsers \u2013 einen kryptografisch sicheren Zufallsgenerator, der deutlich zuverl\u00e4ssiger ist als einfache mathematische Verfahren."}},
+     {"@type":"Question","name":"Sind Online-Zufallszahlen wirklich zuf\u00e4llig?",
+      "acceptedAnswer":{"@type":"Answer","text":"Unser Generator verwendet die crypto.getRandomValues()-API, die von modernen Browsern als kryptografisch sicher eingestuft wird. F\u00fcr die meisten Anwendungen \u2013 Verlosungen, Spiele, Statistik \u2013 ist diese Qualit\u00e4t mehr als ausreichend."}},
+     {"@type":"Question","name":"Kann ich Zufallszahlen ohne Duplikate generieren?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Mit der Option \u201eKeine Duplikate\u201c stellt der Generator sicher, dass jede Zahl im Ergebnis nur einmal vorkommt. Wichtig: Die Anzahl der gew\u00fcnschten Zahlen darf dabei nicht gr\u00f6\u00dfer sein als der Bereich zwischen Minimum und Maximum."}},
+     {"@type":"Question","name":"Wie kann ich Zufallszahlen als CSV exportieren?",
+      "acceptedAnswer":{"@type":"Answer","text":"Klicken Sie nach der Generierung auf \u201eAls CSV exportieren\u201c. Die Datei zufallszahlen.csv wird automatisch heruntergeladen. Jede Zahl steht in einer eigenen Zeile \u2013 kompatibel mit Excel, Google Sheets und allen g\u00e4ngigen Tabellenkalkulationen."}},
+     {"@type":"Question","name":"Wie viele Zufallszahlen kann ich gleichzeitig generieren?",
+      "acceptedAnswer":{"@type":"Answer","text":"Sie k\u00f6nnen bis zu 1.000 Zufallszahlen in einem Durchgang generieren. F\u00fcr gr\u00f6\u00dfere Mengen empfehlen wir, mehrere Durchg\u00e4nge durchzuf\u00fchren und die CSV-Exporte zusammenzuf\u00fchren."}},
+     {"@type":"Question","name":"Wof\u00fcr kann ich den Zufallszahlen Generator nutzen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Der Generator eignet sich f\u00fcr viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f\u00fcr Entwickler, W\u00fcrfelersatz f\u00fcr Brettspiele, zuf\u00e4llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe."}}
+   ]}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+      --danger: #EF4444;
+      --success: #22C55E;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+      --danger: #F87171;
+      --success: #4ADE80;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* === MAIN === */
+    .main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .main h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .main > p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    /* === INPUTS === */
+    .input-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .input-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .input-group input {
+      font-family: inherit;
+      font-size: 18px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .input-group input:focus {
+      border-color: var(--accent);
+    }
+
+    /* === TOGGLE === */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--border);
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: var(--accent);
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+      transform: translateX(20px);
+    }
+
+    .toggle-label {
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* === BUTTONS === */
+    .generate-btn {
+      width: 100%;
+      height: 52px;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-bottom: 24px;
+    }
+    .generate-btn:hover { background: var(--accent-hover); }
+
+    /* === ERROR === */
+    .error-msg {
+      background: #FEF2F2;
+      color: #B91C1C;
+      border: 1px solid #FECACA;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      display: none;
+    }
+    [data-theme="dark"] .error-msg {
+      background: #1C1917;
+      color: #FCA5A5;
+      border-color: #7F1D1D;
+    }
+
+    /* === RESULT === */
+    .result-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 20px;
+      text-align: center;
+      margin-bottom: 16px;
+      display: none;
+      min-height: 100px;
+    }
+
+    .result-single {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .result-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .result-grid .num-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 16px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    .action-btn {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      min-height: 44px;
+    }
+    .action-btn:hover {
+      border-color: var(--accent);
+      background: var(--bg-card);
+    }
+
+    /* === HISTORY === */
+    .history-section {
+      margin-bottom: 32px;
+      display: none;
+    }
+
+    .history-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .history-list {
+      list-style: none;
+    }
+
+    .history-entry {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .history-entry:hover {
+      border-color: var(--accent);
+      background: var(--bg-card);
+    }
+
+    .history-time {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* === AD === */
+    .ad-placeholder {
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      margin: 28px 0;
+    }
+
+    /* === SEO SECTIONS === */
+    .seo-section {
+      margin-bottom: 32px;
+    }
+
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .seo-section p {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .seo-section ul {
+      color: var(--text-muted);
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+
+    .seo-section li {
+      margin-bottom: 6px;
+    }
+
+    .seo-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .seo-section a:hover { text-decoration: underline; }
+
+    /* === FAQ === */
+    .faq-section { margin-bottom: 32px; }
+
+    .faq-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 14px 18px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      background: var(--bg-card);
+      color: var(--text);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-question .arrow { transition: transform 0.2s; flex-shrink: 0; }
+    .faq-item.open .faq-question .arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 18px 14px;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+    .footer a:hover { color: var(--accent); }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1E293B;
+      color: #F1F5F9;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+
+      .main { padding: 24px 16px 48px; }
+
+      .main h1 { font-size: 22px; }
+
+      .input-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .result-single { font-size: 40px; }
+
+      .result-actions {
+        flex-direction: column;
+      }
+
+      .action-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">W&ouml;rter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">&#x1F319;</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <h1>Zufallszahlen Generator &ndash; Zufallszahlen online erstellen</h1>
+    <p>Zuf&auml;llige Zahlen generieren &ndash; mit oder ohne Duplikate, als CSV exportieren. 100&nbsp;% im Browser, kostenlos und ohne Anmeldung.</p>
+
+    <!-- INPUTS -->
+    <div class="input-row">
+      <div class="input-group">
+        <label for="inputMin">Minimum</label>
+        <input type="number" id="inputMin" value="1">
+      </div>
+      <div class="input-group">
+        <label for="inputMax">Maximum</label>
+        <input type="number" id="inputMax" value="100">
+      </div>
+      <div class="input-group">
+        <label for="inputCount">Anzahl</label>
+        <input type="number" id="inputCount" value="1" min="1" max="1000">
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <label class="toggle-switch">
+        <input type="checkbox" id="noDuplicates">
+        <span class="toggle-slider"></span>
+      </label>
+      <label class="toggle-label" for="noDuplicates">Keine Duplikate</label>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <button class="generate-btn" id="generateBtn">Generieren</button>
+
+    <!-- RESULT -->
+    <div class="result-box" id="resultBox"></div>
+
+    <div class="result-actions" id="resultActions">
+      <button class="action-btn" id="copyBtn">Kopieren</button>
+      <button class="action-btn" id="csvBtn">Als CSV exportieren</button>
+    </div>
+
+    <!-- AD TOP -->
+    <div class="ad-placeholder" id="ad-top">Anzeige</div>
+
+    <!-- HISTORY -->
+    <section class="history-section" id="historySection">
+      <div class="history-title">Verlauf</div>
+      <ul class="history-list" id="historyList"></ul>
+    </section>
+
+    <!-- SEO: Wie funktioniert -->
+    <section class="seo-section">
+      <h2>Wie funktioniert der Zufallszahlen Generator?</h2>
+      <p>Der TextHelfer Zufallszahlen Generator erstellt zuf&auml;llige Zahlen direkt in Ihrem Browser. Geben Sie einfach einen Minimum- und Maximum-Wert ein, w&auml;hlen Sie die gew&uuml;nschte Anzahl und klicken Sie auf &bdquo;Generieren&ldquo;. Die Ergebnisse erscheinen sofort &ndash; kein Warten, keine Anmeldung.</p>
+      <p>Unser Generator nutzt die <code>crypto.getRandomValues()</code>-API des Browsers &ndash; denselben kryptografisch sicheren Zufallsgenerator, der auch bei unserem <a href="/passwort-generator/">Passwort Generator</a> zum Einsatz kommt. Mit der Option &bdquo;Keine Duplikate&ldquo; k&ouml;nnen Sie sicherstellen, dass jede Zahl nur einmal im Ergebnis vorkommt &ndash; ideal f&uuml;r Verlosungen oder Gruppeneinteilungen.</p>
+      <p>Alle generierten Zahlen lassen sich mit einem Klick kopieren oder als CSV-Datei herunterladen &ndash; kompatibel mit Excel und Google Sheets. Die letzten 5 Ergebnisse werden im Verlauf gespeichert, sodass Sie fr&uuml;here Generierungen schnell wiederfinden.</p>
+    </section>
+
+    <!-- AD MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Anzeige</div>
+
+    <!-- SEO: F&uuml;r wen -->
+    <section class="seo-section">
+      <h2>F&uuml;r wen ist der Zufallszahlen Generator geeignet?</h2>
+      <ul>
+        <li>Lehrkr&auml;fte, die Sch&uuml;ler zuf&auml;llig aufrufen oder Gruppen einteilen m&ouml;chten</li>
+        <li>Veranstalter von Verlosungen und Gewinnspielen, die faire Zufallsergebnisse ben&ouml;tigen</li>
+        <li>Entwickler, die Testdaten oder <a href="/lorem-ipsum-deutsch/">Platzhalterdaten</a> f&uuml;r Projekte generieren</li>
+        <li>Statistiker, die Zufallsstichproben f&uuml;r Umfragen und Studien ziehen</li>
+        <li>Alle, die eine schnelle, sichere Entscheidungshilfe per Zufall ben&ouml;tigen</li>
+      </ul>
+      <p>Vergleichen Sie Ihre Ergebnisse mit dem <a href="/textvergleich/">Textvergleich</a> oder z&auml;hlen Sie Zeichen mit dem <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>.</p>
+    </section>
+
+    <!-- AD BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Anzeige</div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>H&auml;ufige Fragen</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Wie funktioniert ein Zufallszahlen Generator? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Ein Zufallszahlen Generator erstellt Zahlen, die keine erkennbare Muster oder Vorhersagbarkeit haben. Unser Generator nutzt die <code>crypto.getRandomValues()</code>-API des Browsers &ndash; einen kryptografisch sicheren Zufallsgenerator, der deutlich zuverl&auml;ssiger ist als einfache mathematische Verfahren.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Sind Online-Zufallszahlen wirklich zuf&auml;llig? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Unser Generator verwendet die <code>crypto.getRandomValues()</code>-API, die von modernen Browsern als kryptografisch sicher eingestuft wird. F&uuml;r die meisten Anwendungen &ndash; Verlosungen, Spiele, Statistik &ndash; ist diese Qualit&auml;t mehr als ausreichend.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Kann ich Zufallszahlen ohne Duplikate generieren? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Ja. Mit der Option &bdquo;Keine Duplikate&ldquo; stellt der Generator sicher, dass jede Zahl im Ergebnis nur einmal vorkommt. Wichtig: Die Anzahl der gew&uuml;nschten Zahlen darf dabei nicht gr&ouml;&szlig;er sein als der Bereich zwischen Minimum und Maximum.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Wie kann ich Zufallszahlen als CSV exportieren? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Klicken Sie nach der Generierung auf &bdquo;Als CSV exportieren&ldquo;. Die Datei <code>zufallszahlen.csv</code> wird automatisch heruntergeladen. Jede Zahl steht in einer eigenen Zeile &ndash; kompatibel mit Excel, Google Sheets und allen g&auml;ngigen Tabellenkalkulationen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Wie viele Zufallszahlen kann ich gleichzeitig generieren? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Sie k&ouml;nnen bis zu 1.000 Zufallszahlen in einem Durchgang generieren. F&uuml;r gr&ouml;&szlig;ere Mengen empfehlen wir, mehrere Durchg&auml;nge durchzuf&uuml;hren und die CSV-Exporte zusammenzuf&uuml;hren.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Wof&uuml;r kann ich den Zufallszahlen Generator nutzen? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Der Generator eignet sich f&uuml;r viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f&uuml;r Entwickler, W&uuml;rfelersatz f&uuml;r Brettspiele, zuf&auml;llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
+    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Kopiert!</div>
+
+  <script>
+    /* === STATE === */
+    var currentNumbers = [];
+    var genHistory = [];
+
+    /* === DARK MODE === */
+    var themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+    updateThemeIcon();
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+
+    /* === ELEMENTS === */
+    var inputMin = document.getElementById('inputMin');
+    var inputMax = document.getElementById('inputMax');
+    var inputCount = document.getElementById('inputCount');
+    var noDuplicates = document.getElementById('noDuplicates');
+    var errorMsg = document.getElementById('errorMsg');
+    var resultBox = document.getElementById('resultBox');
+    var resultActions = document.getElementById('resultActions');
+    var generateBtn = document.getElementById('generateBtn');
+    var copyBtn = document.getElementById('copyBtn');
+    var csvBtn = document.getElementById('csvBtn');
+    var historySection = document.getElementById('historySection');
+    var historyList = document.getElementById('historyList');
+
+    /* === CRYPTO RANDOM INTEGER [min, max] inclusive === */
+    function cryptoRandomInt(min, max) {
+      var range = max - min + 1;
+      var arr = new Uint32Array(1);
+      crypto.getRandomValues(arr);
+      return min + (arr[0] % range);
+    }
+
+    /* === GENERATE UNIQUE (Fisher-Yates or Set-based) === */
+    function generateUnique(min, max, count) {
+      var poolSize = max - min + 1;
+      if (poolSize <= 10000) {
+        /* Fisher-Yates shuffle */
+        var pool = [];
+        for (var i = 0; i < poolSize; i++) {
+          pool.push(min + i);
+        }
+        for (var i = pool.length - 1; i > 0; i--) {
+          var arr = new Uint32Array(1);
+          crypto.getRandomValues(arr);
+          var j = arr[0] % (i + 1);
+          var tmp = pool[i];
+          pool[i] = pool[j];
+          pool[j] = tmp;
+        }
+        return pool.slice(0, count);
+      } else {
+        /* Set-based for large pools */
+        var result = {};
+        var nums = [];
+        while (nums.length < count) {
+          var n = cryptoRandomInt(min, max);
+          if (!result[n]) {
+            result[n] = true;
+            nums.push(n);
+          }
+        }
+        return nums;
+      }
+    }
+
+    /* === GENERATE === */
+    function generate() {
+      errorMsg.style.display = 'none';
+
+      var min = parseInt(inputMin.value, 10);
+      var max = parseInt(inputMax.value, 10);
+      var count = parseInt(inputCount.value, 10);
+
+      /* Validation */
+      if (isNaN(min) || isNaN(max)) {
+        showError('Bitte geben Sie g\u00fcltige Zahlen f\u00fcr Min und Max ein.');
+        return;
+      }
+      if (isNaN(count) || count < 1) {
+        showError('Anzahl muss mindestens 1 sein.');
+        return;
+      }
+      if (count > 1000) {
+        showError('Maximal 1.000 Zahlen.');
+        return;
+      }
+      if (min >= max) {
+        showError('Min muss kleiner als Max sein.');
+        return;
+      }
+      if (noDuplicates.checked && count > (max - min + 1)) {
+        showError('Nicht genug einzigartige Zahlen im Bereich ' + min + '\u2013' + max + '.');
+        return;
+      }
+
+      /* Generate numbers */
+      var numbers;
+      if (noDuplicates.checked) {
+        numbers = generateUnique(min, max, count);
+      } else {
+        numbers = [];
+        for (var i = 0; i < count; i++) {
+          numbers.push(cryptoRandomInt(min, max));
+        }
+      }
+
+      currentNumbers = numbers;
+
+      /* Display result */
+      resultBox.style.display = 'block';
+      resultActions.style.display = 'flex';
+
+      if (numbers.length === 1) {
+        resultBox.innerHTML = '<div class="result-single">' + numbers[0] + '</div>';
+      } else {
+        var html = '<div class="result-grid">';
+        for (var i = 0; i < numbers.length; i++) {
+          html += '<span class="num-tag">' + numbers[i] + '</span>';
+        }
+        html += '</div>';
+        resultBox.innerHTML = html;
+      }
+
+      /* Add to history */
+      addToHistory(min, max, count, numbers);
+    }
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.style.display = 'block';
+      resultBox.style.display = 'none';
+      resultActions.style.display = 'none';
+    }
+
+    /* === HISTORY === */
+    function addToHistory(min, max, count, numbers) {
+      var now = new Date();
+      var time = String(now.getHours()).replace(/^(\d)$/, '0$1') + ':' + String(now.getMinutes()).replace(/^(\d)$/, '0$1');
+      var preview = numbers.slice(0, 5).join(', ');
+      if (numbers.length > 5) preview += ', \u2026';
+      var label = (count === 1 ? '1 Zahl' : count + ' Zahlen');
+
+      var entry = {
+        time: time,
+        min: min,
+        max: max,
+        count: count,
+        numbers: numbers.slice(),
+        label: time + ' \u00b7 ' + min + '\u2013' + max + ' \u00b7 ' + label + ': ' + preview
+      };
+
+      genHistory.unshift(entry);
+      if (genHistory.length > 5) genHistory.pop();
+
+      renderHistory();
+    }
+
+    function renderHistory() {
+      if (genHistory.length === 0) {
+        historySection.style.display = 'none';
+        return;
+      }
+      historySection.style.display = 'block';
+      historyList.innerHTML = '';
+
+      for (var i = 0; i < genHistory.length; i++) {
+        var li = document.createElement('li');
+        li.className = 'history-entry';
+        li.innerHTML = '<span class="history-time">' + genHistory[i].time + '</span> \u00b7 ' + genHistory[i].min + '\u2013' + genHistory[i].max + ' \u00b7 ' + (genHistory[i].count === 1 ? '1 Zahl' : genHistory[i].count + ' Zahlen') + ': ' + genHistory[i].numbers.slice(0, 5).join(', ') + (genHistory[i].numbers.length > 5 ? ', \u2026' : '');
+        li.setAttribute('data-index', i);
+        li.addEventListener('click', function() {
+          var idx = parseInt(this.getAttribute('data-index'), 10);
+          loadFromHistory(idx);
+        });
+        historyList.appendChild(li);
+      }
+    }
+
+    function loadFromHistory(idx) {
+      var entry = genHistory[idx];
+      if (!entry) return;
+      currentNumbers = entry.numbers.slice();
+      resultBox.style.display = 'block';
+      resultActions.style.display = 'flex';
+
+      if (currentNumbers.length === 1) {
+        resultBox.innerHTML = '<div class="result-single">' + currentNumbers[0] + '</div>';
+      } else {
+        var html = '<div class="result-grid">';
+        for (var i = 0; i < currentNumbers.length; i++) {
+          html += '<span class="num-tag">' + currentNumbers[i] + '</span>';
+        }
+        html += '</div>';
+        resultBox.innerHTML = html;
+      }
+
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* === COPY === */
+    function copyResult() {
+      if (currentNumbers.length === 0) return;
+      var text = currentNumbers.join(', ');
+      navigator.clipboard.writeText(text).then(function() {
+        showToast();
+      });
+    }
+
+    /* === CSV EXPORT === */
+    function exportCSV() {
+      if (currentNumbers.length === 0) return;
+      var csv = currentNumbers.join('\n');
+      var blob = new Blob([csv], { type: 'text/csv' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'zufallszahlen.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    /* === TOAST === */
+    function showToast() {
+      var toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    /* === FAQ ACCORDION === */
+    var faqItems = document.querySelectorAll('.faq-item');
+    for (var i = 0; i < faqItems.length; i++) {
+      faqItems[i].querySelector('.faq-question').addEventListener('click', function() {
+        var item = this.parentElement;
+        var wasOpen = item.classList.contains('open');
+        for (var j = 0; j < faqItems.length; j++) {
+          faqItems[j].classList.remove('open');
+        }
+        if (!wasOpen) item.classList.add('open');
+      });
+    }
+
+    /* === EVENT LISTENERS === */
+    generateBtn.addEventListener('click', generate);
+    copyBtn.addEventListener('click', copyResult);
+    csvBtn.addEventListener('click', exportCSV);
+
+    /* Enter key on inputs */
+    inputMin.addEventListener('keydown', function(e) { if (e.key === 'Enter') generate(); });
+    inputMax.addEventListener('keydown', function(e) { if (e.key === 'Enter') generate(); });
+    inputCount.addEventListener('keydown', function(e) { if (e.key === 'Enter') generate(); });
+  </script>
+</body>
+</html>
