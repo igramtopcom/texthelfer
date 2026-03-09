@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umlaut Umschreiben Online Kostenlos – Umlaut Konverter | TextHelfer</title>
+  <meta name="description" content="Umlaute umschreiben leicht gemacht: &auml; zu ae, &ouml; zu oe, &uuml; zu ue und &szlig; zu ss – und umgekehrt. Kostenloser Umlaut Konverter, keine Anmeldung erforderlich.">
+  <link rel="canonical" href="https://texthelfer.net/umlaut-konverter/">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+   "name":"Umlaut Konverter",
+   "description":"Umlaute umschreiben: \u00e4 zu ae, \u00f6 zu oe, \u00fc zu ue und \u00df zu ss \u2013 und umgekehrt. Kostenloser Online-Konverter.",
+   "url":"https://texthelfer.net/umlaut-konverter/",
+   "applicationCategory":"UtilityApplication",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage",
+   "mainEntity":[
+     {"@type":"Question","name":"Wie schreibt man \u00e4 ohne Umlaut?",
+      "acceptedAnswer":{"@type":"Answer","text":"Das \u00e4 wird als \u201eae\u201c geschrieben, das \u00f6 als \u201eoe\u201c und das \u00fc als \u201eue\u201c. Das \u00df wird durch \u201ess\u201c ersetzt. Diese Schreibweise wird Umlautumschreibung genannt und ist besonders beim Tippen auf internationalen Tastaturen n\u00fctzlich."}},
+     {"@type":"Question","name":"Wann brauche ich die Umlautumschreibung?",
+      "acceptedAnswer":{"@type":"Answer","text":"Die Umlautumschreibung wird ben\u00f6tigt, wenn Systeme oder Tastaturen keine deutschen Sonderzeichen unterst\u00fctzen \u2013 zum Beispiel bei E-Mail-Adressen, Benutzernamen, alten Computersystemen oder beim Schreiben auf einer englischen Tastatur."}},
+     {"@type":"Question","name":"Wie buchstabiert man \u00fc auf Englisch?",
+      "acceptedAnswer":{"@type":"Answer","text":"Das \u00fc wird im Deutschen als \u201eue\u201c umgeschrieben. Das \u00dc (Gro\u00dfbuchstabe) wird zu \u201eUe\u201c. Im internationalen Kontext ist diese Schreibweise allgemein anerkannt."}},
+     {"@type":"Question","name":"Ist die Umschreibung von \u00df zu ss korrekt?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja, ss ist die offizielle Umschreibung von \u00df, wenn das Zeichen nicht verf\u00fcgbar ist. In der Schweiz wird \u00df grunds\u00e4tzlich als ss geschrieben \u2013 das ist seit Jahrzehnten g\u00e4ngige Praxis."}},
+     {"@type":"Question","name":"Kann ich den Umlaut Konverter f\u00fcr E-Mail-Adressen verwenden?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Viele E-Mail-Server akzeptieren zwar heute Umlaute, aber f\u00fcr maximale Kompatibilit\u00e4t empfiehlt sich die ASCII-Umschreibung. Der Konverter hilft, Text schnell in die kompatible Schreibweise umzuwandeln."}},
+     {"@type":"Question","name":"Funktioniert der Konverter auch in umgekehrter Richtung?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Mit dem Knopf \u201eRichtung tauschen\u201c k\u00f6nnen Sie ASCII-Text (ae, oe, ue, ss) zur\u00fcck in die Umlaut-Schreibweise (\u00e4, \u00f6, \u00fc, \u00df) umwandeln. Bitte pr\u00fcfen Sie das Ergebnis, da nicht jedes \u201eae\u201c im Deutschen ein Umlaut ist."}}
+   ]}
+  </script>
+
+  <script>
+    if(localStorage.getItem("texthelfer-theme")==="dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+      --danger: #EF4444;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+      --danger: #F87171;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === HEADER === */
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #94A3B8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    /* === MAIN === */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .page-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    /* === DIRECTION TOGGLE === */
+    .direction-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-direction {
+      height: 52px;
+      padding: 0 24px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-direction:hover { background: var(--accent-hover); }
+    [data-theme="dark"] .btn-direction { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-direction:hover { background: #3B82F6; }
+
+    /* === TEXTAREA AREA === */
+    .textarea-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .textarea-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .textarea-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .textarea-input,
+    .textarea-output {
+      width: 100%;
+      min-height: 240px;
+      resize: vertical;
+      padding: 14px 16px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .textarea-input:focus { border-color: var(--accent); }
+
+    .textarea-output {
+      background: var(--bg-card);
+      cursor: default;
+    }
+    .textarea-output:focus { border-color: var(--border); }
+
+    /* === BUTTON ROW UNDER EACH TEXTAREA === */
+    .textarea-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn-copy {
+      height: 44px;
+      padding: 0 18px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-copy:hover { background: var(--accent-hover); }
+    [data-theme="dark"] .btn-copy { background: #60A5FA; color: #0F172A; }
+    [data-theme="dark"] .btn-copy:hover { background: #3B82F6; }
+
+    .btn-clear {
+      height: 44px;
+      padding: 0 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-clear:hover { border-color: var(--danger); color: var(--danger); }
+
+    /* === COUNTER === */
+    .convert-counter {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+      min-height: 24px;
+    }
+
+    /* === WARNING NOTE === */
+    .warning-note {
+      text-align: center;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1E293B;
+      color: #F1F5F9;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    [data-theme="dark"] .toast { background: #F1F5F9; color: #0F172A; }
+
+    /* === AD PLACEHOLDERS === */
+    .ad-placeholder {
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* === SEO SECTIONS === */
+    .seo-section {
+      margin-bottom: 32px;
+    }
+    .seo-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .seo-section p, .seo-section li {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .seo-section ul {
+      list-style: disc;
+      padding-left: 24px;
+    }
+    .seo-section ul li {
+      margin-bottom: 6px;
+    }
+    .seo-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .seo-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* === FAQ === */
+    .faq-section { margin-bottom: 32px; }
+    .faq-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 16px;
+      background: var(--bg-card);
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-question:hover { background: var(--border); }
+    .faq-arrow {
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 16px 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      background: var(--bg-card);
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* === FOOTER === */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+    .footer a:hover { color: var(--accent); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 767px) {
+      .header { padding: 0 16px; }
+      .nav-links { display: none; }
+      .main { padding: 24px 16px 40px; }
+      .page-title { font-size: 22px; }
+      .textarea-row { flex-direction: column; }
+      .textarea-input,
+      .textarea-output { min-height: 160px; }
+      .btn-direction { width: 100%; justify-content: center; }
+      .btn-copy, .btn-clear { height: 52px; flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="logo"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">W&ouml;rter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/" class="active">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">&#127769;</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <h1 class="page-title">Umlaut Konverter &ndash; Umlaute umschreiben online</h1>
+    <p class="page-subtitle">Umlaute (&auml;, &ouml;, &uuml;, &szlig;) in ASCII-Schreibweise (ae, oe, ue, ss) umwandeln &ndash; und umgekehrt. Echtzeit-Konvertierung, kostenlos und ohne Anmeldung.</p>
+
+    <!-- DIRECTION TOGGLE -->
+    <div class="direction-row">
+      <button class="btn-direction" id="btnDirection" onclick="toggleDirection()">
+        <span id="dirLabel">Umlaut &rarr; ASCII</span>
+        <span>&#8644; Richtung tauschen</span>
+      </button>
+    </div>
+
+    <!-- TEXTAREA ROW -->
+    <div class="textarea-row">
+      <div class="textarea-col">
+        <label class="textarea-label" id="labelInput">Mit Umlauten</label>
+        <textarea class="textarea-input" id="inputText" placeholder="Text hier eingeben&hellip;" oninput="convert()"></textarea>
+        <div class="textarea-actions">
+          <button class="btn-copy" onclick="copyText('inputText')">Kopieren</button>
+          <button class="btn-clear" onclick="clearInput()">L&ouml;schen</button>
+        </div>
+      </div>
+      <div class="textarea-col">
+        <label class="textarea-label" id="labelOutput">Ohne Umlaute</label>
+        <textarea class="textarea-output" id="outputText" readonly placeholder="Ergebnis erscheint hier&hellip;"></textarea>
+        <div class="textarea-actions">
+          <button class="btn-copy" onclick="copyText('outputText')">Kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- COUNTER -->
+    <div class="convert-counter" id="convertCounter"></div>
+
+    <!-- WARNING NOTE (shown only in ASCII→Umlaut mode) -->
+    <div class="warning-note" id="warningNote">Bitte Ergebnis pr&uuml;fen &ndash; nicht alle ae/oe/ue sind Umlaute.</div>
+
+    <!-- AD TOP -->
+    <div class="ad-placeholder" id="ad-top" style="margin-top: 32px;">Anzeige</div>
+
+    <!-- SEO SECTION 1 -->
+    <section class="seo-section">
+      <h2>Wie funktioniert der Umlaut Konverter?</h2>
+      <p>
+        Der Umlaut Konverter wandelt deutsche Sonderzeichen automatisch in ihre ASCII-Entsprechungen um &ndash; und umgekehrt.
+        In der Standardrichtung werden &auml; zu ae, &ouml; zu oe, &uuml; zu ue und &szlig; zu ss konvertiert.
+        Gro&szlig;buchstaben werden dabei korrekt behandelt: &Auml; wird zu Ae, nicht zu AE &ndash; wie es der deutschen Rechtschreibtradition entspricht.
+      </p>
+      <p>
+        Die Konvertierung erfolgt in Echtzeit, w&auml;hrend du tippst. Es ist kein zus&auml;tzlicher Button-Klick n&ouml;tig.
+        Mit dem Button &bdquo;Richtung tauschen&ldquo; kannst du die Konvertierungsrichtung umkehren, um ASCII-Text (ae, oe, ue, ss)
+        zur&uuml;ck in Umlaute (&auml;, &ouml;, &uuml;, &szlig;) umzuwandeln. Alle Operationen laufen zu 100% in deinem Browser &ndash;
+        kein Text wird an einen Server &uuml;bertragen. Nutze den <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>,
+        um die L&auml;nge deines konvertierten Textes zu pr&uuml;fen, oder formatiere ihn mit der
+        <a href="/text-formatierung/">Text Formatierung</a>.
+      </p>
+    </section>
+
+    <!-- AD MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Anzeige</div>
+
+    <!-- SEO SECTION 2 -->
+    <section class="seo-section">
+      <h2>F&uuml;r wen ist der Umlaut Konverter geeignet?</h2>
+      <ul>
+        <li>Nutzer mit internationalen Tastaturen, die keine Umlaute unterst&uuml;tzen</li>
+        <li>Webentwickler und IT-Fachleute, die ASCII-kompatible Texte ben&ouml;tigen</li>
+        <li>E-Mail-Nutzer, die Adressen oder Benutzernamen ohne Sonderzeichen erstellen</li>
+        <li>Schweizer Nutzer, die &szlig; standardm&auml;&szlig;ig als ss schreiben</li>
+        <li>Alle, die schnell zwischen Umlaut- und ASCII-Schreibweise wechseln m&uuml;ssen</li>
+      </ul>
+      <p style="margin-top: 12px;">
+        Z&auml;hle die <a href="/woerter-zaehlen/">W&ouml;rter</a> in deinem konvertierten Text oder generiere
+        deutschen Platzhaltertext mit dem <a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a> Generator.
+      </p>
+    </section>
+
+    <!-- AD BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Anzeige</div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>H&auml;ufige Fragen</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie schreibt man &auml; ohne Umlaut?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Das &auml; wird als &bdquo;ae&ldquo; geschrieben, das &ouml; als &bdquo;oe&ldquo; und das &uuml; als &bdquo;ue&ldquo;. Das &szlig; wird durch &bdquo;ss&ldquo; ersetzt. Diese Schreibweise wird Umlautumschreibung genannt und ist besonders beim Tippen auf internationalen Tastaturen n&uuml;tzlich.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wann brauche ich die Umlautumschreibung?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Die Umlautumschreibung wird ben&ouml;tigt, wenn Systeme oder Tastaturen keine deutschen Sonderzeichen unterst&uuml;tzen &ndash; zum Beispiel bei E-Mail-Adressen, Benutzernamen, alten Computersystemen oder beim Schreiben auf einer englischen Tastatur.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie buchstabiert man &uuml; auf Englisch?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Das &uuml; wird im Deutschen als &bdquo;ue&ldquo; umgeschrieben. Das &Uuml; (Gro&szlig;buchstabe) wird zu &bdquo;Ue&ldquo;. Im internationalen Kontext ist diese Schreibweise allgemein anerkannt.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Ist die Umschreibung von &szlig; zu ss korrekt?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja, ss ist die offizielle Umschreibung von &szlig;, wenn das Zeichen nicht verf&uuml;gbar ist. In der Schweiz wird &szlig; grunds&auml;tzlich als ss geschrieben &ndash; das ist seit Jahrzehnten g&auml;ngige Praxis.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Kann ich den Umlaut Konverter f&uuml;r E-Mail-Adressen verwenden?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja. Viele E-Mail-Server akzeptieren zwar heute Umlaute, aber f&uuml;r maximale Kompatibilit&auml;t empfiehlt sich die ASCII-Umschreibung. Der Konverter hilft, Text schnell in die kompatible Schreibweise umzuwandeln.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Funktioniert der Konverter auch in umgekehrter Richtung?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja. Mit dem Knopf &bdquo;Richtung tauschen&ldquo; k&ouml;nnen Sie ASCII-Text (ae, oe, ue, ss) zur&uuml;ck in die Umlaut-Schreibweise (&auml;, &ouml;, &uuml;, &szlig;) umwandeln. Bitte pr&uuml;fen Sie das Ergebnis, da nicht jedes &bdquo;ae&ldquo; im Deutschen ein Umlaut ist.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
+    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a> |
+    <a href="/kontakt.html">Kontakt</a>
+    <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Kopiert!</div>
+
+  <script>
+    /* === STATE === */
+    var direction = 'umlaut-to-ascii'; // or 'ascii-to-umlaut'
+
+    /* === DARK MODE === */
+    var themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+    updateThemeIcon();
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+
+    /* === CONVERSION FUNCTIONS === */
+    function umlautToAscii(text) {
+      var count = 0;
+      // Uppercase FIRST to avoid double-convert
+      var result = text
+        .replace(/\u00c4/g, function() { count++; return 'Ae'; })
+        .replace(/\u00d6/g, function() { count++; return 'Oe'; })
+        .replace(/\u00dc/g, function() { count++; return 'Ue'; })
+        .replace(/\u00e4/g, function() { count++; return 'ae'; })
+        .replace(/\u00f6/g, function() { count++; return 'oe'; })
+        .replace(/\u00fc/g, function() { count++; return 'ue'; })
+        .replace(/\u00df/g, function() { count++; return 'ss'; });
+      return { result: result, count: count };
+    }
+
+    function asciiToUmlaut(text) {
+      var count = 0;
+      // Uppercase combinations first
+      var result = text
+        .replace(/Ae/g, function() { count++; return '\u00c4'; })
+        .replace(/Oe/g, function() { count++; return '\u00d6'; })
+        .replace(/Ue/g, function() { count++; return '\u00dc'; })
+        .replace(/ae/g, function() { count++; return '\u00e4'; })
+        .replace(/oe/g, function() { count++; return '\u00f6'; })
+        .replace(/ue/g, function() { count++; return '\u00fc'; })
+        .replace(/ss/g, function() { count++; return '\u00df'; });
+      return { result: result, count: count };
+    }
+
+    /* === CONVERT === */
+    function convert() {
+      var input = document.getElementById('inputText').value;
+      var output = document.getElementById('outputText');
+      var counter = document.getElementById('convertCounter');
+
+      if (!input) {
+        output.value = '';
+        counter.textContent = '';
+        return;
+      }
+
+      var data;
+      if (direction === 'umlaut-to-ascii') {
+        data = umlautToAscii(input);
+        counter.textContent = data.count + ' Umlaut' + (data.count !== 1 ? 'e' : '') + ' umgewandelt';
+      } else {
+        data = asciiToUmlaut(input);
+        counter.textContent = data.count + ' Zeichen umgewandelt';
+      }
+      output.value = data.result;
+    }
+
+    /* === TOGGLE DIRECTION === */
+    function toggleDirection() {
+      if (direction === 'umlaut-to-ascii') {
+        direction = 'ascii-to-umlaut';
+        document.getElementById('dirLabel').innerHTML = 'ASCII &rarr; Umlaut';
+        document.getElementById('labelInput').textContent = 'Ohne Umlaute';
+        document.getElementById('labelOutput').textContent = 'Mit Umlauten';
+        document.getElementById('warningNote').style.display = 'block';
+      } else {
+        direction = 'umlaut-to-ascii';
+        document.getElementById('dirLabel').innerHTML = 'Umlaut &rarr; ASCII';
+        document.getElementById('labelInput').textContent = 'Mit Umlauten';
+        document.getElementById('labelOutput').textContent = 'Ohne Umlaute';
+        document.getElementById('warningNote').style.display = 'none';
+      }
+      // Re-convert immediately
+      convert();
+    }
+
+    /* === COPY TEXT === */
+    function copyText(id) {
+      var el = document.getElementById(id);
+      if (!el.value) return;
+      navigator.clipboard.writeText(el.value).then(function() {
+        showToast('Kopiert!');
+      });
+    }
+
+    /* === CLEAR INPUT === */
+    function clearInput() {
+      var input = document.getElementById('inputText');
+      if (input.value.length > 50) {
+        if (!confirm('Text wirklich l\u00f6schen?')) return;
+      }
+      input.value = '';
+      document.getElementById('outputText').value = '';
+      document.getElementById('convertCounter').textContent = '';
+    }
+
+    /* === TOAST === */
+    function showToast(msg) {
+      var toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2000);
+    }
+  </script>
+
+</body>
+</html>
