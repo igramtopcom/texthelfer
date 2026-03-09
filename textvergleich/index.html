@@ -865,11 +865,11 @@
         }
         var result = diffWords(t1, t2);
         diffOutput.innerHTML = result.html;
-        statsRow.textContent = result.added + ' W\u00f6rter hinzugef\u00fcgt \u00b7 ' + result.removed + ' W\u00f6rter entfernt';
+        statsRow.textContent = result.added + (result.added === 1 ? ' Wort' : ' W\u00f6rter') + ' hinzugef\u00fcgt \u00b7 ' + result.removed + (result.removed === 1 ? ' Wort' : ' W\u00f6rter') + ' entfernt';
       } else {
         var result = diffLines(t1, t2);
         diffOutput.innerHTML = result.html;
-        statsRow.textContent = result.changed + ' Zeilen ge\u00e4ndert \u00b7 ' + result.added + ' hinzugef\u00fcgt \u00b7 ' + result.removed + ' entfernt';
+        statsRow.textContent = result.changed + (result.changed === 1 ? ' Zeile' : ' Zeilen') + ' ge\u00e4ndert \u00b7 ' + result.added + ' hinzugef\u00fcgt \u00b7 ' + result.removed + ' entfernt';
       }
     }
 
