@@ -23,7 +23,7 @@
      {"@type":"Question","name":"Werden Leerzeichen mitgezählt?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja, unser Zeichenzähler zeigt sowohl die Anzahl der Zeichen mit Leerzeichen als auch ohne Leerzeichen an. So können Sie je nach Bedarf den passenden Wert nutzen – zum Beispiel zählt Twitter Leerzeichen mit, während manche andere Plattformen sie ausschließen."}},
      {"@type":"Question","name":"Wie werden Wörter gezählt?",
-      "acceptedAnswer":{"@type":"Answer","text":"Wörter werden anhand von Leerzeichen und Zeilenumbrüchen getrennt gezählt. Zusammengesetzte Wörter mit Bindestrich wie „Zeichenzähler-Tool" werden als ein Wort gezählt. Leere Eingaben ergeben null Wörter."}},
+      "acceptedAnswer":{"@type":"Answer","text":"Wörter werden anhand von Leerzeichen und Zeilenumbrüchen getrennt gezählt. Zusammengesetzte Wörter mit Bindestrich wie ‚Zeichenzähler-Tool' werden als ein Wort gezählt. Leere Eingaben ergeben null Wörter."}},
      {"@type":"Question","name":"Funktioniert der Zeichenzähler auch auf dem Handy?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja, der Zeichenzähler ist vollständig responsiv und funktioniert auf allen Geräten – Smartphone, Tablet und Desktop. Die Benutzeroberfläche passt sich automatisch an die Bildschirmgröße an."}},
      {"@type":"Question","name":"Wie viele Zeichen erlaubt Twitter/X?",
@@ -31,7 +31,7 @@
      {"@type":"Question","name":"Werden meine Texte gespeichert?",
       "acceptedAnswer":{"@type":"Answer","text":"Nein, Ihre Texte werden zu keinem Zeitpunkt gespeichert oder an einen Server übertragen. Der Zeichenzähler läuft vollständig in Ihrem Browser. Sobald Sie die Seite schließen oder den Text löschen, sind die Daten unwiderruflich weg."}},
      {"@type":"Question","name":"Wie wird die Lesezeit berechnet?",
-      "acceptedAnswer":{"@type":"Answer","text":"Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird „unter 1 Min." angezeigt."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird ‚unter 1 Min.' angezeigt."}}
    ]}
   </script>
 
@@ -360,6 +360,13 @@
       margin-bottom: 14px;
     }
     .limit-item:last-child { margin-bottom: 0; }
+    .limit-item.over-limit {
+      background: rgba(239, 68, 68, 0.08);
+      border-radius: 6px;
+      padding: 8px;
+      margin-left: -8px;
+      margin-right: -8px;
+    }
 
     .limit-header {
       display: flex;
@@ -391,10 +398,13 @@
     .limit-bar-fill {
       height: 100%;
       border-radius: 3px;
-      background: var(--success);
-      transition: width 0.2s, background 0.2s;
+      background-color: #22C55E;
+      transition: width 0.2s, background-color 0.2s;
       width: 0%;
     }
+    .limit-bar-fill.color-green { background-color: #22C55E; }
+    .limit-bar-fill.color-orange { background-color: #F97316; }
+    .limit-bar-fill.color-red { background-color: #EF4444; }
 
     /* === TOAST === */
     .toast {
@@ -839,10 +849,9 @@
 
     function calcReadTime(wordCount) {
       /* Average reading speed: 200 words per minute (German) */
-      var minutes = Math.ceil(wordCount / 200);
       if (wordCount === 0) return '0 Min.';
-      if (minutes < 1) return 'unter 1 Min.';
-      return minutes + ' Min.';
+      if (wordCount < 200) return '< 1 Min.';
+      return Math.ceil(wordCount / 200) + ' Min.';
     }
 
     /* === DOM ELEMENTS === */
@@ -884,22 +893,29 @@
         var limit = parseInt(item.getAttribute('data-limit'));
         var currentEl = item.querySelector('.limit-current');
         var fillEl = item.querySelector('.limit-bar-fill');
+        var overLimit = chars > limit;
 
-        currentEl.textContent = chars;
+        /* Show negative remaining when over limit */
+        currentEl.textContent = overLimit ? (limit - chars) : chars;
 
         var percent = limit > 0 ? (chars / limit) * 100 : 0;
         if (percent > 100) percent = 100;
         fillEl.style.width = percent + '%';
 
-        /* Color thresholds */
-        if (chars > limit) {
-          fillEl.style.background = 'var(--danger)';
+        /* Color thresholds via CSS classes */
+        fillEl.classList.remove('color-green', 'color-orange', 'color-red');
+        if (overLimit) {
+          fillEl.classList.add('color-red');
+          item.classList.add('over-limit');
         } else if (percent > 90) {
-          fillEl.style.background = 'var(--danger)';
+          fillEl.classList.add('color-red');
+          item.classList.remove('over-limit');
         } else if (percent > 75) {
-          fillEl.style.background = 'var(--warning)';
+          fillEl.classList.add('color-orange');
+          item.classList.remove('over-limit');
         } else {
-          fillEl.style.background = 'var(--success)';
+          fillEl.classList.add('color-green');
+          item.classList.remove('over-limit');
         }
       });
     }
@@ -916,7 +932,7 @@
       }
 
       navigator.clipboard.writeText(text).then(function() {
-        showToast('Text kopiert!');
+        showToast('Kopiert!');
       }).catch(function() {
         /* Fallback */
         var ta = document.createElement('textarea');
@@ -927,7 +943,7 @@
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        showToast('Text kopiert!');
+        showToast('Kopiert!');
       });
     });
 
