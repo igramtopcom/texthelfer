@@ -11,4 +11,4 @@
 | TASK-007 | Umlaut Konverter | P1 | DONE ✅ |
 | TASK-008 | Textvergleich | P2 | DONE ✅ |
 | TASK-009 | Zufallszahlen Generator | P2 | DONE ✅ |
-| TASK-010 | Global UX & Legal | P0 | TODO |
+| TASK-010 | Global UX & Legal | P0 | DONE ✅ |
