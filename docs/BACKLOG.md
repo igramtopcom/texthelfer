@@ -12,3 +12,4 @@
 | TASK-008 | Textvergleich | P2 | DONE ✅ |
 | TASK-009 | Zufallszahlen Generator | P2 | DONE ✅ |
 | TASK-010 | Global UX & Legal | P0 | DONE ✅ |
+| TASK-011 | Content Expansion: Top 3 | P0 | DONE ✅ |
