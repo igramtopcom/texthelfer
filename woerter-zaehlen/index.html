@@ -31,7 +31,15 @@
      {"@type":"Question","name":"Wie wird die durchschnittliche Wortlänge berechnet?",
       "acceptedAnswer":{"@type":"Answer","text":"Die durchschnittliche Wortlänge ergibt sich aus der Gesamtzahl der Buchstaben aller Wörter geteilt durch die Anzahl der Wörter. Im Deutschen liegt die durchschnittliche Wortlänge bei etwa 5,3 Zeichen."}},
      {"@type":"Question","name":"Werden meine Texte gespeichert?",
-      "acceptedAnswer":{"@type":"Answer","text":"Nein. Die gesamte Analyse läuft ausschliesslich in deinem Browser. Kein Text wird an unsere Server übertragen oder gespeichert. Du kannst den Wörter-Zähler bedenkenlos für vertrauliche Dokumente verwenden."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Nein. Die gesamte Analyse läuft ausschliesslich in deinem Browser. Kein Text wird an unsere Server übertragen oder gespeichert. Du kannst den Wörter-Zähler bedenkenlos für vertrauliche Dokumente verwenden."}},
+     {"@type":"Question","name":"Was gilt als ein Wort beim Zählen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein Wort ist jede zusammenhängende Zeichenfolge, die durch Leerzeichen oder Zeilenumbrüche getrennt wird. Zahlen wie 2024 zählen als ein Wort. Abkürzungen wie z.B. ebenfalls. Bindestriche verbinden: Fußball-WM gilt als ein Wort."}},
+     {"@type":"Question","name":"Zählt ein Bindestrich-Wort wie Fußball-WM als ein oder zwei Wörter?",
+      "acceptedAnswer":{"@type":"Answer","text":"Als ein Wort. Der Bindestrich verbindet die Bestandteile zu einer Einheit. Unser Zähler trennt Wörter nur an Leerzeichen und Zeilenumbrüchen. Fußball-Weltmeisterschaft ist also genau ein Wort, genau wie E-Mail oder IT-Abteilung."}},
+     {"@type":"Question","name":"Wie viele Wörter hat eine DIN-A4-Seite bei doppeltem Zeilenabstand?",
+      "acceptedAnswer":{"@type":"Answer","text":"Bei 12pt Schrift und doppeltem Zeilenabstand passen etwa 200 bis 250 Wörter auf eine DIN-A4-Seite. Bei einfachem Zeilenabstand sind es 400 bis 500. Die Unterschiede sind gross, deshalb ist eine genaue Wortzählung zuverlässiger als die Seitenzahl."}},
+     {"@type":"Question","name":"Was sind Stoppwörter und warum werden sie herausgefiltert?",
+      "acceptedAnswer":{"@type":"Answer","text":"Stoppwörter sind häufige Füllwörter wie und, oder, die, der. Sie kommen in jedem Text vor und sagen wenig über den Inhalt aus. Unser Tool filtert rund 200 deutsche Stoppwörter heraus, damit die Top-Wörter-Liste nur die Begriffe zeigt, die Ihren Text wirklich prägen."}}
    ]}
   </script>
 
@@ -627,22 +635,28 @@
     <section class="seo-section">
       <h2>Wie funktioniert der Wörter-Zähler?</h2>
       <p>Unser Wörter-Zähler analysiert Ihren Text in Echtzeit, sobald Sie ihn eingeben oder einfügen. Dabei werden Wörter anhand von Leerzeichen und Zeilenumbrüchen getrennt und gezählt. Zusätzlich ermittelt das Tool die Anzahl der einzigartigen Wörter mithilfe einer Set-Datenstruktur, die jedes Wort unabhängig von Groß- und Kleinschreibung nur einmal zählt.</p>
-      <p>Besonders nützlich für die <strong>Content-Analyse und SEO-Optimierung</strong> ist die Top-Wörter-Funktion: Sie filtert rund 200 deutsche Stopwörter heraus und zeigt nur die bedeutungstragenden Begriffe an. So erkennen Sie sofort, welche Schlüsselwörter in Ihrem Text dominieren — ideal für die Optimierung von Blogartikeln, Produktbeschreibungen und Landing Pages.</p>
+      <p>Besonders n&uuml;tzlich f&uuml;r die <strong>Content-Analyse und SEO-Optimierung</strong> ist die Top-W&ouml;rter-Funktion: Sie filtert rund 200 deutsche Stopw&ouml;rter heraus und zeigt nur die bedeutungstragenden Begriffe an. So erkennen Sie sofort, welche Schl&uuml;sselw&ouml;rter in Ihrem Text dominieren, ideal f&uuml;r die Optimierung von Blogartikeln, Produktbeschreibungen und Landing Pages.</p>
       <p>Für eine reine Zeichenanalyse mit Plattform-Limits empfehlen wir unseren <a href="/zeichenzaehler/">Zeichenzähler</a>. Und wenn Sie die Verständlichkeit Ihres Textes prüfen möchten, nutzen Sie den <a href="/lesbarkeit/">Lesbarkeitsindex</a>.</p>
+    </section>
+
+    <section class="seo-section">
+      <h2>W&ouml;rter z&auml;hlen: Mehr als nur eine Zahl</h2>
+      <p>Eine Seminararbeit mit der Vorgabe „3.000 W&ouml;rter" klingt &uuml;berschaubar, bis man merkt, dass man erst bei 1.800 steht und der Abgabetermin morgen ist. Oder umgekehrt: Der Blogartikel soll 800 W&ouml;rter haben, aber der Text ist l&auml;ngst bei 1.200 angekommen. In beiden F&auml;llen brauchen Sie eine zuverl&auml;ssige Z&auml;hlung.</p>
+      <p>Unser W&ouml;rter-Z&auml;hler liefert mehr als eine reine Zahl. Die Stopw&ouml;rter-Filterung zeigt Ihnen, welche Begriffe Ihren Text wirklich pr&auml;gen. Wenn „und" und „aber" ganz oben stehen, sagt das wenig aus. Wenn aber Ihr Hauptkeyword nur zweimal vorkommt, l&auml;sst sich der Text gezielt verbessern. F&uuml;r eine tiefere Analyse der Textqualit&auml;t empfehlen wir den <a href="/lesbarkeit/">Lesbarkeitsindex</a>.</p>
+      <p>&Uuml;bersetzer berechnen ihre Preise oft pro Wort. Journalisten arbeiten mit festen Umfangsvorgaben. Autoren verfolgen den Fortschritt ihres Manuskripts kapitelweise. In all diesen Situationen ist eine exakte Wortz&auml;hlung kein Nice-to-have, sondern Arbeitsgrundlage.</p>
     </section>
 
     <!-- AD: MIDDLE -->
     <div class="ad-placeholder" id="ad-middle">Werbung</div>
 
     <section class="seo-section">
-      <h2>Für wen ist der Wörter-Zähler geeignet?</h2>
+      <h2>F&uuml;r wen ist der W&ouml;rter-Z&auml;hler geeignet?</h2>
       <ul>
-        <li><strong>Studenten und Schüler</strong> – für die Einhaltung von Wortanzahlen bei Aufsätzen und Hausarbeiten</li>
-        <li><strong>Content Writer</strong> – für die Optimierung von Textlängen bei SEO-Artikeln</li>
-        <li><strong>Autoren und Journalisten</strong> – zum Messen der Schreibproduktivität und Textumfänge</li>
-        <li><strong>Marketing-Fachleute</strong> – für die Analyse von Schlüsselwörtern in Texten</li>
-        <li><strong>SEO-Spezialisten</strong> – für die Keyword-Dichte-Analyse mit unserem <a href="/text-formatierung/">Text-Formatierungstool</a></li>
-        <li><strong>Alle Nutzer</strong> – unser <a href="/passwort-generator/">Passwort Generator</a> und der <a href="/umlaut-konverter/">Umlaut Konverter</a> sind ebenfalls kostenlos verfügbar</li>
+        <li><strong>Studenten</strong>, die Wortanzahl-Vorgaben f&uuml;r Seminar- und Abschlussarbeiten einhalten m&uuml;ssen</li>
+        <li><strong>Blogger</strong>, die ihre Artikel auf eine bestimmte L&auml;nge f&uuml;r SEO optimieren</li>
+        <li><strong>&Uuml;bersetzer</strong>, die Preise nach Wortanzahl berechnen und den Umfang vorab kennen m&uuml;ssen</li>
+        <li><strong>Journalisten</strong>, die einen festen Umfang vom Redakteur vorgegeben bekommen</li>
+        <li><strong>Autoren</strong>, die den Fortschritt ihres Manuskripts Kapitel f&uuml;r Kapitel verfolgen</li>
       </ul>
     </section>
 
@@ -659,23 +673,39 @@
         </details>
         <details>
           <summary>Wie viele Wörter schreibt man durchschnittlich pro Minute?</summary>
-          <div class="faq-answer">Die durchschnittliche Schreibgeschwindigkeit liegt bei 40 bis 60 Wörtern pro Minute beim Tippen. Geübte Schreiber erreichen 80 bis 100 Wörter pro Minute. Die Lesezeit berechnen wir mit 200 Wörtern pro Minute — dem Durchschnitt für deutschsprachige Leser bei normalem Lesetempo.</div>
+          <div class="faq-answer">Die durchschnittliche Schreibgeschwindigkeit liegt bei 40 bis 60 Wörtern pro Minute beim Tippen. Geübte Schreiber erreichen 80 bis 100 Wörter pro Minute. Die Lesezeit berechnen wir mit 200 W&ouml;rtern pro Minute, dem Durchschnitt f&uuml;r deutschsprachige Leser bei normalem Lesetempo.</div>
         </details>
         <details>
           <summary>Was sind Stopwörter und warum werden sie gefiltert?</summary>
-          <div class="faq-answer">Stopwörter sind häufige Füllwörter wie „und", „oder", „die", „der", „das", die in fast jedem Text vorkommen und wenig über den eigentlichen Inhalt aussagen. Unser Tool filtert rund 200 deutsche Stopwörter heraus, damit die Top-Wörter-Analyse nur bedeutungstragende Begriffe anzeigt — nützlich für Content-Analyse und SEO-Optimierung.</div>
+          <div class="faq-answer">Stopwörter sind häufige Füllwörter wie „und", „oder", „die", „der", „das", die in fast jedem Text vorkommen und wenig über den eigentlichen Inhalt aussagen. Unser Tool filtert rund 200 deutsche Stopwörter heraus, damit die Top-W&ouml;rter-Analyse nur bedeutungstragende Begriffe anzeigt. Das ist besonders n&uuml;tzlich f&uuml;r Content-Analyse und SEO-Optimierung.</div>
         </details>
         <details>
           <summary>Was ist der Unterschied zwischen Wörtern und einzigartigen Wörtern?</summary>
-          <div class="faq-answer">„Wörter" zählt alle Wörter inklusive Wiederholungen — schreibst du „das Haus ist ein schönes Haus", zählt das als 7 Wörter. „Einzigartige Wörter" zählt jeden Begriff nur einmal, unabhängig von Groß- und Kleinschreibung — also 6 einzigartige Wörter. Das Verhältnis der beiden Werte gibt Aufschluss über die Wortvielfalt eines Textes.</div>
+          <div class="faq-answer">„W&ouml;rter" z&auml;hlt alle W&ouml;rter inklusive Wiederholungen. Schreibst du „das Haus ist ein sch&ouml;nes Haus", z&auml;hlt das als 7 W&ouml;rter. „Einzigartige W&ouml;rter" z&auml;hlt jeden Begriff nur einmal, unabh&auml;ngig von Gro&szlig;- und Kleinschreibung, also 6 einzigartige W&ouml;rter. Das Verhältnis der beiden Werte gibt Aufschluss über die Wortvielfalt eines Textes.</div>
         </details>
         <details>
           <summary>Wie wird die durchschnittliche Wortlänge berechnet?</summary>
-          <div class="faq-answer">Die durchschnittliche Wortlänge ergibt sich aus der Gesamtzahl der Buchstaben aller Wörter geteilt durch die Anzahl der Wörter. Sonderzeichen und Zahlen werden dabei nicht mitgezählt. Im Deutschen liegt die durchschnittliche Wortlänge bei etwa 5,3 Zeichen — deutlich höher als im Englischen (4,5) aufgrund der langen Komposita.</div>
+          <div class="faq-answer">Die durchschnittliche Wortlänge ergibt sich aus der Gesamtzahl der Buchstaben aller Wörter geteilt durch die Anzahl der Wörter. Sonderzeichen und Zahlen werden dabei nicht mitgezählt. Im Deutschen liegt die durchschnittliche Wortl&auml;nge bei etwa 5,3 Zeichen, deutlich h&ouml;her als im Englischen (4,5) wegen der langen Komposita.</div>
         </details>
         <details>
           <summary>Werden meine Texte gespeichert?</summary>
-          <div class="faq-answer">Nein. Die gesamte Analyse läuft ausschließlich in deinem Browser — kein Text wird an unsere Server übertragen oder gespeichert. Du kannst den Wörter-Zähler bedenkenlos für vertrauliche Dokumente, Bewerbungsschreiben oder geschäftliche Texte verwenden.</div>
+          <div class="faq-answer">Nein. Die gesamte Analyse l&auml;uft ausschlie&szlig;lich in deinem Browser, kein Text wird an unsere Server &uuml;bertragen oder gespeichert. Du kannst den W&ouml;rter-Z&auml;hler bedenkenlos f&uuml;r vertrauliche Dokumente, Bewerbungsschreiben oder gesch&auml;ftliche Texte verwenden.</div>
+        </details>
+        <details>
+          <summary>Was gilt als ein Wort beim Z&auml;hlen?</summary>
+          <div class="faq-answer">Ein Wort ist jede zusammenh&auml;ngende Zeichenfolge, die durch Leerzeichen oder Zeilenumbr&uuml;che getrennt wird. Zahlen wie „2024" z&auml;hlen als ein Wort. Abk&uuml;rzungen wie „z.B." ebenfalls. Bindestriche verbinden: „Fußball-WM" gilt als ein Wort, „Fußball WM" als zwei.</div>
+        </details>
+        <details>
+          <summary>Z&auml;hlt ein Bindestrich-Wort wie „Fu&szlig;ball-WM" als ein oder zwei W&ouml;rter?</summary>
+          <div class="faq-answer">Als ein Wort. Der Bindestrich verbindet die Bestandteile zu einer Einheit. Unser Z&auml;hler trennt W&ouml;rter nur an Leerzeichen und Zeilenumbr&uuml;chen. „Fußball-Weltmeisterschaft" ist also genau ein Wort, genau wie „E-Mail" oder „IT-Abteilung".</div>
+        </details>
+        <details>
+          <summary>Wie viele W&ouml;rter hat eine DIN-A4-Seite bei doppeltem Zeilenabstand?</summary>
+          <div class="faq-answer">Bei 12pt Schrift und doppeltem Zeilenabstand passen etwa 200 bis 250 W&ouml;rter auf eine DIN-A4-Seite. Bei einfachem Zeilenabstand sind es 400 bis 500. Die Unterschiede sind gro&szlig;, deshalb ist eine genaue Wortz&auml;hlung zuverl&auml;ssiger als die Seitenzahl, wenn Sie Vorgaben einhalten m&uuml;ssen.</div>
+        </details>
+        <details>
+          <summary>Was sind Stoppw&ouml;rter und warum werden sie herausgefiltert?</summary>
+          <div class="faq-answer">Stoppw&ouml;rter sind h&auml;ufige F&uuml;llw&ouml;rter wie „und", „oder", „die", „der". Sie kommen in jedem Text vor und sagen wenig &uuml;ber den Inhalt aus. Unser Tool filtert rund 200 deutsche Stoppw&ouml;rter heraus, damit die Top-W&ouml;rter-Liste nur die Begriffe zeigt, die Ihren Text wirklich pr&auml;gen.</div>
         </details>
       </div>
     </section>

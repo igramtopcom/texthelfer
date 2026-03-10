@@ -31,7 +31,15 @@
      {"@type":"Question","name":"Werden meine Texte gespeichert?",
       "acceptedAnswer":{"@type":"Answer","text":"Nein, Ihre Texte werden zu keinem Zeitpunkt gespeichert oder an einen Server übertragen. Der Zeichenzähler läuft vollständig in Ihrem Browser. Sobald Sie die Seite schließen oder den Text löschen, sind die Daten unwiderruflich weg."}},
      {"@type":"Question","name":"Wie wird die Lesezeit berechnet?",
-      "acceptedAnswer":{"@type":"Answer","text":"Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird ‚unter 1 Min.' angezeigt."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird ‚unter 1 Min.' angezeigt."}},
+     {"@type":"Question","name":"Zählt ein Emoji als ein Zeichen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Technisch gesehen belegen Emojis oft zwei oder mehr Unicode-Zeichen. Auf Twitter zählt ein Emoji aber als zwei Zeichen des Limits. Unser Zähler gibt die tatsächliche Zeichenanzahl an. Planen Sie bei Emojis also etwas mehr Platz ein."}},
+     {"@type":"Question","name":"Warum unterscheiden sich Zeichen mit und ohne Leerzeichen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Leerzeichen sind unsichtbar, zählen aber auf vielen Plattformen als Zeichen mit. Twitter rechnet sie ein, manche Formulare schließen sie aus. Unser Zeichenzähler zeigt beide Werte parallel an."}},
+     {"@type":"Question","name":"Wie viele Zeichen hat eine durchschnittliche E-Mail-Betreffzeile?",
+      "acceptedAnswer":{"@type":"Answer","text":"Die meisten E-Mail-Clients zeigen zwischen 40 und 60 Zeichen in der Betreffzeile an. Auf Smartphones sind es oft nur 30 bis 35. Für gute Öffnungsraten sollte die wichtigste Aussage in den ersten 40 Zeichen stehen."}},
+     {"@type":"Question","name":"Zählt der Zeichenzähler auch Sonderzeichen und Umlaute?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja, Umlaute und Sonderzeichen werden jeweils als ein Zeichen gezählt. Das entspricht dem Verhalten der meisten Plattformen. Falls Sie Umlaute umwandeln müssen, nutzen Sie unseren Umlaut Konverter."}}
    ]}
   </script>
 
@@ -795,18 +803,24 @@
       <p>Für eine detaillierte Wortanalyse mit häufigsten Wörtern und Keyword-Dichte empfehlen wir unser <a href="/woerter-zaehlen/">Wörter zählen Tool</a>. Und wenn Sie die Verständlichkeit Ihres Textes prüfen möchten, nutzen Sie den <a href="/lesbarkeit/">Lesbarkeitsindex</a>.</p>
     </section>
 
+    <section class="seo-section">
+      <h2>Zeichenlimits: Wo es wirklich eng wird</h2>
+      <p>Wer schon mal einen LinkedIn-Post geschrieben hat, kennt das Problem: Der Text steht, aber die Plattform meldet „Zeichen &uuml;berschritten". Wo f&auml;ngt man an zu k&uuml;rzen? Bei Google Ads ist es noch knapper. Eine Headline hat nur 30 Zeichen. Das klingt wenig, reicht aber f&uuml;r eine klare Aussage, wenn jedes Wort sitzt.</p>
+      <p>Instagram-Bios erlauben 150 Zeichen. Klingt nach viel, aber mit Emojis, einem Call-to-Action und einem Hashtag wird der Platz schnell knapp. Meta Ads geben Ihnen 90 Zeichen f&uuml;r die Description. Content Writer wissen: Genau dort entscheidet sich, ob jemand klickt oder weiterscrollt.</p>
+      <p>E-Mail-Betreffzeilen werden auf den meisten Ger&auml;ten ab 50 Zeichen abgeschnitten. Wer die wichtigste Information ans Ende setzt, verliert sie. Unser <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> zeigt per Fortschrittsbalken sofort an, wie nah Sie am Limit sind. So sehen Sie vor dem Absenden, ob Ihr Text passt.</p>
+    </section>
+
     <!-- AD: BOTTOM -->
     <div class="ad-placeholder" id="ad-bottom">Werbung</div>
 
     <section class="seo-section">
-      <h2>Für wen ist der Zeichenzähler geeignet?</h2>
+      <h2>F&uuml;r wen ist der Zeichenz&auml;hler geeignet?</h2>
       <ul>
-        <li><strong>Social-Media-Manager</strong> – für die Einhaltung von Zeichenlimits bei Twitter, Instagram und LinkedIn</li>
-        <li><strong>Online-Marketing-Experten</strong> – für die Optimierung von Google Ads und Meta Ads Texten</li>
-        <li><strong>Texter und Journalisten</strong> – für das schnelle Zählen von Zeichen und Wörtern in Artikeln</li>
-        <li><strong>Studenten und Akademiker</strong> – für die Einhaltung von Zeichenvorgaben bei Hausarbeiten und Abstracts</li>
-        <li><strong>SEO-Spezialisten</strong> – für die Optimierung von <a href="/text-formatierung/">Meta-Titles und -Descriptions</a></li>
-        <li><strong>Alle Nutzer</strong> – unser <a href="/passwort-generator/">Passwort Generator</a> und der <a href="/umlaut-konverter/">Umlaut Konverter</a> sind ebenfalls kostenlos verfügbar</li>
+        <li><strong>Content Writer</strong>, die Google Ads Headlines und Meta Ads Descriptions auf den Punkt bringen m&uuml;ssen</li>
+        <li><strong>Social Media Manager</strong>, die t&auml;glich Texte f&uuml;r Twitter, Instagram und LinkedIn schreiben</li>
+        <li><strong>Copywriter</strong>, die E-Mail-Betreffzeilen unter 50 Zeichen halten wollen</li>
+        <li><strong>SEO-Texter</strong>, die <a href="/text-formatierung/">Meta Descriptions</a> auf die richtige L&auml;nge pr&uuml;fen</li>
+        <li><strong>Alle, die mit Zeichenlimits arbeiten</strong>, und sofort wissen m&uuml;ssen, wie lang ihr Text ist</li>
       </ul>
     </section>
 
@@ -837,6 +851,22 @@
         <details>
           <summary>Wie wird die Lesezeit berechnet?</summary>
           <div class="faq-answer">Die Lesezeit wird basierend auf einer durchschnittlichen Lesegeschwindigkeit von 200 Wörtern pro Minute berechnet. Dies entspricht dem Durchschnittswert für das Lesen deutscher Texte. Bei weniger als einer Minute wird „unter 1 Min." angezeigt.</div>
+        </details>
+        <details>
+          <summary>Z&auml;hlt ein Emoji als ein Zeichen?</summary>
+          <div class="faq-answer">Technisch gesehen belegen Emojis oft zwei oder mehr Unicode-Zeichen. Auf Twitter z&auml;hlt ein Emoji aber als zwei Zeichen des Limits. Unser Z&auml;hler gibt die tats&auml;chliche Zeichenanzahl an. Wenn Sie Emojis f&uuml;r Social Media nutzen, planen Sie also etwas mehr Platz ein als bei normalen Buchstaben.</div>
+        </details>
+        <details>
+          <summary>Warum unterscheiden sich Zeichen mit und ohne Leerzeichen?</summary>
+          <div class="faq-answer">Leerzeichen sind unsichtbar, z&auml;hlen aber auf vielen Plattformen als Zeichen mit. Twitter rechnet sie ein, manche Formulare schlie&szlig;en sie aus. Unser Zeichenz&auml;hler zeigt beide Werte parallel an, damit Sie je nach Plattform den richtigen Wert verwenden k&ouml;nnen.</div>
+        </details>
+        <details>
+          <summary>Wie viele Zeichen hat eine durchschnittliche E-Mail-Betreffzeile?</summary>
+          <div class="faq-answer">Die meisten E-Mail-Clients zeigen zwischen 40 und 60 Zeichen in der Betreffzeile an. Auf Smartphones sind es oft nur 30 bis 35. Alles dar&uuml;ber wird abgeschnitten. F&uuml;r gute &Ouml;ffnungsraten sollte die wichtigste Aussage in den ersten 40 Zeichen stehen.</div>
+        </details>
+        <details>
+          <summary>Z&auml;hlt der Zeichenz&auml;hler auch Sonderzeichen und Umlaute?</summary>
+          <div class="faq-answer">Ja, Umlaute (&auml;, &ouml;, &uuml;) und Sonderzeichen (&szlig;, @, #) werden jeweils als ein Zeichen gez&auml;hlt. Das entspricht dem Verhalten der meisten Plattformen. Falls Sie Umlaute umwandeln m&uuml;ssen, nutzen Sie unseren <a href="/umlaut-konverter/">Umlaut Konverter</a>.</div>
         </details>
       </div>
     </section>

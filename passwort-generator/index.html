@@ -31,7 +31,15 @@
      {"@type":"Question","name":"Welche Sonderzeichen werden verwendet?",
       "acceptedAnswer":{"@type":"Answer","text":"Unser Generator verwendet die gängigsten Sonderzeichen: ! @ # $ % ^ & * ( ) _ + - = [ ] { } | ; : , . ? Diese Zeichen werden von nahezu allen Websites und Diensten akzeptiert."}},
      {"@type":"Question","name":"Wie viele Passwörter kann ich gleichzeitig erstellen?",
-      "acceptedAnswer":{"@type":"Answer","text":"Sie können 1, 3, 5 oder 10 Passwörter gleichzeitig generieren. Dies ist praktisch, wenn Sie mehrere neue Konten anlegen oder eine Auswahl haben möchten. Jedes Passwort hat seinen eigenen Kopieren-Button für schnellen Zugriff."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Sie können 1, 3, 5 oder 10 Passwörter gleichzeitig generieren. Dies ist praktisch, wenn Sie mehrere neue Konten anlegen oder eine Auswahl haben möchten. Jedes Passwort hat seinen eigenen Kopieren-Button für schnellen Zugriff."}},
+     {"@type":"Question","name":"Was ist der Unterschied zwischen einem sicheren und einem starken Passwort?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein starkes Passwort ist lang und enthält verschiedene Zeichenarten. Sicher wird es erst, wenn es zusätzlich einzigartig ist, also nirgendwo sonst verwendet wird. Pro Konto ein eigenes Passwort ist daher genauso wichtig wie die Länge."}},
+     {"@type":"Question","name":"Warum sollte ich nicht dasselbe Passwort für mehrere Konten verwenden?",
+      "acceptedAnswer":{"@type":"Answer","text":"Angreifer testen gestohlene Zugangsdaten automatisch bei Hunderten von Diensten. Credential Stuffing nennt sich das. Mit einem eigenen Passwort pro Konto begrenzen Sie den Schaden auf einen einzigen Dienst."}},
+     {"@type":"Question","name":"Was bedeutet die Option Phonetisch?",
+      "acceptedAnswer":{"@type":"Answer","text":"Die phonetische Option erzeugt Passwörter, die sich aussprechen lassen, etwa boluka oder nimeta. Der Generator wechselt dabei zwischen Konsonanten und Vokalen ab. Solche Passwörter bleiben besser im Gedächtnis, sind aber trotzdem deutlich sicherer als typische Wörterbuch-Passwörter."}},
+     {"@type":"Question","name":"Wie lang sollte ein Passwort mindestens sein?",
+      "acceptedAnswer":{"@type":"Answer","text":"Das Bundesamt für Sicherheit in der Informationstechnik (BSI) empfiehlt mindestens 12 Zeichen. Für wichtige Konten wie E-Mail oder Banking sind 16 Zeichen oder mehr sinnvoll. Jedes zusätzliche Zeichen vergrößert den Suchraum für Angreifer enorm."}}
    ]}
   </script>
 
@@ -716,17 +724,24 @@
       <p>TextHelfer speichert keine erstellten Passwörter. Sobald Sie die Seite schließen, sind die generierten Passwörter unwiderruflich gelöscht. Wir empfehlen, wichtige Passwörter sofort in einem <a href="/zeichenzaehler/">Passwortmanager</a> zu speichern. Erstellen Sie für jedes Konto ein eigenes Passwort mit mindestens 16 Zeichen – das geht mit unserem Passwort Generator in Sekundenschnelle.</p>
     </section>
 
+    <section class="seo-section">
+      <h2>Wie sicher ist Ihr Passwort wirklich?</h2>
+      <p>Ein Passwort wie „Sommer2024" knackt ein Angreifer in wenigen Sekunden. Nicht weil er es err&auml;t, sondern weil solche Muster in riesigen W&ouml;rterb&uuml;chern stehen. Millionen gestohlener Passw&ouml;rter kursieren frei im Netz, und Angreifer probieren sie automatisiert durch. Wer seinen Hundenamen oder sein Geburtsjahr als Passwort verwendet, macht es ihnen leicht.</p>
+      <p>Menschen sind schlecht darin, sich zuf&auml;llige Zeichenfolgen auszudenken. Wir greifen unbewusst auf bekannte W&ouml;rter, Tastaturmuster oder Zahlenreihen zur&uuml;ck. Genau das nutzen Cracking-Tools aus. Ein maschinell erzeugtes Passwort mit 16 zuf&auml;lligen Zeichen hat dagegen so viele m&ouml;gliche Kombinationen, dass ein Brute-Force-Angriff Jahre dauern w&uuml;rde.</p>
+      <p>Unser Passwort Generator nutzt <code>crypto.getRandomValues</code> f&uuml;r echte Zuf&auml;lligkeit. Falls Sie sich das Ergebnis trotzdem merken wollen, hilft die phonetische Option: Sie erzeugt aussprechbare Passw&ouml;rter wie „kalune" oder „tobari". Und weil der gesamte Vorgang im Browser bleibt, verl&auml;sst Ihr Passwort niemals Ihr Ger&auml;t.</p>
+    </section>
+
     <!-- AD: MIDDLE -->
     <div class="ad-placeholder" id="ad-middle">Werbung</div>
 
     <section class="seo-section">
-      <h2>Für wen ist der Passwort Generator geeignet?</h2>
+      <h2>F&uuml;r wen ist der Passwort Generator geeignet?</h2>
       <ul>
-        <li><strong>Privatpersonen</strong> – für sichere Passwörter bei E-Mail, Online-Banking und Social Media</li>
-        <li><strong>Unternehmen und IT-Administratoren</strong> – für die schnelle Erstellung sicherer Mitarbeiterpasswörter</li>
-        <li><strong>Entwickler und Designer</strong> – für Testdaten, Staging-Umgebungen und Demo-Accounts</li>
-        <li><strong>Alle, die schwache Passwörter ersetzen möchten</strong> – unser <a href="/woerter-zaehlen/">Wörter zählen Tool</a> hilft zusätzlich bei der Textarbeit</li>
-        <li><strong>Nutzer ohne technisches Wissen</strong> – keine Registrierung nötig, einfach öffnen und sofort loslegen. Entdecken Sie auch den <a href="/umlaut-konverter/">Umlaut Konverter</a> für Ihre deutschen Texte.</li>
+        <li><strong>Privatpersonen</strong>, die ein neues Konto anlegen und sofort ein sicheres Passwort brauchen</li>
+        <li><strong>Entwickler und QA-Teams</strong>, die Testdaten mit realistischen Passw&ouml;rtern bef&uuml;llen m&uuml;ssen</li>
+        <li><strong>IT-Abteilungen</strong>, die tempor&auml;re Passw&ouml;rter f&uuml;r neue Mitarbeiter erzeugen</li>
+        <li><strong>Alle, die nach einem Data Breach</strong> mehrere Passw&ouml;rter auf einmal &auml;ndern m&uuml;ssen</li>
+        <li><strong>Nutzer, die sich Passw&ouml;rter merken m&uuml;ssen</strong>, und daf&uuml;r die <a href="/woerter-zaehlen/">phonetische Option</a> nutzen wollen</li>
       </ul>
     </section>
 
@@ -760,6 +775,22 @@
         <details>
           <summary>Wie viele Passwörter kann ich gleichzeitig erstellen?</summary>
           <div class="faq-answer">Sie können 1, 3, 5 oder 10 Passwörter gleichzeitig generieren. Dies ist praktisch, wenn Sie mehrere neue Konten anlegen oder eine Auswahl haben möchten. Jedes Passwort hat seinen eigenen Kopieren-Button für schnellen Zugriff.</div>
+        </details>
+        <details>
+          <summary>Was ist der Unterschied zwischen einem sicheren und einem starken Passwort?</summary>
+          <div class="faq-answer">Ein starkes Passwort ist lang und enth&auml;lt verschiedene Zeichenarten. Sicher wird es erst, wenn es zus&auml;tzlich einzigartig ist, also nirgendwo sonst verwendet wird. „Hk7$mP9x" ist stark, aber wenn Sie es f&uuml;r zehn Konten nutzen, reicht ein einziger Leak, und alle sind betroffen. Pro Konto ein eigenes Passwort ist daher genauso wichtig wie die L&auml;nge.</div>
+        </details>
+        <details>
+          <summary>Warum sollte ich nicht dasselbe Passwort f&uuml;r mehrere Konten verwenden?</summary>
+          <div class="faq-answer">Angreifer testen gestohlene Zugangsdaten automatisch bei Hunderten von Diensten. Credential Stuffing nennt sich das. Wenn Ihr Passwort bei einem Online-Shop leakt und Sie dasselbe auch f&uuml;r Ihr E-Mail-Konto nutzen, hat der Angreifer Zugriff auf beides. Mit einem eigenen Passwort pro Konto begrenzen Sie den Schaden auf einen einzigen Dienst.</div>
+        </details>
+        <details>
+          <summary>Was bedeutet die Option „Phonetisch"?</summary>
+          <div class="faq-answer">Die phonetische Option erzeugt Passw&ouml;rter, die sich aussprechen lassen, etwa „boluka" oder „nimeta". Der Generator wechselt dabei zwischen Konsonanten und Vokalen ab. Solche Passw&ouml;rter bleiben besser im Ged&auml;chtnis, sind aber trotzdem deutlich sicherer als typische W&ouml;rterbuch-Passw&ouml;rter. Gut geeignet, wenn Sie kein Passwort-Manager nutzen.</div>
+        </details>
+        <details>
+          <summary>Wie lang sollte ein Passwort mindestens sein?</summary>
+          <div class="faq-answer">Das Bundesamt f&uuml;r Sicherheit in der Informationstechnik (BSI) empfiehlt mindestens 12 Zeichen. F&uuml;r wichtige Konten wie E-Mail oder Banking sind 16 Zeichen oder mehr sinnvoll. Jedes zus&auml;tzliche Zeichen vergr&ouml;&szlig;ert den Suchraum f&uuml;r Angreifer enorm. Unser Generator startet bei 16 Zeichen als Voreinstellung.</div>
         </details>
       </div>
     </section>
