@@ -4,7 +4,7 @@
 **PM:** TextHelfer PM Agent
 **Assignee:** Dev Agent (Claude CLI)
 **Priority:** P0 — cần thiết để theo dõi traffic và SEO performance
-**Status:** TODO
+**Status:** DONE ✅
 **Branch:** feature/TASK-013-analytics
 **Estimate:** 2–3 giờ
 
@@ -163,6 +163,6 @@ Thêm GA4 snippet sau vào `<head>` của **tất cả 14 file HTML**:
 
 ---
 
-**PM Sign-off:** [ ] Chờ ký duyệt
-**Ngày ký duyệt:** ___________
-**Ghi chú ký duyệt:** ___________
+**PM Sign-off:** [x] ĐÃ KÝ DUYỆT ✅
+**Ngày ký duyệt:** 2026-03-09
+**Ghi chú ký duyệt:** Task sạch — verification tag + GA4 trên toàn bộ 14 file, dark mode không bị ảnh hưởng, 0 console errors.
