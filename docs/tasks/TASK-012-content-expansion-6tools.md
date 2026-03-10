@@ -4,7 +4,7 @@
 **PM:** TextHelfer PM Agent
 **Assignee:** Dev Agent (Claude CLI)
 **Priority:** P1
-**Status:** TODO
+**Status:** DONE ✅
 **Branch:** feature/TASK-012-content-expansion-6tools
 **Estimate:** 3 ngày
 
@@ -267,6 +267,6 @@ Viết về: các tình huống thực tế đa dạng — giáo viên quay số
 
 ---
 
-**PM Sign-off:** [ ] Chờ ký duyệt
-**Ngày ký duyệt:** ___________
-**Ghi chú ký duyệt:** ___________
+**PM Sign-off:** [x] ĐÃ KÝ DUYỆT ✅
+**Ngày ký duyệt:** 2026-03-09
+**Ghi chú ký duyệt:** Chất lượng nội dung đồng đều trên cả 7 file — không có tool nào bị padding hay giọng văn khác biệt. Homepage viết lại hoàn toàn tốt hơn bản cũ, xứng đáng là entry point của site.
