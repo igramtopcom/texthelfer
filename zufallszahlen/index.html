@@ -31,7 +31,15 @@
      {"@type":"Question","name":"Wie viele Zufallszahlen kann ich gleichzeitig generieren?",
       "acceptedAnswer":{"@type":"Answer","text":"Sie k\u00f6nnen bis zu 1.000 Zufallszahlen in einem Durchgang generieren. F\u00fcr gr\u00f6\u00dfere Mengen empfehlen wir, mehrere Durchg\u00e4nge durchzuf\u00fchren und die CSV-Exporte zusammenzuf\u00fchren."}},
      {"@type":"Question","name":"Wof\u00fcr kann ich den Zufallszahlen Generator nutzen?",
-      "acceptedAnswer":{"@type":"Answer","text":"Der Generator eignet sich f\u00fcr viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f\u00fcr Entwickler, W\u00fcrfelersatz f\u00fcr Brettspiele, zuf\u00e4llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Der Generator eignet sich f\u00fcr viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f\u00fcr Entwickler, W\u00fcrfelersatz f\u00fcr Brettspiele, zuf\u00e4llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe."}},
+     {"@type":"Question","name":"Was ist der Unterschied zwischen Math.random() und crypto.getRandomValues()?",
+      "acceptedAnswer":{"@type":"Answer","text":"Math.random() erzeugt Pseudozufallszahlen mit einem vorhersagbaren Algorithmus. Wer den Startwert kennt, kann die Folge nachberechnen. crypto.getRandomValues() hingegen nutzt die Zufallsquelle des Betriebssystems. Die Ergebnisse sind kryptografisch sicher und nicht vorhersagbar. Unser Generator verwendet ausschlie\u00dflich crypto.getRandomValues()."}},
+     {"@type":"Question","name":"Kann ich Zufallszahlen mit Dezimalstellen generieren?",
+      "acceptedAnswer":{"@type":"Answer","text":"Der Generator erzeugt ganze Zahlen innerhalb des von dir festgelegten Bereichs. F\u00fcr Dezimalzahlen kannst du einen gr\u00f6\u00dferen Bereich w\u00e4hlen und das Ergebnis selbst teilen. Beispiel: Generiere Zahlen von 1 bis 1000 und teile durch 100, um Werte von 0,01 bis 10,00 zu erhalten."}},
+     {"@type":"Question","name":"Wie nutze ich den Generator f\u00fcr eine Verlosung?",
+      "acceptedAnswer":{"@type":"Answer","text":"Setze das Minimum auf 1 und das Maximum auf die Anzahl der Teilnehmer. Aktiviere \u201eKeine Duplikate\u201c und w\u00e4hle die Anzahl der Gewinner. Klicke auf \u201eGenerieren\u201c. Die Ergebnisse kannst du per CSV exportieren und als Dokumentation der fairen Ziehung aufbewahren."}},
+     {"@type":"Question","name":"Werden die generierten Zahlen gespeichert?",
+      "acceptedAnswer":{"@type":"Answer","text":"Die letzten f\u00fcnf Ergebnisse werden im Verlauf angezeigt und bleiben verf\u00fcgbar, solange du die Seite nicht neu l\u00e4dst. Kein Ergebnis wird an einen Server \u00fcbertragen. F\u00fcr eine dauerhafte Aufbewahrung nutze den CSV-Export oder kopiere die Zahlen mit dem Kopieren-Button."}}
    ]}
   </script>
 
@@ -687,6 +695,13 @@
       <p>Alle generierten Zahlen lassen sich mit einem Klick kopieren oder als CSV-Datei herunterladen &ndash; kompatibel mit Excel und Google Sheets. Die letzten 5 Ergebnisse werden im Verlauf gespeichert, sodass Sie fr&uuml;here Generierungen schnell wiederfinden.</p>
     </section>
 
+    <section class="seo-section">
+      <h2>Wof&uuml;r braucht man Zufallszahlen?</h2>
+      <p>Eine Lehrerin will einen Sch&uuml;ler aufrufen, ohne den Verdacht der Bevorzugung. Ein Verein verlost unter 200 Mitgliedern Eintrittskarten. Ein Entwickler braucht 500 Testdatens&auml;tze f&uuml;r eine Datenbank. Zufallszahlen l&ouml;sen all diese Aufgaben fair und nachvollziehbar.</p>
+      <p>Unser Generator nutzt die <code>crypto.getRandomValues()</code>-API des Browsers. Anders als <code>Math.random()</code>, das auf einem vorhersagbaren Algorithmus basiert, greift diese API auf die Zufallsquelle des Betriebssystems zu. Die erzeugten Zahlen sind kryptografisch sicher. F&uuml;r Verlosungen, Stichproben oder Testdaten ist das mehr als ausreichend.</p>
+      <p>Ein besonderes Feature ist der CSV-Export. Andere Online-Generatoren zeigen die Zahlen nur an. Bei uns kannst du sie direkt als Datei herunterladen und in Excel oder Google Sheets &ouml;ffnen. F&uuml;r Lehrer, die Gruppeneinteilungen dokumentieren m&uuml;ssen, oder Statistiker, die Stichproben archivieren, spart das einen zus&auml;tzlichen Arbeitsschritt. Die Option &bdquo;Keine Duplikate&ldquo; stellt sicher, dass jede Zahl nur einmal vorkommt, perfekt f&uuml;r Losnummern oder Teilnehmerlisten.</p>
+    </section>
+
     <!-- AD MIDDLE -->
     <div class="ad-placeholder" id="ad-middle">Anzeige</div>
 
@@ -694,13 +709,13 @@
     <section class="seo-section">
       <h2>F&uuml;r wen ist der Zufallszahlen Generator geeignet?</h2>
       <ul>
-        <li>Lehrkr&auml;fte, die Sch&uuml;ler zuf&auml;llig aufrufen oder Gruppen einteilen m&ouml;chten</li>
-        <li>Veranstalter von Verlosungen und Gewinnspielen, die faire Zufallsergebnisse ben&ouml;tigen</li>
-        <li>Entwickler, die Testdaten oder <a href="/lorem-ipsum-deutsch/">Platzhalterdaten</a> f&uuml;r Projekte generieren</li>
-        <li>Statistiker, die Zufallsstichproben f&uuml;r Umfragen und Studien ziehen</li>
-        <li>Alle, die eine schnelle, sichere Entscheidungshilfe per Zufall ben&ouml;tigen</li>
+        <li><strong>Lehrkr&auml;fte</strong>, die Sch&uuml;ler fair aufrufen oder zuf&auml;llige Gruppen bilden</li>
+        <li><strong>Veranstalter</strong>, die transparente Verlosungen und Gewinnspiele durchf&uuml;hren</li>
+        <li><strong>Entwickler und Tester</strong>, die zuf&auml;llige Testdaten f&uuml;r Projekte brauchen</li>
+        <li><strong>Statistiker</strong>, die Zufallsstichproben aus gro&szlig;en Datens&auml;tzen ziehen</li>
+        <li><strong>Alle, die eine faire und nachvollziehbare Zufallsentscheidung brauchen</strong></li>
       </ul>
-      <p>Vergleichen Sie Ihre Ergebnisse mit dem <a href="/textvergleich/">Textvergleich</a> oder z&auml;hlen Sie Zeichen mit dem <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>.</p>
+      <p style="margin-top: 12px;">Vergleichen Sie Ihre Ergebnisse mit dem <a href="/textvergleich/">Textvergleich</a> oder z&auml;hlen Sie Zeichen mit dem <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>.</p>
     </section>
 
     <!-- AD BOTTOM -->
@@ -738,6 +753,26 @@
       <div class="faq-item">
         <button class="faq-question">Wof&uuml;r kann ich den Zufallszahlen Generator nutzen? <span class="arrow">&#x25BC;</span></button>
         <div class="faq-answer">Der Generator eignet sich f&uuml;r viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f&uuml;r Entwickler, W&uuml;rfelersatz f&uuml;r Brettspiele, zuf&auml;llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Was ist der Unterschied zwischen Math.random() und crypto.getRandomValues()? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer"><code>Math.random()</code> erzeugt Pseudozufallszahlen mit einem vorhersagbaren Algorithmus. Wer den Startwert kennt, kann die Folge nachberechnen. <code>crypto.getRandomValues()</code> hingegen nutzt die Zufallsquelle des Betriebssystems. Die Ergebnisse sind kryptografisch sicher und nicht vorhersagbar. Unser Generator verwendet ausschlie&szlig;lich <code>crypto.getRandomValues()</code>.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Kann ich Zufallszahlen mit Dezimalstellen generieren? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Der Generator erzeugt ganze Zahlen innerhalb des von dir festgelegten Bereichs. F&uuml;r Dezimalzahlen kannst du einen gr&ouml;&szlig;eren Bereich w&auml;hlen und das Ergebnis selbst teilen. Beispiel: Generiere Zahlen von 1 bis 1000 und teile durch 100, um Werte von 0,01 bis 10,00 zu erhalten.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Wie nutze ich den Generator f&uuml;r eine Verlosung? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Setze das Minimum auf 1 und das Maximum auf die Anzahl der Teilnehmer. Aktiviere &bdquo;Keine Duplikate&ldquo; und w&auml;hle die Anzahl der Gewinner. Klicke auf &bdquo;Generieren&ldquo;. Die Ergebnisse kannst du per CSV exportieren und als Dokumentation der fairen Ziehung aufbewahren.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Werden die generierten Zahlen gespeichert? <span class="arrow">&#x25BC;</span></button>
+        <div class="faq-answer">Die letzten f&uuml;nf Ergebnisse werden im Verlauf angezeigt und bleiben verf&uuml;gbar, solange du die Seite nicht neu l&auml;dst. Kein Ergebnis wird an einen Server &uuml;bertragen. F&uuml;r eine dauerhafte Aufbewahrung nutze den CSV-Export oder kopiere die Zahlen mit dem Kopieren-Button.</div>
       </div>
     </section>
   </main>

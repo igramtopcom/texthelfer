@@ -31,7 +31,15 @@
      {"@type":"Question","name":"Kann ich den Umlaut Konverter f\u00fcr E-Mail-Adressen verwenden?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja. Viele E-Mail-Server akzeptieren zwar heute Umlaute, aber f\u00fcr maximale Kompatibilit\u00e4t empfiehlt sich die ASCII-Umschreibung. Der Konverter hilft, Text schnell in die kompatible Schreibweise umzuwandeln."}},
      {"@type":"Question","name":"Funktioniert der Konverter auch in umgekehrter Richtung?",
-      "acceptedAnswer":{"@type":"Answer","text":"Ja. Mit dem Knopf \u201eRichtung tauschen\u201c k\u00f6nnen Sie ASCII-Text (ae, oe, ue, ss) zur\u00fcck in die Umlaut-Schreibweise (\u00e4, \u00f6, \u00fc, \u00df) umwandeln. Bitte pr\u00fcfen Sie das Ergebnis, da nicht jedes \u201eae\u201c im Deutschen ein Umlaut ist."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Mit dem Knopf \u201eRichtung tauschen\u201c k\u00f6nnen Sie ASCII-Text (ae, oe, ue, ss) zur\u00fcck in die Umlaut-Schreibweise (\u00e4, \u00f6, \u00fc, \u00df) umwandeln. Bitte pr\u00fcfen Sie das Ergebnis, da nicht jedes \u201eae\u201c im Deutschen ein Umlaut ist."}},
+     {"@type":"Question","name":"Wie schreibt man einen deutschen Namen ohne Umlaut?",
+      "acceptedAnswer":{"@type":"Answer","text":"Vornamen und Nachnamen mit Umlauten werden nach festen Regeln umgeschrieben: \u00e4 wird zu ae, \u00f6 zu oe, \u00fc zu ue. M\u00fcller wird zu Mueller, B\u00f6hm zu Boehm, G\u00fcnther zu Guenther. Diese Umschreibung ist im Pass- und Meldewesen anerkannt und wird auch bei internationalen Flugbuchungen verwendet."}},
+     {"@type":"Question","name":"Warum akzeptieren manche Systeme keine Umlaute?",
+      "acceptedAnswer":{"@type":"Answer","text":"Viele \u00e4ltere Software-Systeme und internationale Plattformen basieren auf dem ASCII-Zeichensatz, der nur 128 Zeichen umfasst. Umlaute und \u00df geh\u00f6ren nicht dazu. Auch wenn moderne Systeme Unicode unterst\u00fctzen, verlangen Formulare, Benutzernamen und E-Mail-Adressen oft noch reine ASCII-Zeichen."}},
+     {"@type":"Question","name":"Ist \u201eMueller\u201c oder \u201eM\u00fcller\u201c die offizielle Umschreibung?",
+      "acceptedAnswer":{"@type":"Answer","text":"Beide sind korrekt, je nach Kontext. \u201eM\u00fcller\u201c ist die originale Schreibweise mit Umlaut. \u201eMueller\u201c ist die offizielle Umschreibung, wenn kein \u00fc verf\u00fcgbar ist. Im deutschen Reisepass wird der Name mit Umlaut eingetragen, die maschinenlesbare Zone verwendet die Umschreibung. Unser Tool konvertiert in beide Richtungen."}},
+     {"@type":"Question","name":"Funktioniert die Umschreibung auch f\u00fcr \u00d6sterreich und die Schweiz?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Die Regeln f\u00fcr die Umlautumschreibung gelten im gesamten deutschsprachigen Raum. In der Schweiz wird \u00df grunds\u00e4tzlich als ss geschrieben, das ist dort die Standardschreibweise. Unser Konverter ber\u00fccksichtigt das und wandelt \u00df zuverl\u00e4ssig in ss um."}}
    ]}
   </script>
 
@@ -569,6 +577,13 @@
       </p>
     </section>
 
+    <section class="seo-section">
+      <h2>Wann braucht man die Umlautumschreibung?</h2>
+      <p>Du sitzt an einem MacBook mit englischem Tastaturlayout und musst eine E-Mail an Herrn M&uuml;ller schreiben. Wo ist das &uuml;? Oder du f&uuml;llst ein Online-Formular aus, das bei &bdquo;Stra&szlig;e&ldquo; eine Fehlermeldung zeigt, weil es kein &szlig; akzeptiert.</p>
+      <p>Solche Situationen sind im Alltag h&auml;ufiger als gedacht. E-Mail-Adressen d&uuml;rfen technisch gesehen Umlaute enthalten, aber viele Server und Formulare kommen damit nicht zurecht. URL-Slugs brauchen ASCII-Zeichen. Und wer in einem internationalen Team arbeitet, tippt oft auf einer Tastatur ohne &auml;, &ouml; und &uuml;.</p>
+      <p>Der Umlaut Konverter l&ouml;st das in beide Richtungen. &Auml; wird zu Ae, &ouml; zu oe, &uuml; zu ue, &szlig; zu ss. Oder umgekehrt: Wer einen Text in der Umschreibung erhalten hat und ihn f&uuml;r eine deutsche Website braucht, wandelt ae, oe, ue zur&uuml;ck in echte Umlaute. Die Konvertierung passiert in Echtzeit, w&auml;hrend du tippst.</p>
+    </section>
+
     <!-- AD MIDDLE -->
     <div class="ad-placeholder" id="ad-middle">Anzeige</div>
 
@@ -576,11 +591,11 @@
     <section class="seo-section">
       <h2>F&uuml;r wen ist der Umlaut Konverter geeignet?</h2>
       <ul>
-        <li>Nutzer mit internationalen Tastaturen, die keine Umlaute unterst&uuml;tzen</li>
-        <li>Webentwickler und IT-Fachleute, die ASCII-kompatible Texte ben&ouml;tigen</li>
-        <li>E-Mail-Nutzer, die Adressen oder Benutzernamen ohne Sonderzeichen erstellen</li>
-        <li>Schweizer Nutzer, die &szlig; standardm&auml;&szlig;ig als ss schreiben</li>
-        <li>Alle, die schnell zwischen Umlaut- und ASCII-Schreibweise wechseln m&uuml;ssen</li>
+        <li><strong>Alle mit internationaler Tastatur</strong>, die auf Deutsch schreiben m&uuml;ssen</li>
+        <li><strong>Webentwickler</strong>, die URL-Slugs und Permalinks ohne Sonderzeichen brauchen</li>
+        <li><strong>Nutzer von Online-Formularen</strong> oder Datenbanken ohne Umlaut-Unterst&uuml;tzung</li>
+        <li><strong>E-Mail-Nutzer</strong>, die Adressen aus deutschen Namen ableiten (M&uuml;ller zu Mueller)</li>
+        <li><strong>Alle, die deutschen Text f&uuml;r internationale Systeme aufbereiten</strong></li>
       </ul>
       <p style="margin-top: 12px;">
         Z&auml;hle die <a href="/woerter-zaehlen/">W&ouml;rter</a> in deinem konvertierten Text oder generiere
@@ -641,6 +656,38 @@
           <span class="faq-arrow">&#9660;</span>
         </button>
         <div class="faq-answer">Ja. Mit dem Knopf &bdquo;Richtung tauschen&ldquo; k&ouml;nnen Sie ASCII-Text (ae, oe, ue, ss) zur&uuml;ck in die Umlaut-Schreibweise (&auml;, &ouml;, &uuml;, &szlig;) umwandeln. Bitte pr&uuml;fen Sie das Ergebnis, da nicht jedes &bdquo;ae&ldquo; im Deutschen ein Umlaut ist.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie schreibt man einen deutschen Namen ohne Umlaut?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Vornamen und Nachnamen mit Umlauten werden nach festen Regeln umgeschrieben: &auml; wird zu ae, &ouml; zu oe, &uuml; zu ue. M&uuml;ller wird zu Mueller, B&ouml;hm zu Boehm, G&uuml;nther zu Guenther. Diese Umschreibung ist im Pass- und Meldewesen anerkannt und wird auch bei internationalen Flugbuchungen verwendet.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Warum akzeptieren manche Systeme keine Umlaute?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Viele &auml;ltere Software-Systeme und internationale Plattformen basieren auf dem ASCII-Zeichensatz, der nur 128 Zeichen umfasst. Umlaute und &szlig; geh&ouml;ren nicht dazu. Auch wenn moderne Systeme Unicode unterst&uuml;tzen, verlangen Formulare, Benutzernamen und E-Mail-Adressen oft noch reine ASCII-Zeichen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Ist &bdquo;Mueller&ldquo; oder &bdquo;M&uuml;ller&ldquo; die offizielle Umschreibung?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Beide sind korrekt, je nach Kontext. &bdquo;M&uuml;ller&ldquo; ist die originale Schreibweise mit Umlaut. &bdquo;Mueller&ldquo; ist die offizielle Umschreibung, wenn kein &uuml; verf&uuml;gbar ist. Im deutschen Reisepass wird der Name mit Umlaut eingetragen, die maschinenlesbare Zone verwendet die Umschreibung. Unser Tool konvertiert in beide Richtungen.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Funktioniert die Umschreibung auch f&uuml;r &Ouml;sterreich und die Schweiz?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja. Die Regeln f&uuml;r die Umlautumschreibung gelten im gesamten deutschsprachigen Raum. In der Schweiz wird &szlig; grunds&auml;tzlich als ss geschrieben, das ist dort die Standardschreibweise. Unser Konverter ber&uuml;cksichtigt das und wandelt &szlig; zuverl&auml;ssig in ss um.</div>
       </div>
     </section>
   </main>

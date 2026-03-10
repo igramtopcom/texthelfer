@@ -21,7 +21,7 @@
   {"@context":"https://schema.org","@type":"FAQPage",
    "mainEntity":[
      {"@type":"Question","name":"Wie schreibt man Substantive gro\u00df im Deutschen?",
-      "acceptedAnswer":{"@type":"Answer","text":"Im Deutschen werden alle Substantive (Nomen) gro\u00dfgeschrieben \u2014 das ist eine der bekanntesten Besonderheiten der deutschen Sprache. Dazu geh\u00f6ren nicht nur konkrete Dinge wie \u201eHaus\u201c und \u201eAuto\u201c, sondern auch abstrakte Begriffe wie \u201eLiebe\u201c und \u201eFreiheit\u201c sowie nominalisierte Verben und Adjektive wie \u201edas Laufen\u201c oder \u201edas Sch\u00f6ne\u201c. Unser Tool erkennt automatisch die h\u00e4ufigsten deutschen Substantive."}},
+      "acceptedAnswer":{"@type":"Answer","text":"Im Deutschen werden alle Substantive (Nomen) gro\u00dfgeschrieben. Das ist eine der bekanntesten Besonderheiten der deutschen Sprache. Dazu geh\u00f6ren nicht nur konkrete Dinge wie \u201eHaus\u201c und \u201eAuto\u201c, sondern auch abstrakte Begriffe wie \u201eLiebe\u201c und \u201eFreiheit\u201c sowie nominalisierte Verben und Adjektive wie \u201edas Laufen\u201c oder \u201edas Sch\u00f6ne\u201c. Unser Tool erkennt automatisch die h\u00e4ufigsten deutschen Substantive."}},
      {"@type":"Question","name":"Was macht die Funktion \u201eText bereinigen\u201c?",
       "acceptedAnswer":{"@type":"Answer","text":"Die Funktion \u201eText bereinigen\u201c entfernt mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf zwei. Das ist besonders n\u00fctzlich, wenn du Text aus PDFs, Word-Dokumenten oder Webseiten kopierst, der oft unerw\u00fcnschte Formatierungsartefakte enth\u00e4lt."}},
      {"@type":"Question","name":"Was ist ein Spiegel-Text?",
@@ -31,7 +31,15 @@
      {"@type":"Question","name":"Werden meine Texte gespeichert?",
       "acceptedAnswer":{"@type":"Answer","text":"Nein. Alle Formatierungen werden ausschlie\u00dflich in deinem Browser durchgef\u00fchrt. Kein Text wird an unsere Server \u00fcbertragen oder gespeichert. Du kannst das Tool bedenkenlos f\u00fcr vertrauliche Dokumente, Gesch\u00e4ftstexte oder pers\u00f6nliche Inhalte verwenden."}},
      {"@type":"Question","name":"Kann ich mehrere Formatierungen nacheinander anwenden?",
-      "acceptedAnswer":{"@type":"Answer","text":"Ja. Nach jeder Formatierung kannst du den \u201eTauschen\u201c-Button verwenden, um das Ergebnis in das Eingabefeld zu \u00fcbertragen und anschlie\u00dfend eine weitere Formatierung anzuwenden. So kannst du zum Beispiel erst alle Buchstaben kleinschreiben und dann jeden Satz gro\u00dfschreiben \u2014 in zwei einfachen Schritten."}}
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Nach jeder Formatierung kannst du den \u201eTauschen\u201c-Button verwenden, um das Ergebnis in das Eingabefeld zu \u00fcbertragen und anschlie\u00dfend eine weitere Formatierung anzuwenden. So kannst du zum Beispiel erst alle Buchstaben kleinschreiben und dann jeden Satz gro\u00dfschreiben, in zwei einfachen Schritten."}},
+     {"@type":"Question","name":"Was ist Title Case auf Deutsch?",
+      "acceptedAnswer":{"@type":"Answer","text":"Title Case bedeutet, dass der erste Buchstabe jedes Wortes gro\u00dfgeschrieben wird. Im Englischen ist das bei \u00dcberschriften \u00fcblich. Im Deutschen funktioniert das anders, weil hier Substantive immer gro\u00dfgeschrieben werden, andere Wortarten aber nicht. Unsere Funktion \u201eErsten Buchstaben gro\u00dfschreiben\u201c wandelt Text in Title Case um. F\u00fcr korrekte deutsche Schreibung nutze besser \u201eSubstantive gro\u00dfschreiben\u201c."}},
+     {"@type":"Question","name":"Wie funktioniert das automatische Gro\u00dfschreiben von Substantiven?",
+      "acceptedAnswer":{"@type":"Answer","text":"Unser Tool gleicht jedes Wort gegen eine Liste von 3.794 h\u00e4ufigen deutschen Substantiven ab. Wird ein Wort erkannt, schreibt das Tool den ersten Buchstaben gro\u00df. Das funktioniert zuverl\u00e4ssig f\u00fcr die meisten Alltagstexte. Bei Fachbegriffen oder sehr seltenen Nomen empfehlen wir eine kurze Nachkontrolle."}},
+     {"@type":"Question","name":"Was macht die Funktion \u201eText bereinigen\u201c genau?",
+      "acceptedAnswer":{"@type":"Answer","text":"Sie entfernt doppelte und mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf maximal zwei. Das ist praktisch f\u00fcr Texte, die aus PDFs, Word-Dokumenten oder Webseiten kopiert wurden und typische Formatierungsreste enthalten."}},
+     {"@type":"Question","name":"Kann ich den formatierten Text direkt in Word oder Google Docs einf\u00fcgen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Klicke auf \u201eKopieren\u201c und f\u00fcge den Text mit Strg+V in dein Programm ein. Der Text wird als reiner Text ohne versteckte Formatierung \u00fcbernommen. So vermeidest du Probleme mit unterschiedlichen Schriftarten oder Zeilenabst\u00e4nden, die beim Kopieren aus anderen Quellen oft auftreten."}}
    ]}
   </script>
 
@@ -513,7 +521,7 @@
   <!-- MAIN -->
   <main class="main">
     <h1 class="page-title">Text Formatierung &ndash; Deutschen Text online formatieren</h1>
-    <p class="page-subtitle">Gro&szlig;-/Kleinschreibung umwandeln, Substantive gro&szlig;schreiben, Text bereinigen &mdash; kostenlos, sofort, ohne Anmeldung.</p>
+    <p class="page-subtitle">Gro&szlig;-/Kleinschreibung umwandeln, Substantive gro&szlig;schreiben, Text bereinigen. Kostenlos, sofort, ohne Anmeldung.</p>
 
     <!-- FORMAT BUTTONS -->
     <div class="format-buttons">
@@ -558,16 +566,23 @@
       <p>
         Unser Text Formatierung Tool bietet sieben leistungsstarke Funktionen, die speziell f&uuml;r deutsche Texte entwickelt wurden.
         Neben den klassischen Umwandlungen in Gro&szlig;- und Kleinbuchstaben findest du hier auch die einzigartige Funktion
-        &bdquo;Substantive gro&szlig;schreiben&ldquo; &mdash; die automatisch deutsche Nomen erkennt und korrekt gro&szlig;schreibt.
+        &bdquo;Substantive gro&szlig;schreiben&ldquo;, die automatisch deutsche Nomen erkennt und korrekt gro&szlig;schreibt.
         Kein anderes Online-Tool im deutschsprachigen Raum bietet diese Funktion.
       </p>
       <p>
         Zus&auml;tzlich kannst du mit &bdquo;Text bereinigen&ldquo; unerw&uuml;nschte Leerzeichen und Zeilenumbr&uuml;che entfernen,
         die beim Kopieren aus PDFs oder Word-Dokumenten entstehen. Die Spiegel-Text-Funktion kehrt den gesamten Text zeichenweise
-        um &mdash; ideal f&uuml;r R&auml;tsel oder kreative Projekte. Alle Formatierungen laufen zu 100% in deinem Browser.
+        um, ideal f&uuml;r R&auml;tsel oder kreative Projekte. Alle Formatierungen laufen zu 100% in deinem Browser.
         Pr&uuml;fe die <a href="/lesbarkeit/">Lesbarkeit</a> deines formatierten Textes oder z&auml;hle die
         <a href="/zeichenzaehler/">Zeichen</a> und <a href="/woerter-zaehlen/">W&ouml;rter</a>.
       </p>
+    </section>
+
+    <section class="seo-section">
+      <h2>Wann braucht man eine Textformatierung?</h2>
+      <p>Texte aus Word kopiert, in ein CMS eingef&uuml;gt, und pl&ouml;tzlich ist alles in GROSSBUCHSTABEN. Oder ein Kollege schickt eine E-Mail komplett ohne Gro&szlig;schreibung. Solche Formatierungsprobleme kosten Zeit, wenn man sie von Hand korrigiert.</p>
+      <p>Besonders bei deutschen Texten gibt es eine H&uuml;rde, die andere Tools nicht l&ouml;sen: die korrekte Gro&szlig;schreibung von Substantiven. Unser Tool erkennt automatisch 3.794 deutsche Nomen und schreibt sie gro&szlig;. Das ist praktisch, wenn du einen Text erh&auml;ltst, der komplett in Kleinbuchstaben getippt wurde. Etwa von jemandem, der auf dem Handy ohne Auto-Korrektur geschrieben hat.</p>
+      <p>Die Funktion &bdquo;Text bereinigen&ldquo; entfernt doppelte Leerzeichen und &uuml;berfl&uuml;ssige Zeilenumbr&uuml;che. Wer regelm&auml;&szlig;ig Texte aus PDFs oder E-Mails &uuml;bernimmt, spart damit Minuten an manueller Nacharbeit. Und mit dem Tauschen-Button kannst du mehrere Formatierungen hintereinander anwenden, ohne zwischen verschiedenen Tools zu wechseln.</p>
     </section>
 
     <!-- AD MIDDLE -->
@@ -577,11 +592,11 @@
     <section class="seo-section">
       <h2>F&uuml;r wen ist die Text Formatierung geeignet?</h2>
       <ul>
-        <li>Content Writer, die Texte aus verschiedenen Quellen einheitlich formatieren</li>
-        <li>Redakteure, die Rohtexte schnell in publikationsreife Form bringen</li>
-        <li>Studierende, die kopierte Texte f&uuml;r Pr&auml;sentationen aufbereiten</li>
-        <li>Social-Media-Manager, die Texte f&uuml;r verschiedene Plattformen anpassen</li>
-        <li>Alle, die schnell zwischen Gro&szlig;- und Kleinschreibung wechseln m&uuml;ssen</li>
+        <li><strong>Content Manager</strong>, die Texte aus verschiedenen Quellen in ein CMS einpflegen</li>
+        <li><strong>Lektoren und Redakteure</strong>, die Rohmanuskripte schnell in einheitliche Form bringen</li>
+        <li><strong>Sekret&auml;rinnen und Assistenten</strong>, die Texte aus E-Mails und Briefen aufbereiten</li>
+        <li><strong>Entwickler</strong>, die Textdaten vor der Verarbeitung normalisieren m&uuml;ssen</li>
+        <li><strong>Alle, die mit unformatiertem Text aus unterschiedlichen Quellen arbeiten</strong></li>
       </ul>
       <p style="margin-top: 12px;">
         Konvertiere Umlaute mit dem <a href="/umlaut-konverter/">Umlaut Konverter</a> oder generiere
@@ -601,7 +616,7 @@
           <span>Wie schreibt man Substantive gro&szlig; im Deutschen?</span>
           <span class="faq-arrow">&#9660;</span>
         </button>
-        <div class="faq-answer">Im Deutschen werden alle Substantive (Nomen) gro&szlig;geschrieben &mdash; das ist eine der bekanntesten Besonderheiten der deutschen Sprache. Dazu geh&ouml;ren nicht nur konkrete Dinge wie &bdquo;Haus&ldquo; und &bdquo;Auto&ldquo;, sondern auch abstrakte Begriffe wie &bdquo;Liebe&ldquo; und &bdquo;Freiheit&ldquo; sowie nominalisierte Verben und Adjektive wie &bdquo;das Laufen&ldquo; oder &bdquo;das Sch&ouml;ne&ldquo;. Unser Tool erkennt automatisch die h&auml;ufigsten deutschen Substantive.</div>
+        <div class="faq-answer">Im Deutschen werden alle Substantive (Nomen) gro&szlig;geschrieben. Das ist eine der bekanntesten Besonderheiten der deutschen Sprache. Dazu geh&ouml;ren nicht nur konkrete Dinge wie &bdquo;Haus&ldquo; und &bdquo;Auto&ldquo;, sondern auch abstrakte Begriffe wie &bdquo;Liebe&ldquo; und &bdquo;Freiheit&ldquo; sowie nominalisierte Verben und Adjektive wie &bdquo;das Laufen&ldquo; oder &bdquo;das Sch&ouml;ne&ldquo;. Unser Tool erkennt automatisch die h&auml;ufigsten deutschen Substantive.</div>
       </div>
 
       <div class="faq-item">
@@ -641,7 +656,39 @@
           <span>Kann ich mehrere Formatierungen nacheinander anwenden?</span>
           <span class="faq-arrow">&#9660;</span>
         </button>
-        <div class="faq-answer">Ja. Nach jeder Formatierung kannst du den &bdquo;Tauschen&ldquo;-Button verwenden, um das Ergebnis in das Eingabefeld zu &uuml;bertragen und anschlie&szlig;end eine weitere Formatierung anzuwenden. So kannst du zum Beispiel erst alle Buchstaben kleinschreiben und dann jeden Satz gro&szlig;schreiben &mdash; in zwei einfachen Schritten.</div>
+        <div class="faq-answer">Ja. Nach jeder Formatierung kannst du den &bdquo;Tauschen&ldquo;-Button verwenden, um das Ergebnis in das Eingabefeld zu &uuml;bertragen und anschlie&szlig;end eine weitere Formatierung anzuwenden. So kannst du zum Beispiel erst alle Buchstaben kleinschreiben und dann jeden Satz gro&szlig;schreiben, in zwei einfachen Schritten.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was ist Title Case auf Deutsch?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Title Case bedeutet, dass der erste Buchstabe jedes Wortes gro&szlig;geschrieben wird. Im Englischen ist das bei &Uuml;berschriften &uuml;blich. Im Deutschen funktioniert das anders, weil hier Substantive immer gro&szlig;geschrieben werden, andere Wortarten aber nicht. Unsere Funktion &bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; wandelt Text in Title Case um. F&uuml;r korrekte deutsche Schreibung nutze besser &bdquo;Substantive gro&szlig;schreiben&ldquo;.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wie funktioniert das automatische Gro&szlig;schreiben von Substantiven?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Unser Tool gleicht jedes Wort gegen eine Liste von 3.794 h&auml;ufigen deutschen Substantiven ab. Wird ein Wort erkannt, schreibt das Tool den ersten Buchstaben gro&szlig;. Das funktioniert zuverl&auml;ssig f&uuml;r die meisten Alltagstexte. Bei Fachbegriffen oder sehr seltenen Nomen empfehlen wir eine kurze Nachkontrolle.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Was macht die Funktion &bdquo;Text bereinigen&ldquo; genau?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Sie entfernt doppelte und mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf maximal zwei. Das ist praktisch f&uuml;r Texte, die aus PDFs, Word-Dokumenten oder Webseiten kopiert wurden und typische Formatierungsreste enthalten.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <span>Kann ich den formatierten Text direkt in Word oder Google Docs einf&uuml;gen?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">Ja. Klicke auf &bdquo;Kopieren&ldquo; und f&uuml;ge den Text mit Strg+V in dein Programm ein. Der Text wird als reiner Text ohne versteckte Formatierung &uuml;bernommen. So vermeidest du Probleme mit unterschiedlichen Schriftarten oder Zeilenabst&auml;nden, die beim Kopieren aus anderen Quellen oft auftreten.</div>
       </div>
     </section>
   </main>
