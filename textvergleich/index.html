@@ -454,51 +454,45 @@
     .seo-section a:hover { text-decoration: underline; }
 
     /* === FAQ === */
-    .faq-section { margin-bottom: 32px; }
-    .faq-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
+    .faq-section { border-top: 1px solid var(--border); }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
     }
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-    .faq-question {
-      width: 100%;
-      padding: 16px;
-      background: var(--bg-card);
-      border: none;
-      text-align: left;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
+
+    .faq-section summary {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
     }
-    .faq-question:hover { background: var(--border); }
-    .faq-arrow {
-      transition: transform 0.2s;
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
       flex-shrink: 0;
-      font-size: 14px;
-      color: var(--text-muted);
+      margin-left: 12px;
+      transition: transform 0.2s;
     }
-    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
+
     .faq-answer {
-      display: none;
-      padding: 0 16px 16px;
+      padding: 0 0 16px 0;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--text-muted);
-      background: var(--bg-card);
     }
-    .faq-item.open .faq-answer { display: block; }
 
     /* === FOOTER === */
     .footer {
@@ -580,9 +574,9 @@
     .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
     .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
     .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
-    html.dark .related-card { background: #1E293B; border-color: #334155; }
-    html.dark .related-card:hover { background: #1E3A5F; }
-    html.dark .related-card .rc-desc { color: #94A3B8; }
+    [data-theme="dark"] .related-card { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .related-card:hover { background: #1E3A5F; }
+    [data-theme="dark"] .related-card .rc-desc { color: #94A3B8; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -724,85 +718,55 @@
     <section class="faq-section">
       <h2>H&auml;ufige Fragen</h2>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie vergleiche ich zwei Texte online?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Mit dem TextHelfer Textvergleich f&uuml;gen Sie einfach beide Texte in die jeweiligen Felder ein und klicken auf &bdquo;Vergleichen&ldquo;. Unterschiede werden sofort farblich hervorgehoben: Gr&uuml;n zeigt hinzugef&uuml;gte Inhalte, Rot zeigt entfernte Inhalte.</div>
-      </div>
+        <details>
+          <summary>Wie vergleiche ich zwei Texte online?</summary>
+          <div class="faq-answer">Mit dem TextHelfer Textvergleich f&uuml;gen Sie einfach beide Texte in die jeweiligen Felder ein und klicken auf &bdquo;Vergleichen&ldquo;. Unterschiede werden sofort farblich hervorgehoben: Gr&uuml;n zeigt hinzugef&uuml;gte Inhalte, Rot zeigt entfernte Inhalte.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist der Unterschied zwischen Wort- und Zeilenvergleich?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Der Wort-f&uuml;r-Wort-Vergleich hebt einzelne ge&auml;nderte W&ouml;rter hervor und eignet sich f&uuml;r kurze Texte oder Satz&auml;nderungen. Der Zeile-f&uuml;r-Zeile-Vergleich markiert ganze Zeilen und ist besser geeignet f&uuml;r strukturierte Texte wie Listen, Code oder Vertr&auml;ge.</div>
-      </div>
+        <details>
+          <summary>Was ist der Unterschied zwischen Wort- und Zeilenvergleich?</summary>
+          <div class="faq-answer">Der Wort-f&uuml;r-Wort-Vergleich hebt einzelne ge&auml;nderte W&ouml;rter hervor und eignet sich f&uuml;r kurze Texte oder Satz&auml;nderungen. Der Zeile-f&uuml;r-Zeile-Vergleich markiert ganze Zeilen und ist besser geeignet f&uuml;r strukturierte Texte wie Listen, Code oder Vertr&auml;ge.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Werden meine Texte gespeichert oder &uuml;bertragen?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Nein. Der gesamte Vergleich findet direkt in Ihrem Browser statt. Kein Text wird an einen Server gesendet oder gespeichert. Ihre Daten bleiben vollst&auml;ndig auf Ihrem Ger&auml;t.</div>
-      </div>
+        <details>
+          <summary>Werden meine Texte gespeichert oder &uuml;bertragen?</summary>
+          <div class="faq-answer">Nein. Der gesamte Vergleich findet direkt in Ihrem Browser statt. Kein Text wird an einen Server gesendet oder gespeichert. Ihre Daten bleiben vollst&auml;ndig auf Ihrem Ger&auml;t.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich den Textvergleich f&uuml;r Vertr&auml;ge oder vertrauliche Dokumente nutzen?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja, da keine Daten &uuml;bertragen werden, ist der Textvergleich auch f&uuml;r vertrauliche Inhalte geeignet. Es empfiehlt sich trotzdem, bei sehr sensiblen Dokumenten auf lokale Offline-Tools zur&uuml;ckzugreifen.</div>
-      </div>
+        <details>
+          <summary>Kann ich den Textvergleich f&uuml;r Vertr&auml;ge oder vertrauliche Dokumente nutzen?</summary>
+          <div class="faq-answer">Ja, da keine Daten &uuml;bertragen werden, ist der Textvergleich auch f&uuml;r vertrauliche Inhalte geeignet. Es empfiehlt sich trotzdem, bei sehr sensiblen Dokumenten auf lokale Offline-Tools zur&uuml;ckzugreifen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Gibt es eine kostenlose Alternative zu Word-Vergleichsfunktion?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. Der TextHelfer Textvergleich bietet eine kostenlose, browserbasierte Alternative zur Vergleichsfunktion in Microsoft Word oder Google Docs &ndash; ohne Anmeldung und ohne Software-Installation.</div>
-      </div>
+        <details>
+          <summary>Gibt es eine kostenlose Alternative zu Word-Vergleichsfunktion?</summary>
+          <div class="faq-answer">Ja. Der TextHelfer Textvergleich bietet eine kostenlose, browserbasierte Alternative zur Vergleichsfunktion in Microsoft Word oder Google Docs &ndash; ohne Anmeldung und ohne Software-Installation.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie viel Text kann ich gleichzeitig vergleichen?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">F&uuml;r den Zeile-f&uuml;r-Zeile-Modus gibt es keine praktische Begrenzung. Beim Wort-f&uuml;r-Wort-Vergleich empfehlen wir bis zu 2.000 W&ouml;rter pro Textfeld f&uuml;r optimale Geschwindigkeit.</div>
-      </div>
+        <details>
+          <summary>Wie viel Text kann ich gleichzeitig vergleichen?</summary>
+          <div class="faq-answer">F&uuml;r den Zeile-f&uuml;r-Zeile-Modus gibt es keine praktische Begrenzung. Beim Wort-f&uuml;r-Wort-Vergleich empfehlen wir bis zu 2.000 W&ouml;rter pro Textfeld f&uuml;r optimale Geschwindigkeit.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie werden die Unterschiede farblich dargestellt?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Hinzugef&uuml;gte Inhalte werden gr&uuml;n hinterlegt, entfernte Inhalte rot. Im Wort-f&uuml;r-Wort-Modus siehst du einzelne markierte W&ouml;rter innerhalb der S&auml;tze. Im Zeile-f&uuml;r-Zeile-Modus werden ganze Zeilen markiert. So erkennst du auf einen Blick, was sich zwischen den beiden Versionen ge&auml;ndert hat.</div>
-      </div>
+        <details>
+          <summary>Wie werden die Unterschiede farblich dargestellt?</summary>
+          <div class="faq-answer">Hinzugef&uuml;gte Inhalte werden gr&uuml;n hinterlegt, entfernte Inhalte rot. Im Wort-f&uuml;r-Wort-Modus siehst du einzelne markierte W&ouml;rter innerhalb der S&auml;tze. Im Zeile-f&uuml;r-Zeile-Modus werden ganze Zeilen markiert. So erkennst du auf einen Blick, was sich zwischen den beiden Versionen ge&auml;ndert hat.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich den Vergleich f&uuml;r verschiedene Dateiformate nutzen?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Das Tool arbeitet mit reinem Text. Kopiere den Inhalt aus deiner Datei (Word, PDF, E-Mail) und f&uuml;ge ihn in eines der Textfelder ein. Formatierungen wie Fettdruck oder Kursivschrift werden dabei nicht &uuml;bernommen, was den Vergleich auf den reinen Textinhalt konzentriert.</div>
-      </div>
+        <details>
+          <summary>Kann ich den Vergleich f&uuml;r verschiedene Dateiformate nutzen?</summary>
+          <div class="faq-answer">Das Tool arbeitet mit reinem Text. Kopiere den Inhalt aus deiner Datei (Word, PDF, E-Mail) und f&uuml;ge ihn in eines der Textfelder ein. Formatierungen wie Fettdruck oder Kursivschrift werden dabei nicht &uuml;bernommen, was den Vergleich auf den reinen Textinhalt konzentriert.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was passiert mit Leerzeichen und Zeilenumbr&uuml;chen beim Vergleich?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Im Wort-f&uuml;r-Wort-Modus werden mehrfache Leerzeichen auf ein Leerzeichen reduziert. Im Zeile-f&uuml;r-Zeile-Modus vergleicht das Tool jede Zeile einzeln, Leerzeilen werden als eigenst&auml;ndige Zeilen behandelt. F&uuml;r beste Ergebnisse bei strukturierten Texten empfehlen wir den Zeilenvergleich.</div>
-      </div>
+        <details>
+          <summary>Was passiert mit Leerzeichen und Zeilenumbr&uuml;chen beim Vergleich?</summary>
+          <div class="faq-answer">Im Wort-f&uuml;r-Wort-Modus werden mehrfache Leerzeichen auf ein Leerzeichen reduziert. Im Zeile-f&uuml;r-Zeile-Modus vergleicht das Tool jede Zeile einzeln, Leerzeilen werden als eigenst&auml;ndige Zeilen behandelt. F&uuml;r beste Ergebnisse bei strukturierten Texten empfehlen wir den Zeilenvergleich.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Eignet sich der Textvergleich auch f&uuml;r Code?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. F&uuml;r Code empfehlen wir den Zeile-f&uuml;r-Zeile-Modus. Er zeigt ge&auml;nderte, hinzugef&uuml;gte und entfernte Zeilen, &auml;hnlich wie ein Git-Diff. F&uuml;r reinen Quellcode ist ein spezialisierter Diff-Viewer zwar komfortabler, aber f&uuml;r schnelle Vergleiche ohne Installation ist unser Tool eine praktische Alternative.</div>
-      </div>
+        <details>
+          <summary>Eignet sich der Textvergleich auch f&uuml;r Code?</summary>
+          <div class="faq-answer">Ja. F&uuml;r Code empfehlen wir den Zeile-f&uuml;r-Zeile-Modus. Er zeigt ge&auml;nderte, hinzugef&uuml;gte und entfernte Zeilen, &auml;hnlich wie ein Git-Diff. F&uuml;r reinen Quellcode ist ein spezialisierter Diff-Viewer zwar komfortabler, aber f&uuml;r schnelle Vergleiche ohne Installation ist unser Tool eine praktische Alternative.</div>
+        </details>
     </section>
 
     <!-- VERWANDTE TOOLS -->

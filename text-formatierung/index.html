@@ -367,52 +367,45 @@
     }
 
     /* === FAQ === */
-    .faq-section { margin-bottom: 32px; }
-    .faq-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
+    .faq-section { border-top: 1px solid var(--border); }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
     }
 
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-    .faq-question {
-      width: 100%;
-      padding: 16px;
-      background: var(--bg-card);
-      border: none;
-      text-align: left;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
+    .faq-section summary {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
     }
-    .faq-question:hover { background: var(--border); }
-    .faq-arrow {
-      transition: transform 0.2s;
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
       flex-shrink: 0;
-      font-size: 14px;
-      color: var(--text-muted);
+      margin-left: 12px;
+      transition: transform 0.2s;
     }
-    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
+
     .faq-answer {
-      display: none;
-      padding: 0 16px 16px;
+      padding: 0 0 16px 0;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--text-muted);
-      background: var(--bg-card);
     }
-    .faq-item.open .faq-answer { display: block; }
 
     /* === FOOTER === */
     .footer {
@@ -500,9 +493,9 @@
     .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
     .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
     .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
-    html.dark .related-card { background: #1E293B; border-color: #334155; }
-    html.dark .related-card:hover { background: #1E3A5F; }
-    html.dark .related-card .rc-desc { color: #94A3B8; }
+    [data-theme="dark"] .related-card { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .related-card:hover { background: #1E3A5F; }
+    [data-theme="dark"] .related-card .rc-desc { color: #94A3B8; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -636,85 +629,55 @@
     <section class="faq-section">
       <h2>H&auml;ufige Fragen</h2>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie schreibt man Substantive gro&szlig; im Deutschen?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Im Deutschen werden alle Substantive (Nomen) gro&szlig;geschrieben. Das ist eine der bekanntesten Besonderheiten der deutschen Sprache. Dazu geh&ouml;ren nicht nur konkrete Dinge wie &bdquo;Haus&ldquo; und &bdquo;Auto&ldquo;, sondern auch abstrakte Begriffe wie &bdquo;Liebe&ldquo; und &bdquo;Freiheit&ldquo; sowie nominalisierte Verben und Adjektive wie &bdquo;das Laufen&ldquo; oder &bdquo;das Sch&ouml;ne&ldquo;. Unser Tool erkennt automatisch die h&auml;ufigsten deutschen Substantive.</div>
-      </div>
+        <details>
+          <summary>Wie schreibt man Substantive gro&szlig; im Deutschen?</summary>
+          <div class="faq-answer">Im Deutschen werden alle Substantive (Nomen) gro&szlig;geschrieben. Das ist eine der bekanntesten Besonderheiten der deutschen Sprache. Dazu geh&ouml;ren nicht nur konkrete Dinge wie &bdquo;Haus&ldquo; und &bdquo;Auto&ldquo;, sondern auch abstrakte Begriffe wie &bdquo;Liebe&ldquo; und &bdquo;Freiheit&ldquo; sowie nominalisierte Verben und Adjektive wie &bdquo;das Laufen&ldquo; oder &bdquo;das Sch&ouml;ne&ldquo;. Unser Tool erkennt automatisch die h&auml;ufigsten deutschen Substantive.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was macht die Funktion &bdquo;Text bereinigen&ldquo;?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Die Funktion &bdquo;Text bereinigen&ldquo; entfernt mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf zwei. Das ist besonders n&uuml;tzlich, wenn du Text aus PDFs, Word-Dokumenten oder Webseiten kopierst, der oft unerw&uuml;nschte Formatierungsartefakte enth&auml;lt. Das Ergebnis ist ein sauber strukturierter Text ohne st&ouml;rende L&uuml;cken.</div>
-      </div>
+        <details>
+          <summary>Was macht die Funktion &bdquo;Text bereinigen&ldquo;?</summary>
+          <div class="faq-answer">Die Funktion &bdquo;Text bereinigen&ldquo; entfernt mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf zwei. Das ist besonders n&uuml;tzlich, wenn du Text aus PDFs, Word-Dokumenten oder Webseiten kopierst, der oft unerw&uuml;nschte Formatierungsartefakte enth&auml;lt. Das Ergebnis ist ein sauber strukturierter Text ohne st&ouml;rende L&uuml;cken.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist ein Spiegel-Text?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ein Spiegel-Text entsteht durch das Umkehren der Reihenfolge aller Zeichen im Text. Aus &bdquo;Hallo Welt&ldquo; wird zum Beispiel &bdquo;tleW ollaH&ldquo;. Spiegel-Texte werden f&uuml;r R&auml;tsel, kreative Projekte, Wasserzeichen-Effekte oder einfach zum Spa&szlig; verwendet. Unsere Funktion kehrt den gesamten Text zeichenweise um, inklusive Leerzeichen und Sonderzeichen.</div>
-      </div>
+        <details>
+          <summary>Was ist ein Spiegel-Text?</summary>
+          <div class="faq-answer">Ein Spiegel-Text entsteht durch das Umkehren der Reihenfolge aller Zeichen im Text. Aus &bdquo;Hallo Welt&ldquo; wird zum Beispiel &bdquo;tleW ollaH&ldquo;. Spiegel-Texte werden f&uuml;r R&auml;tsel, kreative Projekte, Wasserzeichen-Effekte oder einfach zum Spa&szlig; verwendet. Unsere Funktion kehrt den gesamten Text zeichenweise um, inklusive Leerzeichen und Sonderzeichen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist der Unterschied zwischen &bdquo;Ersten Buchstaben&ldquo; und &bdquo;Jeden Satz&ldquo;?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">&bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; schreibt den ersten Buchstaben jedes Wortes gro&szlig; (Title Case) und den Rest auf Kleinschreibung. &bdquo;Jeden Satz gro&szlig;schreiben&ldquo; hingegen erkennt Satzgrenzen (nach Punkt, Ausrufezeichen und Fragezeichen) und schreibt den ersten Buchstaben jedes Satzes gro&szlig;. Die zweite Option ist f&uuml;r normale Texte deutlich sinnvoller.</div>
-      </div>
+        <details>
+          <summary>Was ist der Unterschied zwischen &bdquo;Ersten Buchstaben&ldquo; und &bdquo;Jeden Satz&ldquo;?</summary>
+          <div class="faq-answer">&bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; schreibt den ersten Buchstaben jedes Wortes gro&szlig; (Title Case) und den Rest auf Kleinschreibung. &bdquo;Jeden Satz gro&szlig;schreiben&ldquo; hingegen erkennt Satzgrenzen (nach Punkt, Ausrufezeichen und Fragezeichen) und schreibt den ersten Buchstaben jedes Satzes gro&szlig;. Die zweite Option ist f&uuml;r normale Texte deutlich sinnvoller.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Werden meine Texte gespeichert?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Nein. Alle Formatierungen werden ausschlie&szlig;lich in deinem Browser durchgef&uuml;hrt. Kein Text wird an unsere Server &uuml;bertragen oder gespeichert. Du kannst das Tool bedenkenlos f&uuml;r vertrauliche Dokumente, Gesch&auml;ftstexte oder pers&ouml;nliche Inhalte verwenden.</div>
-      </div>
+        <details>
+          <summary>Werden meine Texte gespeichert?</summary>
+          <div class="faq-answer">Nein. Alle Formatierungen werden ausschlie&szlig;lich in deinem Browser durchgef&uuml;hrt. Kein Text wird an unsere Server &uuml;bertragen oder gespeichert. Du kannst das Tool bedenkenlos f&uuml;r vertrauliche Dokumente, Gesch&auml;ftstexte oder pers&ouml;nliche Inhalte verwenden.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich mehrere Formatierungen nacheinander anwenden?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. Nach jeder Formatierung kannst du den &bdquo;Tauschen&ldquo;-Button verwenden, um das Ergebnis in das Eingabefeld zu &uuml;bertragen und anschlie&szlig;end eine weitere Formatierung anzuwenden. So kannst du zum Beispiel erst alle Buchstaben kleinschreiben und dann jeden Satz gro&szlig;schreiben, in zwei einfachen Schritten.</div>
-      </div>
+        <details>
+          <summary>Kann ich mehrere Formatierungen nacheinander anwenden?</summary>
+          <div class="faq-answer">Ja. Nach jeder Formatierung kannst du den &bdquo;Tauschen&ldquo;-Button verwenden, um das Ergebnis in das Eingabefeld zu &uuml;bertragen und anschlie&szlig;end eine weitere Formatierung anzuwenden. So kannst du zum Beispiel erst alle Buchstaben kleinschreiben und dann jeden Satz gro&szlig;schreiben, in zwei einfachen Schritten.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist Title Case auf Deutsch?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Title Case bedeutet, dass der erste Buchstabe jedes Wortes gro&szlig;geschrieben wird. Im Englischen ist das bei &Uuml;berschriften &uuml;blich. Im Deutschen funktioniert das anders, weil hier Substantive immer gro&szlig;geschrieben werden, andere Wortarten aber nicht. Unsere Funktion &bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; wandelt Text in Title Case um. F&uuml;r korrekte deutsche Schreibung nutze besser &bdquo;Substantive gro&szlig;schreiben&ldquo;.</div>
-      </div>
+        <details>
+          <summary>Was ist Title Case auf Deutsch?</summary>
+          <div class="faq-answer">Title Case bedeutet, dass der erste Buchstabe jedes Wortes gro&szlig;geschrieben wird. Im Englischen ist das bei &Uuml;berschriften &uuml;blich. Im Deutschen funktioniert das anders, weil hier Substantive immer gro&szlig;geschrieben werden, andere Wortarten aber nicht. Unsere Funktion &bdquo;Ersten Buchstaben gro&szlig;schreiben&ldquo; wandelt Text in Title Case um. F&uuml;r korrekte deutsche Schreibung nutze besser &bdquo;Substantive gro&szlig;schreiben&ldquo;.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie funktioniert das automatische Gro&szlig;schreiben von Substantiven?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Unser Tool gleicht jedes Wort gegen eine Liste von 3.794 h&auml;ufigen deutschen Substantiven ab. Wird ein Wort erkannt, schreibt das Tool den ersten Buchstaben gro&szlig;. Das funktioniert zuverl&auml;ssig f&uuml;r die meisten Alltagstexte. Bei Fachbegriffen oder sehr seltenen Nomen empfehlen wir eine kurze Nachkontrolle.</div>
-      </div>
+        <details>
+          <summary>Wie funktioniert das automatische Gro&szlig;schreiben von Substantiven?</summary>
+          <div class="faq-answer">Unser Tool gleicht jedes Wort gegen eine Liste von 3.794 h&auml;ufigen deutschen Substantiven ab. Wird ein Wort erkannt, schreibt das Tool den ersten Buchstaben gro&szlig;. Das funktioniert zuverl&auml;ssig f&uuml;r die meisten Alltagstexte. Bei Fachbegriffen oder sehr seltenen Nomen empfehlen wir eine kurze Nachkontrolle.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was macht die Funktion &bdquo;Text bereinigen&ldquo; genau?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Sie entfernt doppelte und mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf maximal zwei. Das ist praktisch f&uuml;r Texte, die aus PDFs, Word-Dokumenten oder Webseiten kopiert wurden und typische Formatierungsreste enthalten.</div>
-      </div>
+        <details>
+          <summary>Was macht die Funktion &bdquo;Text bereinigen&ldquo; genau?</summary>
+          <div class="faq-answer">Sie entfernt doppelte und mehrfache Leerzeichen innerhalb von Zeilen und reduziert mehr als zwei aufeinanderfolgende Leerzeilen auf maximal zwei. Das ist praktisch f&uuml;r Texte, die aus PDFs, Word-Dokumenten oder Webseiten kopiert wurden und typische Formatierungsreste enthalten.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich den formatierten Text direkt in Word oder Google Docs einf&uuml;gen?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. Klicke auf &bdquo;Kopieren&ldquo; und f&uuml;ge den Text mit Strg+V in dein Programm ein. Der Text wird als reiner Text ohne versteckte Formatierung &uuml;bernommen. So vermeidest du Probleme mit unterschiedlichen Schriftarten oder Zeilenabst&auml;nden, die beim Kopieren aus anderen Quellen oft auftreten.</div>
-      </div>
+        <details>
+          <summary>Kann ich den formatierten Text direkt in Word oder Google Docs einf&uuml;gen?</summary>
+          <div class="faq-answer">Ja. Klicke auf &bdquo;Kopieren&ldquo; und f&uuml;ge den Text mit Strg+V in dein Programm ein. Der Text wird als reiner Text ohne versteckte Formatierung &uuml;bernommen. So vermeidest du Probleme mit unterschiedlichen Schriftarten oder Zeilenabst&auml;nden, die beim Kopieren aus anderen Quellen oft auftreten.</div>
+        </details>
     </section>
 
     <!-- VERWANDTE TOOLS -->

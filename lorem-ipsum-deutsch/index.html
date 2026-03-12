@@ -425,52 +425,45 @@
     }
 
     /* === FAQ === */
-    .faq-section { margin-bottom: 32px; }
-    .faq-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
+    .faq-section { border-top: 1px solid var(--border); }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
     }
 
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-    .faq-question {
-      width: 100%;
-      padding: 16px;
-      background: var(--bg-card);
-      border: none;
-      text-align: left;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
+    .faq-section summary {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
     }
-    .faq-question:hover { background: var(--border); }
-    .faq-arrow {
-      transition: transform 0.2s;
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
       flex-shrink: 0;
-      font-size: 14px;
-      color: var(--text-muted);
+      margin-left: 12px;
+      transition: transform 0.2s;
     }
-    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
+
     .faq-answer {
-      display: none;
-      padding: 0 16px 16px;
+      padding: 0 0 16px 0;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--text-muted);
-      background: var(--bg-card);
     }
-    .faq-item.open .faq-answer { display: block; }
 
     /* === FOOTER === */
     .footer {
@@ -547,9 +540,9 @@
     .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
     .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
     .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
-    html.dark .related-card { background: #1E293B; border-color: #334155; }
-    html.dark .related-card:hover { background: #1E3A5F; }
-    html.dark .related-card .rc-desc { color: #94A3B8; }
+    [data-theme="dark"] .related-card { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .related-card:hover { background: #1E3A5F; }
+    [data-theme="dark"] .related-card .rc-desc { color: #94A3B8; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -693,85 +686,55 @@
     <section class="faq-section">
       <h2>H&auml;ufige Fragen</h2>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist Lorem Ipsum und warum gibt es eine deutsche Version?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Lorem Ipsum ist ein seit dem 16. Jahrhundert verwendeter lateinischer Platzhaltertext f&uuml;r Layouts und Druckvorlagen. Das Problem: Lateinische Texte sind f&uuml;r deutsche Kunden und Stakeholder unlesbar, was bei Pr&auml;sentationen zu Verwirrung f&uuml;hrt. Unser Blindtext Generator erstellt nat&uuml;rliche deutsche Platzhalterw&ouml;rter, die im Layout genauso wirken wie echter Inhalt.</div>
-      </div>
+        <details>
+          <summary>Was ist Lorem Ipsum und warum gibt es eine deutsche Version?</summary>
+          <div class="faq-answer">Lorem Ipsum ist ein seit dem 16. Jahrhundert verwendeter lateinischer Platzhaltertext f&uuml;r Layouts und Druckvorlagen. Das Problem: Lateinische Texte sind f&uuml;r deutsche Kunden und Stakeholder unlesbar, was bei Pr&auml;sentationen zu Verwirrung f&uuml;hrt. Unser Blindtext Generator erstellt nat&uuml;rliche deutsche Platzhalterw&ouml;rter, die im Layout genauso wirken wie echter Inhalt.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist ein Blindtext?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ein Blindtext ist ein sinnfreier oder bedeutungsarmer Text, der in der Gestaltung als Platzhalter f&uuml;r sp&auml;teren echten Inhalt verwendet wird. Er hilft Designern, das visuelle Erscheinungsbild eines Layouts zu beurteilen, ohne auf fertigen Inhalt angewiesen zu sein. Im Unterschied zu Lorem Ipsum sind unsere deutschen Blindtexte lesbar und erzeugen einen realistischeren Eindruck.</div>
-      </div>
+        <details>
+          <summary>Was ist ein Blindtext?</summary>
+          <div class="faq-answer">Ein Blindtext ist ein sinnfreier oder bedeutungsarmer Text, der in der Gestaltung als Platzhalter f&uuml;r sp&auml;teren echten Inhalt verwendet wird. Er hilft Designern, das visuelle Erscheinungsbild eines Layouts zu beurteilen, ohne auf fertigen Inhalt angewiesen zu sein. Im Unterschied zu Lorem Ipsum sind unsere deutschen Blindtexte lesbar und erzeugen einen realistischeren Eindruck.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich den generierten Text kommerziell verwenden?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja, der generierte Blindtext ist lizenzfrei und kann f&uuml;r kommerzielle und private Projekte beliebig verwendet werden. Die Texte wurden speziell f&uuml;r diesen Zweck erstellt und enthalten keine urheberrechtlich gesch&uuml;tzten Inhalte. Du kannst ihn f&uuml;r Websites, Apps, Pr&auml;sentationen, Druckerzeugnisse und alle anderen Zwecke einsetzen.</div>
-      </div>
+        <details>
+          <summary>Kann ich den generierten Text kommerziell verwenden?</summary>
+          <div class="faq-answer">Ja, der generierte Blindtext ist lizenzfrei und kann f&uuml;r kommerzielle und private Projekte beliebig verwendet werden. Die Texte wurden speziell f&uuml;r diesen Zweck erstellt und enthalten keine urheberrechtlich gesch&uuml;tzten Inhalte. Du kannst ihn f&uuml;r Websites, Apps, Pr&auml;sentationen, Druckerzeugnisse und alle anderen Zwecke einsetzen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was bewirkt die HTML-Tags-Option?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Wenn du die Option &bdquo;HTML-Tags hinzuf&uuml;gen&ldquo; aktivierst, wird jeder Absatz automatisch in &lt;p&gt;-Tags eingeschlossen, und vor dem ersten Absatz wird ein &lt;h2&gt;-Tag eingef&uuml;gt. Das ist praktisch f&uuml;r Entwickler, die den Text direkt in ihren HTML-Code einf&uuml;gen m&ouml;chten, ohne Tags manuell hinzuf&uuml;gen zu m&uuml;ssen.</div>
-      </div>
+        <details>
+          <summary>Was bewirkt die HTML-Tags-Option?</summary>
+          <div class="faq-answer">Wenn du die Option &bdquo;HTML-Tags hinzuf&uuml;gen&ldquo; aktivierst, wird jeder Absatz automatisch in &lt;p&gt;-Tags eingeschlossen, und vor dem ersten Absatz wird ein &lt;h2&gt;-Tag eingef&uuml;gt. Das ist praktisch f&uuml;r Entwickler, die den Text direkt in ihren HTML-Code einf&uuml;gen m&ouml;chten, ohne Tags manuell hinzuf&uuml;gen zu m&uuml;ssen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie unterscheiden sich die L&auml;ngenoptionen Kurz, Mittel und Lang?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">&bdquo;Kurz&ldquo; generiert Abs&auml;tze mit etwa 3 bis 4 S&auml;tzen und rund 50 W&ouml;rtern, ideal f&uuml;r Teasertexte oder Kartenlayouts. &bdquo;Mittel&ldquo; erzeugt 6 bis 7 S&auml;tze mit etwa 100 W&ouml;rtern, passend f&uuml;r Standard-Inhaltsseiten. &bdquo;Lang&ldquo; erstellt 10 bis 12 S&auml;tze mit rund 200 W&ouml;rtern, geeignet f&uuml;r Artikel oder ausf&uuml;hrliche Textbereiche.</div>
-      </div>
+        <details>
+          <summary>Wie unterscheiden sich die L&auml;ngenoptionen Kurz, Mittel und Lang?</summary>
+          <div class="faq-answer">&bdquo;Kurz&ldquo; generiert Abs&auml;tze mit etwa 3 bis 4 S&auml;tzen und rund 50 W&ouml;rtern, ideal f&uuml;r Teasertexte oder Kartenlayouts. &bdquo;Mittel&ldquo; erzeugt 6 bis 7 S&auml;tze mit etwa 100 W&ouml;rtern, passend f&uuml;r Standard-Inhaltsseiten. &bdquo;Lang&ldquo; erstellt 10 bis 12 S&auml;tze mit rund 200 W&ouml;rtern, geeignet f&uuml;r Artikel oder ausf&uuml;hrliche Textbereiche.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Warum sind die Texte auf Deutsch statt auf Latein?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Lateinische Lorem-Ipsum-Texte haben einen entscheidenden Nachteil: Kunden und Auftraggeber k&ouml;nnen den Inhalt nicht lesen und beurteilen daher oft nur das visuelle Erscheinungsbild. Deutsche Platzhalterw&ouml;rter erm&ouml;glichen es, Layout und Lesbarkeit gleichzeitig zu beurteilen. Au&szlig;erdem entsprechen deutsche Texte besser der tats&auml;chlichen Wortl&auml;nge und Zeilenstruktur, die sp&auml;ter im fertigen Produkt erscheinen wird.</div>
-      </div>
+        <details>
+          <summary>Warum sind die Texte auf Deutsch statt auf Latein?</summary>
+          <div class="faq-answer">Lateinische Lorem-Ipsum-Texte haben einen entscheidenden Nachteil: Kunden und Auftraggeber k&ouml;nnen den Inhalt nicht lesen und beurteilen daher oft nur das visuelle Erscheinungsbild. Deutsche Platzhalterw&ouml;rter erm&ouml;glichen es, Layout und Lesbarkeit gleichzeitig zu beurteilen. Au&szlig;erdem entsprechen deutsche Texte besser der tats&auml;chlichen Wortl&auml;nge und Zeilenstruktur, die sp&auml;ter im fertigen Produkt erscheinen wird.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Warum hei&szlig;t es Lorem Ipsum?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Der Name stammt aus einem lateinischen Text von Cicero aus dem 1. Jahrhundert v. Chr. Ein Drucker verwendete um 1500 Teile dieses Textes als Platzhalter f&uuml;r Schriftmuster. &bdquo;Lorem Ipsum&ldquo; sind die ersten W&ouml;rter des verst&uuml;mmelten Originalzitats. Seitdem nutzt die Druck- und Designbranche diesen Begriff f&uuml;r Blindtexte.</div>
-      </div>
+        <details>
+          <summary>Warum hei&szlig;t es Lorem Ipsum?</summary>
+          <div class="faq-answer">Der Name stammt aus einem lateinischen Text von Cicero aus dem 1. Jahrhundert v. Chr. Ein Drucker verwendete um 1500 Teile dieses Textes als Platzhalter f&uuml;r Schriftmuster. &bdquo;Lorem Ipsum&ldquo; sind die ersten W&ouml;rter des verst&uuml;mmelten Originalzitats. Seitdem nutzt die Druck- und Designbranche diesen Begriff f&uuml;r Blindtexte.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Was ist der Unterschied zwischen Lorem Ipsum und echtem Blindtext?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Lorem Ipsum basiert auf einem lateinischen Text und ist f&uuml;r die meisten Leser unverst&auml;ndlich. Echter Blindtext besteht aus W&ouml;rtern der Zielsprache, hier Deutsch. Er ist lesbar, hat eine nat&uuml;rliche Satzstruktur und zeigt realistisch, wie der fertige Text im Layout wirkt. F&uuml;r deutsche Projekte ist deutscher Blindtext deshalb die bessere Wahl.</div>
-      </div>
+        <details>
+          <summary>Was ist der Unterschied zwischen Lorem Ipsum und echtem Blindtext?</summary>
+          <div class="faq-answer">Lorem Ipsum basiert auf einem lateinischen Text und ist f&uuml;r die meisten Leser unverst&auml;ndlich. Echter Blindtext besteht aus W&ouml;rtern der Zielsprache, hier Deutsch. Er ist lesbar, hat eine nat&uuml;rliche Satzstruktur und zeigt realistisch, wie der fertige Text im Layout wirkt. F&uuml;r deutsche Projekte ist deutscher Blindtext deshalb die bessere Wahl.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich den deutschen Blindtext f&uuml;r kommerzielle Projekte verwenden?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja, ohne Einschr&auml;nkungen. Alle generierten Texte sind lizenzfrei und d&uuml;rfen in kommerziellen und privaten Projekten frei eingesetzt werden. Egal ob Website, App, Printmedien oder Pr&auml;sentation, du kannst den Blindtext &uuml;berall verwenden, ohne Quellenangabe oder Lizenzgeb&uuml;hren.</div>
-      </div>
+        <details>
+          <summary>Kann ich den deutschen Blindtext f&uuml;r kommerzielle Projekte verwenden?</summary>
+          <div class="faq-answer">Ja, ohne Einschr&auml;nkungen. Alle generierten Texte sind lizenzfrei und d&uuml;rfen in kommerziellen und privaten Projekten frei eingesetzt werden. Egal ob Website, App, Printmedien oder Pr&auml;sentation, du kannst den Blindtext &uuml;berall verwenden, ohne Quellenangabe oder Lizenzgeb&uuml;hren.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Warum ist deutscher Platzhaltertext besser als englischer f&uuml;r DACH-Projekte?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Deutsche W&ouml;rter sind durchschnittlich l&auml;nger als englische, besonders durch zusammengesetzte Substantive. Ein Layout, das mit englischem Blindtext funktioniert, kann mit deutschen Inhalten brechen. Deutscher Platzhaltertext zeigt von Anfang an, wie viel Platz &Uuml;berschriften, Buttons und Flie&szlig;text tats&auml;chlich brauchen.</div>
-      </div>
+        <details>
+          <summary>Warum ist deutscher Platzhaltertext besser als englischer f&uuml;r DACH-Projekte?</summary>
+          <div class="faq-answer">Deutsche W&ouml;rter sind durchschnittlich l&auml;nger als englische, besonders durch zusammengesetzte Substantive. Ein Layout, das mit englischem Blindtext funktioniert, kann mit deutschen Inhalten brechen. Deutscher Platzhaltertext zeigt von Anfang an, wie viel Platz &Uuml;berschriften, Buttons und Flie&szlig;text tats&auml;chlich brauchen.</div>
+        </details>
     </section>
 
     <!-- VERWANDTE TOOLS -->

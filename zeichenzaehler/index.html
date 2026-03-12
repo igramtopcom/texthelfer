@@ -632,12 +632,12 @@
     .limits-table th { background: #2563EB; color: #FFF; padding: 0.6rem 0.8rem; text-align: left; }
     .limits-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #E2E8F0; }
     .limits-table tr:nth-child(even) td { background: #F8FAFC; }
-    html.dark .limits-table th { background: #1E40AF; color: #F1F5F9; }
-    html.dark .limits-table td { border-color: #334155; }
-    html.dark .limits-table tr:nth-child(odd) td { background: #1E293B; }
-    html.dark .limits-table tr:nth-child(even) td { background: #0F172A; }
+    [data-theme="dark"] .limits-table th { background: #1E40AF; color: #F1F5F9; }
+    [data-theme="dark"] .limits-table td { border-color: #334155; }
+    [data-theme="dark"] .limits-table tr:nth-child(odd) td { background: #1E293B; }
+    [data-theme="dark"] .limits-table tr:nth-child(even) td { background: #0F172A; }
     .table-note { font-size: 0.8rem; color: #6B7280; margin-top: 0.5rem; }
-    html.dark .table-note { color: #94A3B8; }
+    [data-theme="dark"] .table-note { color: #94A3B8; }
 
     /* Verwandte Tools */
     .related-tools { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
@@ -648,9 +648,9 @@
     .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
     .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
     .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
-    html.dark .related-card { background: #1E293B; border-color: #334155; }
-    html.dark .related-card:hover { background: #1E3A5F; }
-    html.dark .related-card .rc-desc { color: #94A3B8; }
+    [data-theme="dark"] .related-card { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .related-card:hover { background: #1E3A5F; }
+    [data-theme="dark"] .related-card .rc-desc { color: #94A3B8; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>

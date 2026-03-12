@@ -297,23 +297,48 @@
     .steps-grid { display: flex; gap: 1.5rem; }
     .step-card { flex: 1; }
     .step-num { font-size: 2.5rem; font-weight: 700; color: #2563EB; line-height: 1; }
-    html.dark .step-num { color: #60A5FA; }
+    [data-theme="dark"] .step-num { color: #60A5FA; }
     .step-title { font-weight: 600; font-size: 1.05rem; margin: 0.3rem 0; }
     .step-desc { font-size: 0.95rem; color: #4B5563; line-height: 1.5; }
-    html.dark .step-desc { color: #94A3B8; }
+    [data-theme="dark"] .step-desc { color: #94A3B8; }
     @media (max-width: 600px) { .steps-grid { flex-direction: column; } }
 
     /* FAQ Accordion */
-    .faq-section-home { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .faq-section-home { max-width: 800px; margin: 2rem auto; padding: 0 1rem; border-top: 1px solid var(--border); }
     .faq-section-home h2 { font-size: 1.3rem; margin-bottom: 1rem; }
-    .faq-section-home details { border-bottom: 1px solid #E2E8F0; }
-    .faq-section-home summary { padding: 0.8rem 0; cursor: pointer; font-weight: 500; list-style: none; }
+    .faq-section-home details { border-bottom: 1px solid var(--border); }
+    .faq-section-home summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
+    }
     .faq-section-home summary::-webkit-details-marker { display: none; }
-    .faq-section-home summary::after { content: "▸"; float: right; transition: transform 0.2s; }
-    .faq-section-home details[open] summary::after { transform: rotate(90deg); }
-    .faq-section-home .faq-answer { padding: 0 0 0.8rem; font-size: 0.95rem; color: #4B5563; line-height: 1.6; }
-    html.dark .faq-section-home details { border-color: #334155; }
-    html.dark .faq-section-home .faq-answer { color: #94A3B8; }
+    .faq-section-home summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform 0.2s;
+    }
+    .faq-section-home details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section-home summary:hover { color: var(--accent); }
+    .faq-section-home .faq-answer {
+      padding: 0 0 16px 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>

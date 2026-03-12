@@ -375,52 +375,45 @@
     }
 
     /* === FAQ === */
-    .faq-section { margin-bottom: 32px; }
-    .faq-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
+    .faq-section { border-top: 1px solid var(--border); }
+
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
     }
 
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-    .faq-question {
-      width: 100%;
-      padding: 16px;
-      background: var(--bg-card);
-      border: none;
-      text-align: left;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
+    .faq-section summary {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
     }
-    .faq-question:hover { background: var(--border); }
-    .faq-arrow {
-      transition: transform 0.2s;
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
       flex-shrink: 0;
-      font-size: 14px;
-      color: var(--text-muted);
+      margin-left: 12px;
+      transition: transform 0.2s;
     }
-    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
+
     .faq-answer {
-      display: none;
-      padding: 0 16px 16px;
+      padding: 0 0 16px 0;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--text-muted);
-      background: var(--bg-card);
     }
-    .faq-item.open .faq-answer { display: block; }
 
     /* === FOOTER === */
     .footer {
@@ -500,9 +493,9 @@
     .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
     .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
     .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
-    html.dark .related-card { background: #1E293B; border-color: #334155; }
-    html.dark .related-card:hover { background: #1E3A5F; }
-    html.dark .related-card .rc-desc { color: #94A3B8; }
+    [data-theme="dark"] .related-card { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .related-card:hover { background: #1E3A5F; }
+    [data-theme="dark"] .related-card .rc-desc { color: #94A3B8; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -635,85 +628,55 @@
     <section class="faq-section">
       <h2>H&auml;ufige Fragen</h2>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie schreibt man &auml; ohne Umlaut?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Das &auml; wird als &bdquo;ae&ldquo; geschrieben, das &ouml; als &bdquo;oe&ldquo; und das &uuml; als &bdquo;ue&ldquo;. Das &szlig; wird durch &bdquo;ss&ldquo; ersetzt. Diese Schreibweise wird Umlautumschreibung genannt und ist besonders beim Tippen auf internationalen Tastaturen n&uuml;tzlich.</div>
-      </div>
+        <details>
+          <summary>Wie schreibt man &auml; ohne Umlaut?</summary>
+          <div class="faq-answer">Das &auml; wird als &bdquo;ae&ldquo; geschrieben, das &ouml; als &bdquo;oe&ldquo; und das &uuml; als &bdquo;ue&ldquo;. Das &szlig; wird durch &bdquo;ss&ldquo; ersetzt. Diese Schreibweise wird Umlautumschreibung genannt und ist besonders beim Tippen auf internationalen Tastaturen n&uuml;tzlich.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wann brauche ich die Umlautumschreibung?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Die Umlautumschreibung wird ben&ouml;tigt, wenn Systeme oder Tastaturen keine deutschen Sonderzeichen unterst&uuml;tzen &ndash; zum Beispiel bei E-Mail-Adressen, Benutzernamen, alten Computersystemen oder beim Schreiben auf einer englischen Tastatur.</div>
-      </div>
+        <details>
+          <summary>Wann brauche ich die Umlautumschreibung?</summary>
+          <div class="faq-answer">Die Umlautumschreibung wird ben&ouml;tigt, wenn Systeme oder Tastaturen keine deutschen Sonderzeichen unterst&uuml;tzen &ndash; zum Beispiel bei E-Mail-Adressen, Benutzernamen, alten Computersystemen oder beim Schreiben auf einer englischen Tastatur.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie buchstabiert man &uuml; auf Englisch?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Das &uuml; wird im Deutschen als &bdquo;ue&ldquo; umgeschrieben. Das &Uuml; (Gro&szlig;buchstabe) wird zu &bdquo;Ue&ldquo;. Im internationalen Kontext ist diese Schreibweise allgemein anerkannt.</div>
-      </div>
+        <details>
+          <summary>Wie buchstabiert man &uuml; auf Englisch?</summary>
+          <div class="faq-answer">Das &uuml; wird im Deutschen als &bdquo;ue&ldquo; umgeschrieben. Das &Uuml; (Gro&szlig;buchstabe) wird zu &bdquo;Ue&ldquo;. Im internationalen Kontext ist diese Schreibweise allgemein anerkannt.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Ist die Umschreibung von &szlig; zu ss korrekt?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja, ss ist die offizielle Umschreibung von &szlig;, wenn das Zeichen nicht verf&uuml;gbar ist. In der Schweiz wird &szlig; grunds&auml;tzlich als ss geschrieben &ndash; das ist seit Jahrzehnten g&auml;ngige Praxis.</div>
-      </div>
+        <details>
+          <summary>Ist die Umschreibung von &szlig; zu ss korrekt?</summary>
+          <div class="faq-answer">Ja, ss ist die offizielle Umschreibung von &szlig;, wenn das Zeichen nicht verf&uuml;gbar ist. In der Schweiz wird &szlig; grunds&auml;tzlich als ss geschrieben &ndash; das ist seit Jahrzehnten g&auml;ngige Praxis.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Kann ich den Umlaut Konverter f&uuml;r E-Mail-Adressen verwenden?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. Viele E-Mail-Server akzeptieren zwar heute Umlaute, aber f&uuml;r maximale Kompatibilit&auml;t empfiehlt sich die ASCII-Umschreibung. Der Konverter hilft, Text schnell in die kompatible Schreibweise umzuwandeln.</div>
-      </div>
+        <details>
+          <summary>Kann ich den Umlaut Konverter f&uuml;r E-Mail-Adressen verwenden?</summary>
+          <div class="faq-answer">Ja. Viele E-Mail-Server akzeptieren zwar heute Umlaute, aber f&uuml;r maximale Kompatibilit&auml;t empfiehlt sich die ASCII-Umschreibung. Der Konverter hilft, Text schnell in die kompatible Schreibweise umzuwandeln.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Funktioniert der Konverter auch in umgekehrter Richtung?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. Mit dem Knopf &bdquo;Richtung tauschen&ldquo; k&ouml;nnen Sie ASCII-Text (ae, oe, ue, ss) zur&uuml;ck in die Umlaut-Schreibweise (&auml;, &ouml;, &uuml;, &szlig;) umwandeln. Bitte pr&uuml;fen Sie das Ergebnis, da nicht jedes &bdquo;ae&ldquo; im Deutschen ein Umlaut ist.</div>
-      </div>
+        <details>
+          <summary>Funktioniert der Konverter auch in umgekehrter Richtung?</summary>
+          <div class="faq-answer">Ja. Mit dem Knopf &bdquo;Richtung tauschen&ldquo; k&ouml;nnen Sie ASCII-Text (ae, oe, ue, ss) zur&uuml;ck in die Umlaut-Schreibweise (&auml;, &ouml;, &uuml;, &szlig;) umwandeln. Bitte pr&uuml;fen Sie das Ergebnis, da nicht jedes &bdquo;ae&ldquo; im Deutschen ein Umlaut ist.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Wie schreibt man einen deutschen Namen ohne Umlaut?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Vornamen und Nachnamen mit Umlauten werden nach festen Regeln umgeschrieben: &auml; wird zu ae, &ouml; zu oe, &uuml; zu ue. M&uuml;ller wird zu Mueller, B&ouml;hm zu Boehm, G&uuml;nther zu Guenther. Diese Umschreibung ist im Pass- und Meldewesen anerkannt und wird auch bei internationalen Flugbuchungen verwendet.</div>
-      </div>
+        <details>
+          <summary>Wie schreibt man einen deutschen Namen ohne Umlaut?</summary>
+          <div class="faq-answer">Vornamen und Nachnamen mit Umlauten werden nach festen Regeln umgeschrieben: &auml; wird zu ae, &ouml; zu oe, &uuml; zu ue. M&uuml;ller wird zu Mueller, B&ouml;hm zu Boehm, G&uuml;nther zu Guenther. Diese Umschreibung ist im Pass- und Meldewesen anerkannt und wird auch bei internationalen Flugbuchungen verwendet.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Warum akzeptieren manche Systeme keine Umlaute?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Viele &auml;ltere Software-Systeme und internationale Plattformen basieren auf dem ASCII-Zeichensatz, der nur 128 Zeichen umfasst. Umlaute und &szlig; geh&ouml;ren nicht dazu. Auch wenn moderne Systeme Unicode unterst&uuml;tzen, verlangen Formulare, Benutzernamen und E-Mail-Adressen oft noch reine ASCII-Zeichen.</div>
-      </div>
+        <details>
+          <summary>Warum akzeptieren manche Systeme keine Umlaute?</summary>
+          <div class="faq-answer">Viele &auml;ltere Software-Systeme und internationale Plattformen basieren auf dem ASCII-Zeichensatz, der nur 128 Zeichen umfasst. Umlaute und &szlig; geh&ouml;ren nicht dazu. Auch wenn moderne Systeme Unicode unterst&uuml;tzen, verlangen Formulare, Benutzernamen und E-Mail-Adressen oft noch reine ASCII-Zeichen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Ist &bdquo;Mueller&ldquo; oder &bdquo;M&uuml;ller&ldquo; die offizielle Umschreibung?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Beide sind korrekt, je nach Kontext. &bdquo;M&uuml;ller&ldquo; ist die originale Schreibweise mit Umlaut. &bdquo;Mueller&ldquo; ist die offizielle Umschreibung, wenn kein &uuml; verf&uuml;gbar ist. Im deutschen Reisepass wird der Name mit Umlaut eingetragen, die maschinenlesbare Zone verwendet die Umschreibung. Unser Tool konvertiert in beide Richtungen.</div>
-      </div>
+        <details>
+          <summary>Ist &bdquo;Mueller&ldquo; oder &bdquo;M&uuml;ller&ldquo; die offizielle Umschreibung?</summary>
+          <div class="faq-answer">Beide sind korrekt, je nach Kontext. &bdquo;M&uuml;ller&ldquo; ist die originale Schreibweise mit Umlaut. &bdquo;Mueller&ldquo; ist die offizielle Umschreibung, wenn kein &uuml; verf&uuml;gbar ist. Im deutschen Reisepass wird der Name mit Umlaut eingetragen, die maschinenlesbare Zone verwendet die Umschreibung. Unser Tool konvertiert in beide Richtungen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          <span>Funktioniert die Umschreibung auch f&uuml;r &Ouml;sterreich und die Schweiz?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </button>
-        <div class="faq-answer">Ja. Die Regeln f&uuml;r die Umlautumschreibung gelten im gesamten deutschsprachigen Raum. In der Schweiz wird &szlig; grunds&auml;tzlich als ss geschrieben, das ist dort die Standardschreibweise. Unser Konverter ber&uuml;cksichtigt das und wandelt &szlig; zuverl&auml;ssig in ss um.</div>
-      </div>
+        <details>
+          <summary>Funktioniert die Umschreibung auch f&uuml;r &Ouml;sterreich und die Schweiz?</summary>
+          <div class="faq-answer">Ja. Die Regeln f&uuml;r die Umlautumschreibung gelten im gesamten deutschsprachigen Raum. In der Schweiz wird &szlig; grunds&auml;tzlich als ss geschrieben, das ist dort die Standardschreibweise. Unser Konverter ber&uuml;cksichtigt das und wandelt &szlig; zuverl&auml;ssig in ss um.</div>
+        </details>
     </section>
 
     <!-- VERWANDTE TOOLS -->

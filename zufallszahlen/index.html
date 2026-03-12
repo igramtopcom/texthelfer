@@ -459,54 +459,44 @@
     .seo-section a:hover { text-decoration: underline; }
 
     /* === FAQ === */
-    .faq-section { margin-bottom: 32px; }
+    .faq-section { border-top: 1px solid var(--border); }
 
-    .faq-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
+    .faq-section details {
+      border-bottom: 1px solid var(--border);
     }
 
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      text-align: left;
-      padding: 14px 18px;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 600;
-      background: var(--bg-card);
-      color: var(--text);
-      border: none;
-      cursor: pointer;
+    .faq-section summary {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
     }
-
-    .faq-question .arrow { transition: transform 0.2s; flex-shrink: 0; }
-    .faq-item.open .faq-question .arrow { transform: rotate(180deg); }
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform 0.2s;
+    }
+    .faq-section details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section summary:hover { color: var(--accent); }
 
     .faq-answer {
-      padding: 0 18px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      font-size: 15px;
+      padding: 0 0 16px 0;
+      font-size: 16px;
+      line-height: 1.75;
       color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding: 0 18px 14px;
     }
 
     /* === FOOTER === */
@@ -620,9 +610,9 @@
     .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
     .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
     .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
-    html.dark .related-card { background: #1E293B; border-color: #334155; }
-    html.dark .related-card:hover { background: #1E3A5F; }
-    html.dark .related-card .rc-desc { color: #94A3B8; }
+    [data-theme="dark"] .related-card { background: #1E293B; border-color: #334155; }
+    [data-theme="dark"] .related-card:hover { background: #1E3A5F; }
+    [data-theme="dark"] .related-card .rc-desc { color: #94A3B8; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -750,55 +740,55 @@
     <section class="faq-section">
       <h2>H&auml;ufige Fragen</h2>
 
-      <div class="faq-item">
-        <button class="faq-question">Wie funktioniert ein Zufallszahlen Generator? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Ein Zufallszahlen Generator erstellt Zahlen, die keine erkennbare Muster oder Vorhersagbarkeit haben. Unser Generator nutzt die <code>crypto.getRandomValues()</code>-API des Browsers &ndash; einen kryptografisch sicheren Zufallsgenerator, der deutlich zuverl&auml;ssiger ist als einfache mathematische Verfahren.</div>
-      </div>
+        <details>
+          <summary>Wie funktioniert ein Zufallszahlen Generator?</summary>
+          <div class="faq-answer">Ein Zufallszahlen Generator erstellt Zahlen, die keine erkennbare Muster oder Vorhersagbarkeit haben. Unser Generator nutzt die <code>crypto.getRandomValues()</code>-API des Browsers &ndash; einen kryptografisch sicheren Zufallsgenerator, der deutlich zuverl&auml;ssiger ist als einfache mathematische Verfahren.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Sind Online-Zufallszahlen wirklich zuf&auml;llig? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Unser Generator verwendet die <code>crypto.getRandomValues()</code>-API, die von modernen Browsern als kryptografisch sicher eingestuft wird. F&uuml;r die meisten Anwendungen &ndash; Verlosungen, Spiele, Statistik &ndash; ist diese Qualit&auml;t mehr als ausreichend.</div>
-      </div>
+        <details>
+          <summary>Sind Online-Zufallszahlen wirklich zuf&auml;llig?</summary>
+          <div class="faq-answer">Unser Generator verwendet die <code>crypto.getRandomValues()</code>-API, die von modernen Browsern als kryptografisch sicher eingestuft wird. F&uuml;r die meisten Anwendungen &ndash; Verlosungen, Spiele, Statistik &ndash; ist diese Qualit&auml;t mehr als ausreichend.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Kann ich Zufallszahlen ohne Duplikate generieren? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Ja. Mit der Option &bdquo;Keine Duplikate&ldquo; stellt der Generator sicher, dass jede Zahl im Ergebnis nur einmal vorkommt. Wichtig: Die Anzahl der gew&uuml;nschten Zahlen darf dabei nicht gr&ouml;&szlig;er sein als der Bereich zwischen Minimum und Maximum.</div>
-      </div>
+        <details>
+          <summary>Kann ich Zufallszahlen ohne Duplikate generieren?</summary>
+          <div class="faq-answer">Ja. Mit der Option &bdquo;Keine Duplikate&ldquo; stellt der Generator sicher, dass jede Zahl im Ergebnis nur einmal vorkommt. Wichtig: Die Anzahl der gew&uuml;nschten Zahlen darf dabei nicht gr&ouml;&szlig;er sein als der Bereich zwischen Minimum und Maximum.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Wie kann ich Zufallszahlen als CSV exportieren? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Klicken Sie nach der Generierung auf &bdquo;Als CSV exportieren&ldquo;. Die Datei <code>zufallszahlen.csv</code> wird automatisch heruntergeladen. Jede Zahl steht in einer eigenen Zeile &ndash; kompatibel mit Excel, Google Sheets und allen g&auml;ngigen Tabellenkalkulationen.</div>
-      </div>
+        <details>
+          <summary>Wie kann ich Zufallszahlen als CSV exportieren?</summary>
+          <div class="faq-answer">Klicken Sie nach der Generierung auf &bdquo;Als CSV exportieren&ldquo;. Die Datei <code>zufallszahlen.csv</code> wird automatisch heruntergeladen. Jede Zahl steht in einer eigenen Zeile &ndash; kompatibel mit Excel, Google Sheets und allen g&auml;ngigen Tabellenkalkulationen.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Wie viele Zufallszahlen kann ich gleichzeitig generieren? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Sie k&ouml;nnen bis zu 1.000 Zufallszahlen in einem Durchgang generieren. F&uuml;r gr&ouml;&szlig;ere Mengen empfehlen wir, mehrere Durchg&auml;nge durchzuf&uuml;hren und die CSV-Exporte zusammenzuf&uuml;hren.</div>
-      </div>
+        <details>
+          <summary>Wie viele Zufallszahlen kann ich gleichzeitig generieren?</summary>
+          <div class="faq-answer">Sie k&ouml;nnen bis zu 1.000 Zufallszahlen in einem Durchgang generieren. F&uuml;r gr&ouml;&szlig;ere Mengen empfehlen wir, mehrere Durchg&auml;nge durchzuf&uuml;hren und die CSV-Exporte zusammenzuf&uuml;hren.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Wof&uuml;r kann ich den Zufallszahlen Generator nutzen? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Der Generator eignet sich f&uuml;r viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f&uuml;r Entwickler, W&uuml;rfelersatz f&uuml;r Brettspiele, zuf&auml;llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe.</div>
-      </div>
+        <details>
+          <summary>Wof&uuml;r kann ich den Zufallszahlen Generator nutzen?</summary>
+          <div class="faq-answer">Der Generator eignet sich f&uuml;r viele Zwecke: Verlosungen und Gewinnspiele, Zufallsstichproben in der Statistik, Testdaten f&uuml;r Entwickler, W&uuml;rfelersatz f&uuml;r Brettspiele, zuf&auml;llige Gruppenaufteilung im Unterricht oder einfach als Entscheidungshilfe.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Was ist der Unterschied zwischen Math.random() und crypto.getRandomValues()? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer"><code>Math.random()</code> erzeugt Pseudozufallszahlen mit einem vorhersagbaren Algorithmus. Wer den Startwert kennt, kann die Folge nachberechnen. <code>crypto.getRandomValues()</code> hingegen nutzt die Zufallsquelle des Betriebssystems. Die Ergebnisse sind kryptografisch sicher und nicht vorhersagbar. Unser Generator verwendet ausschlie&szlig;lich <code>crypto.getRandomValues()</code>.</div>
-      </div>
+        <details>
+          <summary>Was ist der Unterschied zwischen Math.random() und crypto.getRandomValues()?</summary>
+          <div class="faq-answer"><code>Math.random()</code> erzeugt Pseudozufallszahlen mit einem vorhersagbaren Algorithmus. Wer den Startwert kennt, kann die Folge nachberechnen. <code>crypto.getRandomValues()</code> hingegen nutzt die Zufallsquelle des Betriebssystems. Die Ergebnisse sind kryptografisch sicher und nicht vorhersagbar. Unser Generator verwendet ausschlie&szlig;lich <code>crypto.getRandomValues()</code>.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Kann ich Zufallszahlen mit Dezimalstellen generieren? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Der Generator erzeugt ganze Zahlen innerhalb des von dir festgelegten Bereichs. F&uuml;r Dezimalzahlen kannst du einen gr&ouml;&szlig;eren Bereich w&auml;hlen und das Ergebnis selbst teilen. Beispiel: Generiere Zahlen von 1 bis 1000 und teile durch 100, um Werte von 0,01 bis 10,00 zu erhalten.</div>
-      </div>
+        <details>
+          <summary>Kann ich Zufallszahlen mit Dezimalstellen generieren?</summary>
+          <div class="faq-answer">Der Generator erzeugt ganze Zahlen innerhalb des von dir festgelegten Bereichs. F&uuml;r Dezimalzahlen kannst du einen gr&ouml;&szlig;eren Bereich w&auml;hlen und das Ergebnis selbst teilen. Beispiel: Generiere Zahlen von 1 bis 1000 und teile durch 100, um Werte von 0,01 bis 10,00 zu erhalten.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Wie nutze ich den Generator f&uuml;r eine Verlosung? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Setze das Minimum auf 1 und das Maximum auf die Anzahl der Teilnehmer. Aktiviere &bdquo;Keine Duplikate&ldquo; und w&auml;hle die Anzahl der Gewinner. Klicke auf &bdquo;Generieren&ldquo;. Die Ergebnisse kannst du per CSV exportieren und als Dokumentation der fairen Ziehung aufbewahren.</div>
-      </div>
+        <details>
+          <summary>Wie nutze ich den Generator f&uuml;r eine Verlosung?</summary>
+          <div class="faq-answer">Setze das Minimum auf 1 und das Maximum auf die Anzahl der Teilnehmer. Aktiviere &bdquo;Keine Duplikate&ldquo; und w&auml;hle die Anzahl der Gewinner. Klicke auf &bdquo;Generieren&ldquo;. Die Ergebnisse kannst du per CSV exportieren und als Dokumentation der fairen Ziehung aufbewahren.</div>
+        </details>
 
-      <div class="faq-item">
-        <button class="faq-question">Werden die generierten Zahlen gespeichert? <span class="arrow">&#x25BC;</span></button>
-        <div class="faq-answer">Die letzten f&uuml;nf Ergebnisse werden im Verlauf angezeigt und bleiben verf&uuml;gbar, solange du die Seite nicht neu l&auml;dst. Kein Ergebnis wird an einen Server &uuml;bertragen. F&uuml;r eine dauerhafte Aufbewahrung nutze den CSV-Export oder kopiere die Zahlen mit dem Kopieren-Button.</div>
-      </div>
+        <details>
+          <summary>Werden die generierten Zahlen gespeichert?</summary>
+          <div class="faq-answer">Die letzten f&uuml;nf Ergebnisse werden im Verlauf angezeigt und bleiben verf&uuml;gbar, solange du die Seite nicht neu l&auml;dst. Kein Ergebnis wird an einen Server &uuml;bertragen. F&uuml;r eine dauerhafte Aufbewahrung nutze den CSV-Export oder kopiere die Zahlen mit dem Kopieren-Button.</div>
+        </details>
     </section>
 
     <!-- VERWANDTE TOOLS -->
@@ -1112,19 +1102,6 @@
       setTimeout(function() {
         toast.classList.remove('show');
       }, 2000);
-    }
-
-    /* === FAQ ACCORDION === */
-    var faqItems = document.querySelectorAll('.faq-item');
-    for (var i = 0; i < faqItems.length; i++) {
-      faqItems[i].querySelector('.faq-question').addEventListener('click', function() {
-        var item = this.parentElement;
-        var wasOpen = item.classList.contains('open');
-        for (var j = 0; j < faqItems.length; j++) {
-          faqItems[j].classList.remove('open');
-        }
-        if (!wasOpen) item.classList.add('open');
-      });
     }
 
     /* === EVENT LISTENERS === */
