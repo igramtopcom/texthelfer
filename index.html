@@ -26,6 +26,19 @@
    "inLanguage":"de"}
   </script>
 
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Ist TextHelfer wirklich kostenlos?","acceptedAnswer":{"@type":"Answer","text":"Ja, alle neun Tools sind vollständig kostenlos. Es gibt keine Premium-Version, kein Zeichenlimit und keine versteckten Kosten. Sie müssen sich weder registrieren noch eine E-Mail-Adresse angeben."}},
+    {"@type":"Question","name":"Werden meine Texte gespeichert oder weitergegeben?","acceptedAnswer":{"@type":"Answer","text":"Nein. Alle Berechnungen laufen direkt in Ihrem Browser. Kein Text, den Sie eingeben, wird an einen Server gesendet oder gespeichert. Das gilt auch für generierte Passwörter. TextHelfer hat schlicht keinen Server, der Daten empfangen könnte."}},
+    {"@type":"Question","name":"Funktionieren die Tools auch auf dem Smartphone?","acceptedAnswer":{"@type":"Answer","text":"Ja. Alle Tools sind für mobile Geräte optimiert und funktionieren auf iPhone, Android-Smartphones und Tablets genauso wie auf dem Desktop. Kein App-Download nötig."}},
+    {"@type":"Question","name":"Warum gibt es TextHelfer nur auf Deutsch?","acceptedAnswer":{"@type":"Answer","text":"Weil viele Aufgaben sprachspezifisch sind. Der Flesch-Index für Deutsche Texte verwendet andere Formeln als die englische Version. Die Wiener Sachtextformel gibt es nur für Deutsch. Und Umlaute erfordern eine eigene Behandlung, die englische Tools ignorieren."}},
+    {"@type":"Question","name":"Kann ich TextHelfer offline nutzen?","acceptedAnswer":{"@type":"Answer","text":"Die Tools benötigen eine Internetverbindung beim ersten Laden der Seite. Sobald die Seite geladen ist, laufen alle Berechnungen lokal in Ihrem Browser, auch ohne aktive Verbindung."}},
+    {"@type":"Question","name":"Wie viele Tools gibt es bei TextHelfer?","acceptedAnswer":{"@type":"Answer","text":"Aktuell neun: Passwort Generator, Zeichenzähler, Wörter zählen, Lesbarkeit prüfen, Lorem Ipsum Deutsch, Text Formatierung, Umlaut Konverter, Textvergleich und Zufallszahlen Generator. Alle Tools decken verschiedene Aufgaben rund um deutschen Text ab."}},
+    {"@type":"Question","name":"Gibt es eine App für TextHelfer?","acceptedAnswer":{"@type":"Answer","text":"Nein, und das ist Absicht. TextHelfer funktioniert direkt im Browser, ohne Installation. Das spart Speicherplatz auf Ihrem Gerät und bedeutet: Sie haben immer die aktuelle Version, ohne Updates zu installieren."}},
+    {"@type":"Question","name":"Wer steckt hinter TextHelfer?","acceptedAnswer":{"@type":"Answer","text":"TextHelfer ist ein unabhängiges Projekt, das Textwerkzeuge speziell für die deutsche Sprache entwickelt. Bei Fragen oder Feedback erreichen Sie uns über die Kontaktseite."}}
+  ]}
+  </script>
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -278,6 +291,29 @@
     @media (min-width: 768px) and (max-width: 900px) {
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
     }
+    /* 3-Step Section */
+    .steps-section { max-width: 800px; margin: 2.5rem auto; padding: 0 1rem; }
+    .steps-section h2 { font-size: 1.3rem; margin-bottom: 1.5rem; text-align: center; }
+    .steps-grid { display: flex; gap: 1.5rem; }
+    .step-card { flex: 1; }
+    .step-num { font-size: 2.5rem; font-weight: 700; color: #2563EB; line-height: 1; }
+    html.dark .step-num { color: #60A5FA; }
+    .step-title { font-weight: 600; font-size: 1.05rem; margin: 0.3rem 0; }
+    .step-desc { font-size: 0.95rem; color: #4B5563; line-height: 1.5; }
+    html.dark .step-desc { color: #94A3B8; }
+    @media (max-width: 600px) { .steps-grid { flex-direction: column; } }
+
+    /* FAQ Accordion */
+    .faq-section-home { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .faq-section-home h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .faq-section-home details { border-bottom: 1px solid #E2E8F0; }
+    .faq-section-home summary { padding: 0.8rem 0; cursor: pointer; font-weight: 500; list-style: none; }
+    .faq-section-home summary::-webkit-details-marker { display: none; }
+    .faq-section-home summary::after { content: "▸"; float: right; transition: transform 0.2s; }
+    .faq-section-home details[open] summary::after { transform: rotate(90deg); }
+    .faq-section-home .faq-answer { padding: 0 0 0.8rem; font-size: 0.95rem; color: #4B5563; line-height: 1.6; }
+    html.dark .faq-section-home details { border-color: #334155; }
+    html.dark .faq-section-home .faq-answer { color: #94A3B8; }
   </style>
 </head>
 <body>
@@ -369,6 +405,28 @@
       </a>
     </div>
 
+    <!-- SO FUNKTIONIERT TEXTHELFER -->
+    <section class="steps-section">
+      <h2>So funktioniert TextHelfer</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-title">Tool ausw&auml;hlen</div>
+          <p class="step-desc">W&auml;hlen Sie eines der neun Texttools oben aus. Jedes Tool ist f&uuml;r eine bestimmte Aufgabe gemacht.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-title">Text eingeben</div>
+          <p class="step-desc">Tippen oder f&uuml;gen Sie Ihren Text direkt ins Tool ein. Keine Anmeldung, keine Installation, kein Warten.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-title">Ergebnis ablesen</div>
+          <p class="step-desc">Das Ergebnis erscheint sofort, w&auml;hrend Sie schreiben. Alles l&auml;uft in Ihrem Browser. Kein Zeichen verl&auml;sst Ihr Ger&auml;t.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="seo-section">
       <h2>Was ist TextHelfer?</h2>
       <p>Wer auf Deutsch schreibt, braucht andere Tools als jemand, der auf Englisch arbeitet. Umlaute, zusammengesetzte Wörter, die Wiener Sachtextformel: Das kennt kein englisches Tool. TextHelfer schließt genau diese Lücke.</p>
@@ -381,6 +439,43 @@
 
       <h2>Für wen ist TextHelfer?</h2>
       <p><strong>Texter und Content Creator</strong> nutzen die Tools für die tägliche Textarbeit, vom Zeichenlimit bis zur Lesbarkeitsprüfung. <strong>Studierende</strong> prüfen Hausarbeiten und Abschlussarbeiten auf Lesbarkeit und korrekte Textlänge. <strong>Marketing-Manager</strong> zählen Zeichen für Social-Media-Posts, Newsletter und Anzeigentexte. <strong>Webentwickler</strong> generieren deutschen Blindtext für Layouts und konvertieren Umlaute für URLs und Datenbanken. <strong>Übersetzer und Lektoren</strong> vergleichen Textversionen nach der Überarbeitung. TextHelfer ist für alle, die regelmäßig mit deutschen Texten arbeiten und dabei schnelle, zuverlässige Werkzeuge brauchen.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section-home">
+      <h2>H&auml;ufige Fragen zu TextHelfer</h2>
+      <details>
+        <summary>Ist TextHelfer wirklich kostenlos?</summary>
+        <div class="faq-answer">Ja, alle neun Tools sind vollst&auml;ndig kostenlos. Es gibt keine Premium-Version, kein Zeichenlimit und keine versteckten Kosten. Sie m&uuml;ssen sich weder registrieren noch eine E-Mail-Adresse angeben.</div>
+      </details>
+      <details>
+        <summary>Werden meine Texte gespeichert oder weitergegeben?</summary>
+        <div class="faq-answer">Nein. Alle Berechnungen laufen direkt in Ihrem Browser. Kein Text, den Sie eingeben, wird an einen Server gesendet oder gespeichert. Das gilt auch f&uuml;r generierte Passw&ouml;rter. TextHelfer hat schlicht keinen Server, der Daten empfangen k&ouml;nnte.</div>
+      </details>
+      <details>
+        <summary>Funktionieren die Tools auch auf dem Smartphone?</summary>
+        <div class="faq-answer">Ja. Alle Tools sind f&uuml;r mobile Ger&auml;te optimiert und funktionieren auf iPhone, Android-Smartphones und Tablets genauso wie auf dem Desktop. Kein App-Download n&ouml;tig.</div>
+      </details>
+      <details>
+        <summary>Warum gibt es TextHelfer nur auf Deutsch?</summary>
+        <div class="faq-answer">Weil viele Aufgaben sprachspezifisch sind. Der Flesch-Index f&uuml;r Deutsche Texte verwendet andere Formeln als die englische Version. Die Wiener Sachtextformel gibt es nur f&uuml;r Deutsch. Und Umlaute erfordern eine eigene Behandlung, die englische Tools ignorieren.</div>
+      </details>
+      <details>
+        <summary>Kann ich TextHelfer offline nutzen?</summary>
+        <div class="faq-answer">Die Tools ben&ouml;tigen eine Internetverbindung beim ersten Laden der Seite. Sobald die Seite geladen ist, laufen alle Berechnungen lokal in Ihrem Browser, auch ohne aktive Verbindung.</div>
+      </details>
+      <details>
+        <summary>Wie viele Tools gibt es bei TextHelfer?</summary>
+        <div class="faq-answer">Aktuell neun: Passwort Generator, Zeichenz&auml;hler, W&ouml;rter z&auml;hlen, Lesbarkeit pr&uuml;fen, Lorem Ipsum Deutsch, Text Formatierung, Umlaut Konverter, Textvergleich und Zufallszahlen Generator. Alle Tools decken verschiedene Aufgaben rund um deutschen Text ab.</div>
+      </details>
+      <details>
+        <summary>Gibt es eine App f&uuml;r TextHelfer?</summary>
+        <div class="faq-answer">Nein, und das ist Absicht. TextHelfer funktioniert direkt im Browser, ohne Installation. Das spart Speicherplatz auf Ihrem Ger&auml;t und bedeutet: Sie haben immer die aktuelle Version, ohne Updates zu installieren.</div>
+      </details>
+      <details>
+        <summary>Wer steckt hinter TextHelfer?</summary>
+        <div class="faq-answer">TextHelfer ist ein unabh&auml;ngiges Projekt, das Textwerkzeuge speziell f&uuml;r die deutsche Sprache entwickelt. Bei Fragen oder Feedback erreichen Sie uns &uuml;ber die <a href="/kontakt/">Kontaktseite</a>.</div>
+      </details>
     </section>
   </main>
 

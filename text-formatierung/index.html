@@ -490,6 +490,20 @@
       .btn-copy { flex: 1; }
       .btn-reset { flex: 1; }
     }
+
+    /* Verwandte Tools */
+    .related-tools { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .related-tools h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .related-card { display: block; padding: 1rem; border: 1px solid #E2E8F0; border-radius: 8px; background: #F8FAFC; text-decoration: none; color: inherit; transition: background 0.2s; }
+    .related-card:hover { background: #EFF6FF; }
+    .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
+    .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
+    html.dark .related-card { background: #1E293B; border-color: #334155; }
+    html.dark .related-card:hover { background: #1E3A5F; }
+    html.dark .related-card .rc-desc { color: #94A3B8; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -700,6 +714,28 @@
           <span class="faq-arrow">&#9660;</span>
         </button>
         <div class="faq-answer">Ja. Klicke auf &bdquo;Kopieren&ldquo; und f&uuml;ge den Text mit Strg+V in dein Programm ein. Der Text wird als reiner Text ohne versteckte Formatierung &uuml;bernommen. So vermeidest du Probleme mit unterschiedlichen Schriftarten oder Zeilenabst&auml;nden, die beim Kopieren aus anderen Quellen oft auftreten.</div>
+      </div>
+    </section>
+
+    <!-- VERWANDTE TOOLS -->
+    <section class="related-tools">
+      <h2>Das k&ouml;nnte Sie auch interessieren</h2>
+      <div class="related-grid">
+        <a href="/zeichenzaehler/" class="related-card">
+          <div class="rc-icon">&#x1F522;</div>
+          <div class="rc-name">Zeichenz&auml;hler</div>
+          <div class="rc-desc">Zeichen und W&ouml;rter in Echtzeit z&auml;hlen.</div>
+        </a>
+        <a href="/umlaut-konverter/" class="related-card">
+          <div class="rc-icon">&#x1F501;</div>
+          <div class="rc-name">Umlaut Konverter</div>
+          <div class="rc-desc">Umlaute in ae/oe/ue umschreiben und zur&uuml;ck.</div>
+        </a>
+        <a href="/woerter-zaehlen/" class="related-card">
+          <div class="rc-icon">&#x1F4DD;</div>
+          <div class="rc-name">W&ouml;rter z&auml;hlen</div>
+          <div class="rc-desc">W&ouml;rter, S&auml;tze und Lesezeit auf einen Blick.</div>
+        </a>
       </div>
     </section>
   </main>

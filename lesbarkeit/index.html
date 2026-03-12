@@ -602,6 +602,20 @@
       #textInput { min-height: 200px; font-size: 16px; }
       .score-number { font-size: 48px; }
     }
+
+    /* Verwandte Tools */
+    .related-tools { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .related-tools h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .related-card { display: block; padding: 1rem; border: 1px solid #E2E8F0; border-radius: 8px; background: #F8FAFC; text-decoration: none; color: inherit; transition: background 0.2s; }
+    .related-card:hover { background: #EFF6FF; }
+    .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
+    .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
+    html.dark .related-card { background: #1E293B; border-color: #334155; }
+    html.dark .related-card:hover { background: #1E3A5F; }
+    html.dark .related-card .rc-desc { color: #94A3B8; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -816,6 +830,28 @@
           <summary>Wie verbessere ich einen Text mit niedrigem Flesch-Wert?</summary>
           <div class="faq-answer">K&uuml;rze lange S&auml;tze, ersetze Fremdw&ouml;rter durch einfachere Begriffe und vermeide Passivkonstruktionen. Unser Tool zeigt dir die kritischen Stellen direkt an. Schon das Aufteilen eines 35-Wort-Satzes in zwei k&uuml;rzere S&auml;tze kann den Flesch-Wert deutlich anheben.</div>
         </details>
+      </div>
+    </section>
+
+    <!-- VERWANDTE TOOLS -->
+    <section class="related-tools">
+      <h2>Das k&ouml;nnte Sie auch interessieren</h2>
+      <div class="related-grid">
+        <a href="/woerter-zaehlen/" class="related-card">
+          <div class="rc-icon">📝</div>
+          <div class="rc-name">W&ouml;rter z&auml;hlen</div>
+          <div class="rc-desc">W&ouml;rter, S&auml;tze und Lesezeit auf einen Blick.</div>
+        </a>
+        <a href="/zeichenzaehler/" class="related-card">
+          <div class="rc-icon">🔢</div>
+          <div class="rc-name">Zeichenz&auml;hler</div>
+          <div class="rc-desc">Zeichen und W&ouml;rter in Echtzeit z&auml;hlen.</div>
+        </a>
+        <a href="/text-formatierung/" class="related-card">
+          <div class="rc-icon">🔤</div>
+          <div class="rc-name">Text Formatierung</div>
+          <div class="rc-desc">Gro&szlig;-, Kleinschreibung und mehr umwandeln.</div>
+        </a>
       </div>
     </section>
   </main>

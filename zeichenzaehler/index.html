@@ -623,6 +623,35 @@
         grid-template-columns: 1fr 1fr;
       }
     }
+
+    /* Zeichenlimits Table */
+    .limits-section { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .limits-section h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .limits-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .limits-table th { background: #2563EB; color: #FFF; padding: 0.6rem 0.8rem; text-align: left; }
+    .limits-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #E2E8F0; }
+    .limits-table tr:nth-child(even) td { background: #F8FAFC; }
+    html.dark .limits-table th { background: #1E40AF; color: #F1F5F9; }
+    html.dark .limits-table td { border-color: #334155; }
+    html.dark .limits-table tr:nth-child(odd) td { background: #1E293B; }
+    html.dark .limits-table tr:nth-child(even) td { background: #0F172A; }
+    .table-note { font-size: 0.8rem; color: #6B7280; margin-top: 0.5rem; }
+    html.dark .table-note { color: #94A3B8; }
+
+    /* Verwandte Tools */
+    .related-tools { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .related-tools h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .related-card { display: block; padding: 1rem; border: 1px solid #E2E8F0; border-radius: 8px; background: #F8FAFC; text-decoration: none; color: inherit; transition: background 0.2s; }
+    .related-card:hover { background: #EFF6FF; }
+    .related-card .rc-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .related-card .rc-name { font-weight: 600; margin-bottom: 0.3rem; }
+    .related-card .rc-desc { font-size: 0.85rem; color: #6B7280; }
+    html.dark .related-card { background: #1E293B; border-color: #334155; }
+    html.dark .related-card:hover { background: #1E3A5F; }
+    html.dark .related-card .rc-desc { color: #94A3B8; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -835,6 +864,42 @@
       </ul>
     </section>
 
+    <!-- ZEICHENLIMITS TABLE -->
+    <section class="limits-section">
+      <h2>Zeichenlimits 2026: Alle Plattformen im &Uuml;berblick</h2>
+      <div class="table-wrap">
+        <table class="limits-table">
+          <thead>
+            <tr><th>Plattform</th><th>Feld</th><th>Limit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>X (Twitter)</td><td>Beitrag</td><td>280</td></tr>
+            <tr><td>X (Twitter)</td><td>Bio</td><td>160</td></tr>
+            <tr><td>Instagram</td><td>Caption</td><td>2.200</td></tr>
+            <tr><td>Instagram</td><td>Bio</td><td>150</td></tr>
+            <tr><td>Instagram</td><td>Stories-Sticker</td><td>500</td></tr>
+            <tr><td>LinkedIn</td><td>Beitrag</td><td>3.000</td></tr>
+            <tr><td>LinkedIn</td><td>Headline</td><td>220</td></tr>
+            <tr><td>Facebook</td><td>Beitrag</td><td>63.206</td></tr>
+            <tr><td>Facebook</td><td>Seitenname</td><td>75</td></tr>
+            <tr><td>TikTok</td><td>Caption</td><td>2.200</td></tr>
+            <tr><td>TikTok</td><td>Bio</td><td>80</td></tr>
+            <tr><td>YouTube</td><td>Videotitel</td><td>100</td></tr>
+            <tr><td>YouTube</td><td>Beschreibung</td><td>5.000</td></tr>
+            <tr><td>Google Ads</td><td>&Uuml;berschrift</td><td>30</td></tr>
+            <tr><td>Google Ads</td><td>Beschreibung</td><td>90</td></tr>
+            <tr><td>Meta Ads</td><td>Prim&auml;rtext</td><td>125</td></tr>
+            <tr><td>Meta Ads</td><td>&Uuml;berschrift</td><td>40</td></tr>
+            <tr><td>WhatsApp</td><td>Status</td><td>139</td></tr>
+            <tr><td>E-Mail</td><td>Betreffzeile (Empfehlung)</td><td>50&ndash;60</td></tr>
+            <tr><td>SEO Title</td><td>Google-Suchergebnis</td><td>60</td></tr>
+            <tr><td>SEO Description</td><td>Google-Suchergebnis</td><td>160</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Stand: M&auml;rz 2026. Plattformen k&ouml;nnen ihre Limits jederzeit &auml;ndern.</p>
+    </section>
+
     <!-- FAQ -->
     <section class="seo-section">
       <h2>Häufige Fragen</h2>
@@ -879,6 +944,28 @@
           <summary>Z&auml;hlt der Zeichenz&auml;hler auch Sonderzeichen und Umlaute?</summary>
           <div class="faq-answer">Ja, Umlaute (&auml;, &ouml;, &uuml;) und Sonderzeichen (&szlig;, @, #) werden jeweils als ein Zeichen gez&auml;hlt. Das entspricht dem Verhalten der meisten Plattformen. Falls Sie Umlaute umwandeln m&uuml;ssen, nutzen Sie unseren <a href="/umlaut-konverter/">Umlaut Konverter</a>.</div>
         </details>
+      </div>
+    </section>
+
+    <!-- VERWANDTE TOOLS -->
+    <section class="related-tools">
+      <h2>Das k&ouml;nnte Sie auch interessieren</h2>
+      <div class="related-grid">
+        <a href="/woerter-zaehlen/" class="related-card">
+          <div class="rc-icon">📝</div>
+          <div class="rc-name">W&ouml;rter z&auml;hlen</div>
+          <div class="rc-desc">W&ouml;rter, S&auml;tze und Lesezeit auf einen Blick.</div>
+        </a>
+        <a href="/lesbarkeit/" class="related-card">
+          <div class="rc-icon">📊</div>
+          <div class="rc-name">Lesbarkeit pr&uuml;fen</div>
+          <div class="rc-desc">Flesch-Index und Wiener Sachtextformel berechnen.</div>
+        </a>
+        <a href="/text-formatierung/" class="related-card">
+          <div class="rc-icon">🔤</div>
+          <div class="rc-name">Text Formatierung</div>
+          <div class="rc-desc">Gro&szlig;-, Kleinschreibung und mehr umwandeln.</div>
+        </a>
       </div>
     </section>
   </main>
