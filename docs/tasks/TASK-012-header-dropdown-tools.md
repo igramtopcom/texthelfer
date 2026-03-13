@@ -4,7 +4,7 @@
 **PM:** TextHelfer PM Agent
 **Assignee:** Dev Agent (Claude CLI)
 **Priority:** P1
-**Status:** TODO
+**Status:** DONE ✅
 **Branch:** feature/TASK-012-header-dropdown-tools
 **Estimate:** 2 đến 3 giờ
 
@@ -110,6 +110,6 @@ Active state là điểm duy nhất khác nhau giữa các trang. Dev có thể 
 
 ---
 
-**PM Sign-off:** [ ] Chờ ký duyệt
-**Ngày ký duyệt:** ___________
-**Ghi chú ký duyệt:** ___________
+**PM Sign-off:** [x] ĐÃ KÝ DUYỆT ✅
+**Ngày ký duyệt:** 2026-03-13
+**Ghi chú ký duyệt:** Header đồng bộ đúng trên tất cả 9 trang, active state hoạt động, không có console error. Commit: 793b063
