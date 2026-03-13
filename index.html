@@ -52,6 +52,7 @@
     :root {
       --bg: #FFFFFF;
       --bg-card: #F8FAFC;
+      --bg-alt: #F1F5F9;
       --text: #111827;
       --text-muted: #6B7280;
       --accent: #2563EB;
@@ -62,6 +63,7 @@
     [data-theme="dark"] {
       --bg: #0F172A;
       --bg-card: #1E293B;
+      --bg-alt: #1A2332;
       --text: #F1F5F9;
       --text-muted: #94A3B8;
       --accent: #60A5FA;
@@ -126,11 +128,11 @@
     .theme-toggle {
       width: 44px;
       height: 44px;
-      border-radius: 50%;
+      border-radius: 8px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       cursor: pointer;
-      font-size: 20px;
+      font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -144,23 +146,47 @@
       padding: 48px 24px;
     }
 
+    /* === HERO === */
     .hero-title {
       font-size: 36px;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
-    .hero-title .logo-text { color: #2563EB; }
-    .hero-title .logo-helfer { color: #1E3A5F; }
-    [data-theme="dark"] .hero-title .logo-helfer { color: #F1F5F9; }
 
     .hero-subtitle {
       font-size: 18px;
       color: var(--text-muted);
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+    }
+    .trust-badge .badge-icon {
+      color: #22C55E;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* === CARD GRID === */
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -189,9 +215,44 @@
     .tool-card .tool-name { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
     .tool-card .tool-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
 
+    /* === HERO CARD (Passwort Generator) === */
     .tool-card.hero {
+      grid-column: 1 / -1;
       border: 2px solid var(--accent);
       position: relative;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .tool-card.hero .tool-icon {
+      font-size: 48px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-content .tool-name {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+    .hero-content .tool-desc {
+      margin-bottom: 14px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .tool-card.hero:hover .hero-cta {
+      background: var(--accent-hover);
     }
     .hero-badge {
       position: absolute;
@@ -207,6 +268,36 @@
       text-transform: uppercase;
     }
 
+    /* === AD PLACEHOLDERS === */
+    .ad-placeholder {
+      text-align: center;
+      padding: 16px;
+      margin: 32px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+    }
+
+    /* === STEPS SECTION === */
+    .steps-section {
+      max-width: 900px;
+      margin: 48px auto 0;
+      padding: 32px 24px;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .steps-section h2 { font-size: 22px; font-weight: 600; margin-bottom: 24px; text-align: center; }
+    .steps-grid { display: flex; gap: 24px; }
+    .step-card { flex: 1; }
+    .step-num { font-size: 32px; font-weight: 700; color: var(--accent); line-height: 1; }
+    .step-title { font-weight: 600; font-size: 16px; margin: 6px 0 4px; }
+    .step-desc { font-size: 15px; color: var(--text-muted); line-height: 1.5; }
+    @media (max-width: 600px) { .steps-grid { flex-direction: column; } }
+
+    /* === SEO SECTIONS === */
     .seo-section {
       margin-top: 48px;
     }
@@ -223,6 +314,63 @@
     .seo-section a { color: var(--accent); text-decoration: none; }
     .seo-section a:hover { text-decoration: underline; }
 
+    /* === F&Uuml;R WEN CARDS === */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .audience-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+    .audience-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+    .audience-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+    /* === FAQ ACCORDION === */
+    .faq-section-home { max-width: 800px; margin: 48px auto 0; padding: 0; border-top: 1px solid var(--border); }
+    .faq-section-home h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; padding-top: 24px; }
+    .faq-section-home details { border-bottom: 1px solid var(--border); }
+    .faq-section-home summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text);
+      transition: color 0.15s;
+    }
+    .faq-section-home summary::-webkit-details-marker { display: none; }
+    .faq-section-home summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform 0.2s;
+    }
+    .faq-section-home details[open] summary::after {
+      content: "\2212";
+    }
+    .faq-section-home summary:hover { color: var(--accent); }
+    .faq-section-home .faq-answer {
+      padding: 0 0 16px 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .faq-section-home .faq-answer a { color: var(--accent); text-decoration: none; }
+    .faq-section-home .faq-answer a:hover { text-decoration: underline; }
+
+    /* === FOOTER === */
     .footer {
       border-top: 1px solid var(--border);
       padding: 32px 24px;
@@ -280,64 +428,27 @@
     .mobile-menu a:hover { background: var(--border); color: var(--text); }
     .mobile-menu a.active { color: var(--accent); font-weight: 600; }
 
+    /* === RESPONSIVE === */
     @media (max-width: 767px) {
       .nav-links { display: none !important; }
       .hamburger { display: flex; }
       .tools-grid { grid-template-columns: 1fr; }
+      .tool-card.hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+      }
       .hero-title { font-size: 28px; }
       .main { padding: 32px 16px; }
+      .trust-badges { gap: 8px; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .steps-section { margin-left: -16px; margin-right: -16px; border-radius: 0; }
     }
 
     @media (min-width: 768px) and (max-width: 900px) {
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    /* 3-Step Section */
-    .steps-section { max-width: 800px; margin: 2.5rem auto; padding: 0 1rem; }
-    .steps-section h2 { font-size: 1.3rem; margin-bottom: 1.5rem; text-align: center; }
-    .steps-grid { display: flex; gap: 1.5rem; }
-    .step-card { flex: 1; }
-    .step-num { font-size: 2.5rem; font-weight: 700; color: #2563EB; line-height: 1; }
-    [data-theme="dark"] .step-num { color: #60A5FA; }
-    .step-title { font-weight: 600; font-size: 1.05rem; margin: 0.3rem 0; }
-    .step-desc { font-size: 0.95rem; color: #4B5563; line-height: 1.5; }
-    [data-theme="dark"] .step-desc { color: #94A3B8; }
-    @media (max-width: 600px) { .steps-grid { flex-direction: column; } }
-
-    /* FAQ Accordion */
-    .faq-section-home { max-width: 800px; margin: 2rem auto; padding: 0 1rem; border-top: 1px solid var(--border); }
-    .faq-section-home h2 { font-size: 1.3rem; margin-bottom: 1rem; }
-    .faq-section-home details { border-bottom: 1px solid var(--border); }
-    .faq-section-home summary {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-      font-size: 17px;
-      font-weight: 500;
-      cursor: pointer;
-      list-style: none;
-      color: var(--text);
-      transition: color 0.15s;
-    }
-    .faq-section-home summary::-webkit-details-marker { display: none; }
-    .faq-section-home summary::after {
-      content: "+";
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      margin-left: 12px;
-      transition: transform 0.2s;
-    }
-    .faq-section-home details[open] summary::after {
-      content: "\2212";
-    }
-    .faq-section-home summary:hover { color: var(--accent); }
-    .faq-section-home .faq-answer {
-      padding: 0 0 16px 0;
-      font-size: 16px;
-      line-height: 1.75;
-      color: var(--text-muted);
+      .tool-card.hero { grid-column: 1 / -1; }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -352,7 +463,7 @@
       <nav class="nav-links">
         <a href="/passwort-generator/">Passwort</a>
         <a href="/zeichenzaehler/">Zeichen</a>
-        <a href="/woerter-zaehlen/">Wörter</a>
+        <a href="/woerter-zaehlen/">W&ouml;rter</a>
         <a href="/lesbarkeit/">Lesbarkeit</a>
         <a href="/lorem-ipsum-deutsch/">Lorem</a>
         <a href="/text-formatierung/">Format</a>
@@ -361,7 +472,7 @@
         <a href="/zufallszahlen/">Zufall</a>
       </nav>
       <button class="hamburger" id="hamburgerBtn" aria-label="Men&uuml; &ouml;ffnen">&#x2630;</button>
-      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">🌙</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten"></button>
     </div>
     <nav class="mobile-menu" id="mobileMenu">
       <a href="/passwort-generator/">Passwort Generator</a>
@@ -378,57 +489,70 @@
   </header>
 
   <main class="main">
-    <h1 class="hero-title"><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></h1>
-    <p class="hero-subtitle">9 kostenlose Online-Texttools auf Deutsch – 100% im Browser, keine Anmeldung.</p>
+    <h1 class="hero-title">Textwerkzeuge f&uuml;r die deutsche Sprache</h1>
+    <p class="hero-subtitle">Zeichen z&auml;hlen, Lesbarkeit pr&uuml;fen, Passw&ouml;rter generieren &ndash; direkt im Browser, ohne Anmeldung.</p>
+
+    <div class="trust-badges">
+      <span class="trust-badge"><span class="badge-icon">&#10003;</span> Kostenlos</span>
+      <span class="trust-badge"><span class="badge-icon">&#10003;</span> Keine Anmeldung</span>
+      <span class="trust-badge"><span class="badge-icon">&#10003;</span> Kein Server</span>
+      <span class="trust-badge"><span class="badge-icon">&#10003;</span> Speziell f&uuml;r Deutsch</span>
+    </div>
 
     <div class="tools-grid">
       <a href="/passwort-generator/" class="tool-card hero">
         <span class="hero-badge">Beliebt</span>
-        <span class="tool-icon">🔐</span>
-        <div class="tool-name">Passwort Generator</div>
-        <div class="tool-desc">Sichere Passwörter online erstellen. Kein Passwort wird gespeichert.</div>
+        <span class="tool-icon">&#x1F510;</span>
+        <div class="hero-content">
+          <div class="tool-name">Passwort Generator</div>
+          <div class="tool-desc">Sichere Passw&ouml;rter online erstellen. Kein Passwort wird gespeichert.</div>
+          <span class="hero-cta">Jetzt ausprobieren</span>
+        </div>
       </a>
       <a href="/zeichenzaehler/" class="tool-card">
-        <span class="tool-icon">🔤</span>
-        <div class="tool-name">Zeichenzähler</div>
-        <div class="tool-desc">Zeichen, Wörter und Sätze in Echtzeit zählen.</div>
+        <span class="tool-icon">&#x1F524;</span>
+        <div class="tool-name">Zeichenz&auml;hler</div>
+        <div class="tool-desc">Zeichen, W&ouml;rter und S&auml;tze in Echtzeit z&auml;hlen.</div>
       </a>
       <a href="/woerter-zaehlen/" class="tool-card">
-        <span class="tool-icon">📝</span>
-        <div class="tool-name">Wörter zählen</div>
-        <div class="tool-desc">Wortanzahl, häufigste Wörter und Lesezeit berechnen.</div>
+        <span class="tool-icon">&#x1F4DD;</span>
+        <div class="tool-name">W&ouml;rter z&auml;hlen</div>
+        <div class="tool-desc">Wortanzahl, h&auml;ufigste W&ouml;rter und Lesezeit berechnen.</div>
       </a>
       <a href="/lesbarkeit/" class="tool-card">
-        <span class="tool-icon">📊</span>
-        <div class="tool-name">Lesbarkeit prüfen</div>
-        <div class="tool-desc">Flesch-Index und Wiener Sachtextformel für deutsche Texte.</div>
+        <span class="tool-icon">&#x1F4CA;</span>
+        <div class="tool-name">Lesbarkeit pr&uuml;fen</div>
+        <div class="tool-desc">Flesch-Index und Wiener Sachtextformel f&uuml;r deutsche Texte.</div>
       </a>
       <a href="/lorem-ipsum-deutsch/" class="tool-card">
-        <span class="tool-icon">📄</span>
+        <span class="tool-icon">&#x1F4C4;</span>
         <div class="tool-name">Lorem Ipsum Deutsch</div>
-        <div class="tool-desc">Deutscher Platzhaltertext für Mockups und Designs.</div>
+        <div class="tool-desc">Deutscher Platzhaltertext f&uuml;r Mockups und Designs.</div>
       </a>
       <a href="/text-formatierung/" class="tool-card">
-        <span class="tool-icon">🔠</span>
+        <span class="tool-icon">&#x1F520;</span>
         <div class="tool-name">Text Formatierung</div>
-        <div class="tool-desc">Groß-/Kleinschreibung umwandeln und Text bereinigen.</div>
+        <div class="tool-desc">Gro&szlig;-/Kleinschreibung umwandeln und Text bereinigen.</div>
       </a>
       <a href="/umlaut-konverter/" class="tool-card">
-        <span class="tool-icon">🔄</span>
+        <span class="tool-icon">&#x1F504;</span>
         <div class="tool-name">Umlaut Konverter</div>
-        <div class="tool-desc">Umlaute ä/ö/ü in ae/oe/ue umwandeln und umgekehrt.</div>
+        <div class="tool-desc">Umlaute &auml;/&ouml;/&uuml; in ae/oe/ue umwandeln und umgekehrt.</div>
       </a>
       <a href="/textvergleich/" class="tool-card">
-        <span class="tool-icon">🔍</span>
+        <span class="tool-icon">&#x1F50D;</span>
         <div class="tool-name">Textvergleich</div>
         <div class="tool-desc">Zwei Texte vergleichen und Unterschiede hervorheben.</div>
       </a>
       <a href="/zufallszahlen/" class="tool-card">
-        <span class="tool-icon">🎲</span>
+        <span class="tool-icon">&#x1F3B2;</span>
         <div class="tool-name">Zufallszahlen Generator</div>
-        <div class="tool-desc">Zufällige Zahlen generieren und als CSV exportieren.</div>
+        <div class="tool-desc">Zuf&auml;llige Zahlen generieren und als CSV exportieren.</div>
       </a>
     </div>
+
+    <!-- AD: TOP -->
+    <div class="ad-placeholder" id="ad-top">Werbung</div>
 
     <!-- SO FUNKTIONIERT TEXTHELFER -->
     <section class="steps-section">
@@ -454,17 +578,52 @@
 
     <section class="seo-section">
       <h2>Was ist TextHelfer?</h2>
-      <p>Wer auf Deutsch schreibt, braucht andere Tools als jemand, der auf Englisch arbeitet. Umlaute, zusammengesetzte Wörter, die Wiener Sachtextformel: Das kennt kein englisches Tool. TextHelfer schließt genau diese Lücke.</p>
-      <p>TextHelfer ist eine Sammlung von 9 kostenlosen Online-Texttools für die deutsche Sprache. Alle Tools laufen vollständig in Ihrem Browser. Es werden keine Daten an einen Server übertragen und nichts wird gespeichert. Sie brauchen keine Anmeldung, kein Konto und keine Installation. Einfach die Seite öffnen, Text eingeben, Ergebnis ablesen.</p>
-      <p>Die Werkzeuge decken die häufigsten Aufgaben im Textalltag ab. Mit dem <a href="/passwort-generator/">Passwort Generator</a> erstellen Sie sichere Kennwörter in Sekunden. Der <a href="/zeichenzaehler/">Zeichenzähler</a> zeigt sofort, ob Ihr Text ins Zeichenlimit passt. Die <a href="/lesbarkeit/">Lesbarkeitsprüfung</a> berechnet den Flesch-Index und die Wiener Sachtextformel speziell für deutsche Texte. Mit <a href="/woerter-zaehlen/">Wörter zählen</a> erhalten Sie eine vollständige Textstatistik mit Lesezeit und Absatzanzahl.</p>
-      <p>Für Layoutarbeit liefert der <a href="/lorem-ipsum-deutsch/">Deutsche Lorem Ipsum Generator</a> realistischen Blindtext mit echten Umlauten. Die <a href="/text-formatierung/">Textformatierung</a> wandelt Texte in Großbuchstaben, Kleinbuchstaben oder Title Case um. Der <a href="/umlaut-konverter/">Umlaut Konverter</a> ersetzt ä, ö, ü durch ae, oe, ue und umgekehrt. Mit dem <a href="/textvergleich/">Textvergleich</a> finden Sie Unterschiede zwischen zwei Versionen auf einen Blick. Und der <a href="/zufallszahlen/">Zufallszahlen Generator</a> erzeugt echte Zufallszahlen mit kryptografischen Verfahren, exportierbar als CSV. Alle neun Tools berücksichtigen die Besonderheiten der deutschen Sprache, von Umlauten über Komposita bis zur Wiener Sachtextformel.</p>
+      <p>Wer auf Deutsch schreibt, braucht andere Tools als jemand, der auf Englisch arbeitet. Umlaute, zusammengesetzte W&ouml;rter, die Wiener Sachtextformel: Das kennt kein englisches Tool. TextHelfer schlie&szlig;t genau diese L&uuml;cke.</p>
+      <p>TextHelfer ist eine Sammlung von 9 kostenlosen Online-Texttools f&uuml;r die deutsche Sprache. Alle Tools laufen vollst&auml;ndig in Ihrem Browser. Es werden keine Daten an einen Server &uuml;bertragen und nichts wird gespeichert. Sie brauchen keine Anmeldung, kein Konto und keine Installation. Einfach die Seite &ouml;ffnen, Text eingeben, Ergebnis ablesen.</p>
+      <p>Die Werkzeuge decken die h&auml;ufigsten Aufgaben im Textalltag ab. Mit dem <a href="/passwort-generator/">Passwort Generator</a> erstellen Sie sichere Kennw&ouml;rter in Sekunden. Der <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> zeigt sofort, ob Ihr Text ins Zeichenlimit passt. Die <a href="/lesbarkeit/">Lesbarkeitspr&uuml;fung</a> berechnet den Flesch-Index und die Wiener Sachtextformel speziell f&uuml;r deutsche Texte. Mit <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> erhalten Sie eine vollst&auml;ndige Textstatistik mit Lesezeit und Absatzanzahl.</p>
+      <p>F&uuml;r Layoutarbeit liefert der <a href="/lorem-ipsum-deutsch/">Deutsche Lorem Ipsum Generator</a> realistischen Blindtext mit echten Umlauten. Die <a href="/text-formatierung/">Textformatierung</a> wandelt Texte in Gro&szlig;buchstaben, Kleinbuchstaben oder Title Case um. Der <a href="/umlaut-konverter/">Umlaut Konverter</a> ersetzt &auml;, &ouml;, &uuml; durch ae, oe, ue und umgekehrt. Mit dem <a href="/textvergleich/">Textvergleich</a> finden Sie Unterschiede zwischen zwei Versionen auf einen Blick. Und der <a href="/zufallszahlen/">Zufallszahlen Generator</a> erzeugt echte Zufallszahlen mit kryptografischen Verfahren, exportierbar als CSV. Alle neun Tools ber&uuml;cksichtigen die Besonderheiten der deutschen Sprache, von Umlauten &uuml;ber Komposita bis zur Wiener Sachtextformel.</p>
 
       <h2>Warum TextHelfer?</h2>
-      <p>Ihre Texte bleiben bei Ihnen. Alle Berechnungen laufen lokal im Browser. Kein einziges Zeichen verlässt Ihren Rechner. Sie müssen kein Konto anlegen und keine E-Mail-Adresse angeben. Die Tools laden schnell, weil sie ohne externe Skripte und Tracking auskommen. Sie funktionieren auf jedem Gerät mit einem modernen Browser, egal ob Desktop, Tablet oder Smartphone. Und sie sind speziell für Deutsch gemacht. Deutsche Zeichenregeln, Lesbarkeitswerte und Wortlängen werden korrekt berechnet, nicht wie bei englischen Tools nur geschätzt.</p>
-
-      <h2>Für wen ist TextHelfer?</h2>
-      <p><strong>Texter und Content Creator</strong> nutzen die Tools für die tägliche Textarbeit, vom Zeichenlimit bis zur Lesbarkeitsprüfung. <strong>Studierende</strong> prüfen Hausarbeiten und Abschlussarbeiten auf Lesbarkeit und korrekte Textlänge. <strong>Marketing-Manager</strong> zählen Zeichen für Social-Media-Posts, Newsletter und Anzeigentexte. <strong>Webentwickler</strong> generieren deutschen Blindtext für Layouts und konvertieren Umlaute für URLs und Datenbanken. <strong>Übersetzer und Lektoren</strong> vergleichen Textversionen nach der Überarbeitung. TextHelfer ist für alle, die regelmäßig mit deutschen Texten arbeiten und dabei schnelle, zuverlässige Werkzeuge brauchen.</p>
+      <p>Ihre Texte bleiben bei Ihnen. Alle Berechnungen laufen lokal im Browser. Kein einziges Zeichen verl&auml;sst Ihren Rechner. Sie m&uuml;ssen kein Konto anlegen und keine E-Mail-Adresse angeben. Die Tools laden schnell, weil sie ohne externe Skripte und Tracking auskommen. Sie funktionieren auf jedem Ger&auml;t mit einem modernen Browser, egal ob Desktop, Tablet oder Smartphone. Und sie sind speziell f&uuml;r Deutsch gemacht. Deutsche Zeichenregeln, Lesbarkeitswerte und Wortl&auml;ngen werden korrekt berechnet, nicht wie bei englischen Tools nur gesch&auml;tzt.</p>
     </section>
+
+    <!-- AD: MIDDLE -->
+    <div class="ad-placeholder" id="ad-middle">Werbung</div>
+
+    <section class="seo-section">
+      <h2>F&uuml;r wen ist TextHelfer?</h2>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <span class="audience-icon">&#x270D;&#xFE0F;</span>
+          <div class="audience-name">Texter &amp; Content Creator</div>
+          <div class="audience-desc">T&auml;gliche Textarbeit, vom Zeichenlimit bis zur Lesbarkeitspr&uuml;fung.</div>
+        </div>
+        <div class="audience-card">
+          <span class="audience-icon">&#x1F393;</span>
+          <div class="audience-name">Studierende</div>
+          <div class="audience-desc">Hausarbeiten und Abschlussarbeiten auf Lesbarkeit und Textl&auml;nge pr&uuml;fen.</div>
+        </div>
+        <div class="audience-card">
+          <span class="audience-icon">&#x1F4C8;</span>
+          <div class="audience-name">Marketing-Manager</div>
+          <div class="audience-desc">Zeichen z&auml;hlen f&uuml;r Social-Media-Posts, Newsletter und Anzeigentexte.</div>
+        </div>
+        <div class="audience-card">
+          <span class="audience-icon">&#x1F4BB;</span>
+          <div class="audience-name">Webentwickler</div>
+          <div class="audience-desc">Deutschen Blindtext generieren und Umlaute f&uuml;r URLs konvertieren.</div>
+        </div>
+        <div class="audience-card">
+          <span class="audience-icon">&#x1F310;</span>
+          <div class="audience-name">&Uuml;bersetzer &amp; Lektoren</div>
+          <div class="audience-desc">Textversionen nach der &Uuml;berarbeitung vergleichen.</div>
+        </div>
+      </div>
+      <p style="margin-top:16px;">TextHelfer ist f&uuml;r alle, die regelm&auml;&szlig;ig mit deutschen Texten arbeiten und dabei schnelle, zuverl&auml;ssige Werkzeuge brauchen.</p>
+    </section>
+
+    <!-- AD: BOTTOM -->
+    <div class="ad-placeholder" id="ad-bottom">Werbung</div>
 
     <!-- FAQ -->
     <section class="faq-section-home">
@@ -517,7 +676,6 @@
     <div style="margin-top:8px;">
       <a href="/impressum/">Impressum</a> |
       <a href="/datenschutz/">Datenschutz</a> |
-      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a> |
       <a href="/kontakt.html">Kontakt</a>
     </div>
     <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
@@ -527,7 +685,7 @@
     const themeToggle = document.getElementById('themeToggle');
     function updateThemeIcon() {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
     }
     updateThemeIcon();
     themeToggle.addEventListener('click', function() {
