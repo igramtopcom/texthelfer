@@ -127,45 +127,100 @@
     .logo-helfer { color: #1E3A5F; }
     [data-theme="dark"] .logo-helfer { color: #93C5FD; }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-    .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active { color: var(--accent); font-weight: 600; }
-
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
-      flex-shrink: 0;
+      gap: 12px;
     }
 
     .theme-toggle {
       width: 44px;
       height: 44px;
-      border-radius: 50%;
-      background: var(--bg-card);
+      border-radius: 8px;
+      background: rgba(0,0,0,0.06);
       border: 1px solid var(--border);
       cursor: pointer;
-      font-size: 20px;
+      font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: opacity 0.2s;
+    }
+    [data-theme="dark"] .theme-toggle {
+      background: rgba(255,255,255,0.08);
+    }
+    .theme-toggle:hover { opacity: 0.75; }
+
+    .werkzeuge-wrap {
+      position: relative;
+    }
+    .werkzeuge-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 8px;
       transition: background 0.15s;
+    }
+    .werkzeuge-btn:hover { background: var(--bg-alt, var(--bg-card)); }
+    .werkzeuge-arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .werkzeuge-wrap.open .werkzeuge-arrow {
+      transform: rotate(180deg);
+    }
+
+    .werkzeuge-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 0;
+      min-width: 240px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 300;
+    }
+    [data-theme="dark"] .werkzeuge-dropdown {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .werkzeuge-wrap.open .werkzeuge-dropdown {
+      display: block;
+    }
+    .werkzeuge-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      min-height: 44px;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .werkzeuge-dropdown a:hover {
+      background: var(--bg-alt, var(--bg-card));
+    }
+    .werkzeuge-dropdown a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .werkzeuge-dropdown .dd-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
       flex-shrink: 0;
     }
-    .theme-toggle:hover { background: var(--border); }
 
     /* === MAIN === */
     .main {
@@ -560,16 +615,17 @@
       border-radius: 8px;
       padding: 8px 0;
       z-index: 200;
-      min-width: 200px;
+      min-width: 220px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     [data-theme="dark"] .mobile-menu { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-
     .mobile-menu.open { display: block; }
-
     .mobile-menu a {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 10px 18px;
+      min-height: 44px;
       font-size: 15px;
       color: var(--text-muted);
       text-decoration: none;
@@ -577,10 +633,11 @@
     }
     .mobile-menu a:hover { background: var(--border); color: var(--text); }
     .mobile-menu a.active { color: var(--accent); font-weight: 600; }
+    .mobile-menu .mm-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
 
     /* === RESPONSIVE === */
     @media (max-width: 767px) {
-      .nav-links { display: none !important; }
+      .werkzeuge-wrap { display: none !important; }
       .hamburger { display: flex; }
       .page-title { font-size: 22px; }
       .main { padding: 16px; }
@@ -610,38 +667,42 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <a href="/" class="logo">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#2563EB"/><text x="16" y="23" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="system-ui,-apple-system,sans-serif">T</text></svg>
       <span><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></span>
     </a>
     <div class="header-right">
-      <nav class="nav-links">
-        <a href="/passwort-generator/" class="active">Passwort</a>
-        <a href="/zeichenzaehler/">Zeichen</a>
-        <a href="/woerter-zaehlen/">W&ouml;rter</a>
-        <a href="/lesbarkeit/">Lesbarkeit</a>
-        <a href="/lorem-ipsum-deutsch/">Lorem</a>
-        <a href="/text-formatierung/">Format</a>
-        <a href="/umlaut-konverter/">Umlaut</a>
-        <a href="/textvergleich/">Vergleich</a>
-        <a href="/zufallszahlen/">Zufall</a>
-      </nav>
+      <div class="werkzeuge-wrap" id="werkzeugeWrap">
+        <button class="werkzeuge-btn" id="werkzeugeBtn" aria-expanded="false" aria-haspopup="true">
+          Werkzeuge <span class="werkzeuge-arrow">&#x25BE;</span>
+        </button>
+        <nav class="werkzeuge-dropdown" id="werkzeugeDropdown">
+          <a href="/passwort-generator/"><span class="dd-icon">&#x1F510;</span> Passwort Generator</a>
+          <a href="/zeichenzaehler/"><span class="dd-icon">&#x1F524;</span> Zeichenz&auml;hler</a>
+          <a href="/woerter-zaehlen/"><span class="dd-icon">&#x1F4DD;</span> W&ouml;rter z&auml;hlen</a>
+          <a href="/lesbarkeit/"><span class="dd-icon">&#x1F4CA;</span> Lesbarkeit pr&uuml;fen</a>
+          <a href="/lorem-ipsum-deutsch/"><span class="dd-icon">&#x1F4C4;</span> Lorem Ipsum Deutsch</a>
+          <a href="/text-formatierung/"><span class="dd-icon">&#x1F520;</span> Text Formatierung</a>
+          <a href="/umlaut-konverter/"><span class="dd-icon">&#x1F504;</span> Umlaut Konverter</a>
+          <a href="/textvergleich/"><span class="dd-icon">&#x1F50D;</span> Textvergleich</a>
+          <a href="/zufallszahlen/"><span class="dd-icon">&#x1F3B2;</span> Zufallszahlen Generator</a>
+        </nav>
+      </div>
       <button class="hamburger" id="hamburgerBtn" aria-label="Men&uuml; &ouml;ffnen">&#x2630;</button>
-      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">&#127769;</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten"></button>
     </div>
     <nav class="mobile-menu" id="mobileMenu">
-      <a href="/passwort-generator/" class="active">Passwort Generator</a>
-      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
-      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
-      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
-      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a>
-      <a href="/text-formatierung/">Text Formatierung</a>
-      <a href="/umlaut-konverter/">Umlaut Konverter</a>
-      <a href="/textvergleich/">Textvergleich</a>
-      <a href="/zufallszahlen/">Zufallszahlen</a>
-      <a href="/kontakt.html">Kontakt</a>
+      <a href="/passwort-generator/"><span class="mm-icon">&#x1F510;</span> Passwort Generator</a>
+      <a href="/zeichenzaehler/"><span class="mm-icon">&#x1F524;</span> Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/"><span class="mm-icon">&#x1F4DD;</span> W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/"><span class="mm-icon">&#x1F4CA;</span> Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/"><span class="mm-icon">&#x1F4C4;</span> Lorem Ipsum Deutsch</a>
+      <a href="/text-formatierung/"><span class="mm-icon">&#x1F520;</span> Text Formatierung</a>
+      <a href="/umlaut-konverter/"><span class="mm-icon">&#x1F504;</span> Umlaut Konverter</a>
+      <a href="/textvergleich/"><span class="mm-icon">&#x1F50D;</span> Textvergleich</a>
+      <a href="/zufallszahlen/"><span class="mm-icon">&#x1F3B2;</span> Zufallszahlen</a>
+      <a href="/kontakt.html"><span class="mm-icon">&#x2709;&#xFE0F;</span> Kontakt</a>
     </nav>
   </header>
 
@@ -864,16 +925,15 @@
   </footer>
 
   <script>
-    /* === DARK MODE TOGGLE === */
-    const themeToggle = document.getElementById('themeToggle');
+    /* === THEME TOGGLE === */
+    var themeToggle = document.getElementById('themeToggle');
     function updateThemeIcon() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
     }
     updateThemeIcon();
-
     themeToggle.addEventListener('click', function() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       if (isDark) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('texthelfer-theme', 'light');
@@ -884,268 +944,51 @@
       updateThemeIcon();
     });
 
+    /* === WERKZEUGE DROPDOWN === */
+    var werkzeugeWrap = document.getElementById('werkzeugeWrap');
+    var werkzeugeBtn = document.getElementById('werkzeugeBtn');
+    werkzeugeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = werkzeugeWrap.classList.toggle('open');
+      werkzeugeBtn.setAttribute('aria-expanded', isOpen);
+    });
+
     /* === HAMBURGER MENU === */
     var hamburgerBtn = document.getElementById('hamburgerBtn');
     var mobileMenu = document.getElementById('mobileMenu');
     hamburgerBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       mobileMenu.classList.toggle('open');
+      werkzeugeWrap.classList.remove('open');
     });
+
     document.addEventListener('click', function(e) {
+      if (!werkzeugeWrap.contains(e.target)) {
+        werkzeugeWrap.classList.remove('open');
+        werkzeugeBtn.setAttribute('aria-expanded', 'false');
+      }
       if (!mobileMenu.contains(e.target) && e.target !== hamburgerBtn) {
         mobileMenu.classList.remove('open');
       }
     });
 
-    /* === SLIDER === */
-    const lengthSlider = document.getElementById('lengthSlider');
-    const lengthValue = document.getElementById('lengthValue');
-    lengthSlider.addEventListener('input', function() {
-      lengthValue.textContent = this.value;
-    });
-
-    /* === CHARACTER POOLS === */
-    const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const LOWER = 'abcdefghijklmnopqrstuvwxyz';
-    const NUMBERS = '0123456789';
-    const SPECIAL = '!@#$%^&*()_+-=[]{}|;:,.?';
-
-    const VOWELS = 'aeiou';
-    const CONSONANTS = 'bdfghklmnprstvw';
-    const VOWELS_UPPER = 'AEIOU';
-    const CONSONANTS_UPPER = 'BDFGHKLMNPRSTVW';
-
-    /* === CRYPTO RANDOM === */
-    function secureRandom(max) {
-      const array = new Uint32Array(1);
-      crypto.getRandomValues(array);
-      return array[0] % max;
-    }
-
-    function secureRandomChar(pool) {
-      return pool[secureRandom(pool.length)];
-    }
-
-    /* === GENERATE PASSWORD === */
-    function generatePassword(length, useUpper, useLower, useNumbers, useSpecial, phonetisch) {
-      if (phonetisch) {
-        return generatePhoneticPassword(length, useUpper, useLower, useNumbers, useSpecial);
-      }
-
-      let pool = '';
-      const required = [];
-
-      if (useUpper)   { pool += UPPER;   required.push(secureRandomChar(UPPER)); }
-      if (useLower)   { pool += LOWER;   required.push(secureRandomChar(LOWER)); }
-      if (useNumbers) { pool += NUMBERS; required.push(secureRandomChar(NUMBERS)); }
-      if (useSpecial) { pool += SPECIAL; required.push(secureRandomChar(SPECIAL)); }
-
-      if (pool.length === 0) return '';
-
-      const result = [];
-      for (let i = 0; i < length; i++) {
-        result.push(secureRandomChar(pool));
-      }
-
-      /* Ensure at least one char from each selected type */
-      for (let i = 0; i < required.length && i < length; i++) {
-        const pos = secureRandom(length);
-        result[pos] = required[i];
-      }
-
-      return result.join('');
-    }
-
-    function generatePhoneticPassword(length, useUpper, useLower, useNumbers, useSpecial) {
-      const result = [];
-      let isConsonant = secureRandom(2) === 0;
-
-      for (let i = 0; i < length; i++) {
-        /* Randomly insert a number or special char (~20% chance if enabled) */
-        if ((useNumbers || useSpecial) && result.length > 0 && secureRandom(5) === 0) {
-          let extras = '';
-          if (useNumbers) extras += NUMBERS;
-          if (useSpecial) extras += SPECIAL;
-          if (extras.length > 0) {
-            result.push(secureRandomChar(extras));
-            continue;
-          }
+    /* === ACTIVE STATE === */
+    (function() {
+      var path = window.location.pathname;
+      var ddLinks = document.querySelectorAll('.werkzeuge-dropdown a');
+      for (var i = 0; i < ddLinks.length; i++) {
+        if (ddLinks[i].getAttribute('href') === path) {
+          ddLinks[i].classList.add('active');
         }
-
-        if (isConsonant) {
-          if (useUpper && useLower) {
-            result.push(secureRandom(4) === 0 ? secureRandomChar(CONSONANTS_UPPER) : secureRandomChar(CONSONANTS));
-          } else if (useUpper) {
-            result.push(secureRandomChar(CONSONANTS_UPPER));
-          } else {
-            result.push(secureRandomChar(CONSONANTS));
-          }
-        } else {
-          if (useUpper && useLower) {
-            result.push(secureRandom(4) === 0 ? secureRandomChar(VOWELS_UPPER) : secureRandomChar(VOWELS));
-          } else if (useUpper) {
-            result.push(secureRandomChar(VOWELS_UPPER));
-          } else {
-            result.push(secureRandomChar(VOWELS));
-          }
+      }
+      var mmLinks = document.querySelectorAll('.mobile-menu a');
+      for (var j = 0; j < mmLinks.length; j++) {
+        if (mmLinks[j].getAttribute('href') === path) {
+          mmLinks[j].classList.add('active');
         }
-        isConsonant = !isConsonant;
       }
-
-      return result.join('');
-    }
-
-    /* === STRENGTH CALCULATION === */
-    function calcStrength(length, typesUsed) {
-      if (length < 8 || typesUsed <= 1) return { level: 'Schwach', color: '#EF4444', width: '25%' };
-      if (length <= 11 && typesUsed >= 2) return { level: 'Mittel', color: '#F97316', width: '50%' };
-      if (length <= 15 && typesUsed >= 3) return { level: 'Stark', color: '#22C55E', width: '75%' };
-      if (length >= 16 && typesUsed >= 4) return { level: 'Sehr stark', color: '#15803D', width: '100%' };
-      /* Fallback logic for edge cases */
-      if (length >= 16 && typesUsed >= 3) return { level: 'Stark', color: '#22C55E', width: '75%' };
-      if (length >= 12 && typesUsed >= 2) return { level: 'Stark', color: '#22C55E', width: '75%' };
-      return { level: 'Mittel', color: '#F97316', width: '50%' };
-    }
-
-    /* === UI ELEMENTS === */
-    const cbUpper = document.getElementById('cbUpper');
-    const cbLower = document.getElementById('cbLower');
-    const cbNumbers = document.getElementById('cbNumbers');
-    const cbSpecial = document.getElementById('cbSpecial');
-    const cbPhonetisch = document.getElementById('cbPhonetisch');
-    const btnGenerate = document.getElementById('btnGenerate');
-    const errorMsg = document.getElementById('errorMsg');
-    const passwordList = document.getElementById('passwordList');
-    const strengthRow = document.getElementById('strengthRow');
-    const strengthFill = document.getElementById('strengthFill');
-    const strengthText = document.getElementById('strengthText');
-
-    function getSelectedCount() {
-      const radios = document.querySelectorAll('input[name="count"]');
-      for (const r of radios) {
-        if (r.checked) return parseInt(r.value);
-      }
-      return 1;
-    }
-
-    /* === MAIN GENERATE HANDLER === */
-    btnGenerate.addEventListener('click', function() {
-      const useUpper = cbUpper.checked;
-      const useLower = cbLower.checked;
-      const useNumbers = cbNumbers.checked;
-      const useSpecial = cbSpecial.checked;
-      const phonetisch = cbPhonetisch.checked;
-      const length = parseInt(lengthSlider.value);
-      const count = getSelectedCount();
-
-      /* Validation */
-      if (!useUpper && !useLower && !useNumbers && !useSpecial) {
-        errorMsg.style.display = 'block';
-        return;
-      }
-      errorMsg.style.display = 'none';
-
-      /* Count character types */
-      let typesUsed = 0;
-      if (useUpper) typesUsed++;
-      if (useLower) typesUsed++;
-      if (useNumbers) typesUsed++;
-      if (useSpecial) typesUsed++;
-
-      /* Strength */
-      const strength = calcStrength(length, typesUsed);
-      strengthRow.style.display = 'flex';
-      strengthFill.style.width = strength.width;
-      strengthFill.style.background = strength.color;
-      strengthText.textContent = strength.level;
-      strengthText.style.color = strength.color;
-
-      /* Generate passwords */
-      const passwords = [];
-      for (let i = 0; i < count; i++) {
-        passwords.push(generatePassword(length, useUpper, useLower, useNumbers, useSpecial, phonetisch));
-      }
-
-      /* Render */
-      passwordList.innerHTML = '';
-      passwords.forEach(function(pw, idx) {
-        const row = document.createElement('div');
-        row.className = 'password-row';
-
-        const display = document.createElement('div');
-        display.className = 'password-display';
-        display.textContent = pw;
-
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'btn-copy';
-        copyBtn.innerHTML = '📋';
-        copyBtn.setAttribute('aria-label', 'Passwort kopieren');
-        copyBtn.addEventListener('click', function() {
-          copyToClipboard(pw, copyBtn);
-        });
-
-        row.appendChild(display);
-        row.appendChild(copyBtn);
-        passwordList.appendChild(row);
-      });
-    });
-
-    /* === COPY TO CLIPBOARD === */
-    function copyToClipboard(text, btn) {
-      navigator.clipboard.writeText(text).then(function() {
-        btn.innerHTML = '✓';
-        btn.classList.add('copied');
-        showToast('Kopiert!');
-        setTimeout(function() {
-          btn.innerHTML = '📋';
-          btn.classList.remove('copied');
-        }, 2000);
-      }).catch(function() {
-        /* Fallback */
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        btn.innerHTML = '✓';
-        btn.classList.add('copied');
-        showToast('Kopiert!');
-        setTimeout(function() {
-          btn.innerHTML = '📋';
-          btn.classList.remove('copied');
-        }, 2000);
-      });
-    }
-
-    /* === TOAST === */
-    function showToast(message) {
-      const existing = document.querySelector('.toast');
-      if (existing) existing.remove();
-
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.textContent = message;
-      document.body.appendChild(toast);
-
-      setTimeout(function() {
-        toast.remove();
-      }, 2200);
-    }
-
-    /* === HIDE ERROR ON CHECKBOX CHANGE === */
-    [cbUpper, cbLower, cbNumbers, cbSpecial].forEach(function(cb) {
-      cb.addEventListener('change', function() {
-        if (cbUpper.checked || cbLower.checked || cbNumbers.checked || cbSpecial.checked) {
-          errorMsg.style.display = 'none';
-        }
-      });
-    });
-
-    /* === AUTO-GENERATE ON LOAD === */
-    btnGenerate.click();
+    })();
+  
   </script>
 
 </body>

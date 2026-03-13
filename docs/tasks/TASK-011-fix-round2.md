@@ -4,7 +4,7 @@
 **PM:** TextHelfer PM Agent
 **Assignee:** Dev Agent (Claude CLI)
 **Priority:** P1
-**Status:** IN_REVIEW — cần sửa trước khi ký duyệt
+**Status:** DONE ✅
 **Branch:** feature/TASK-011-homepage-redesign (sửa trên branch cũ, không tạo branch mới)
 
 ---
@@ -135,6 +135,6 @@ FIX-4 là thay đổi lớn nhất và ảnh hưởng đến tất cả các tra
 
 ---
 
-**PM Sign-off:** [ ] Chờ ký duyệt
-**Ngày ký duyệt:** ___________
-**Ghi chú ký duyệt:** ___________
+**PM Sign-off:** [x] ĐÃ KÝ DUYỆT ✅
+**Ngày ký duyệt:** 2026-03-13
+**Ghi chú ký duyệt:** Toàn bộ 5 fix hoàn thành đúng spec. SEO content, FAQ, schema JSON-LD còn nguyên. Không có console error. Commit: 52d881d

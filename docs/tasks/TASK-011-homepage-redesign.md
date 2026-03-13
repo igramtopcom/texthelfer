@@ -4,7 +4,7 @@
 **PM:** TextHelfer PM Agent
 **Assignee:** Dev Agent (Claude CLI)
 **Priority:** P1
-**Status:** TODO
+**Status:** DONE ✅
 **Branch:** feature/TASK-011-homepage-redesign
 **Estimate:** 1 ngày
 

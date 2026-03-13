@@ -125,40 +125,100 @@
     .logo-helfer { color: #1E3A5F; }
     [data-theme="dark"] .logo-helfer { color: #93C5FD; }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-    .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active { color: var(--accent); font-weight: 600; }
-
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+    [data-theme="dark"] .theme-toggle {
+      background: rgba(255,255,255,0.08);
+    }
+    .theme-toggle:hover { opacity: 0.75; }
+
+    .werkzeuge-wrap {
+      position: relative;
+    }
+    .werkzeuge-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 20px;
-      padding: 6px;
+      padding: 8px 12px;
       border-radius: 8px;
       transition: background 0.15s;
+    }
+    .werkzeuge-btn:hover { background: var(--bg-alt, var(--bg-card)); }
+    .werkzeuge-arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .werkzeuge-wrap.open .werkzeuge-arrow {
+      transform: rotate(180deg);
+    }
+
+    .werkzeuge-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 0;
+      min-width: 240px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 300;
+    }
+    [data-theme="dark"] .werkzeuge-dropdown {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .werkzeuge-wrap.open .werkzeuge-dropdown {
+      display: block;
+    }
+    .werkzeuge-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      min-height: 44px;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .werkzeuge-dropdown a:hover {
+      background: var(--bg-alt, var(--bg-card));
+    }
+    .werkzeuge-dropdown a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .werkzeuge-dropdown .dd-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
       flex-shrink: 0;
     }
-    .theme-toggle:hover { background: var(--border); }
 
     /* === MAIN === */
     .main {
@@ -444,16 +504,17 @@
       border-radius: 8px;
       padding: 8px 0;
       z-index: 200;
-      min-width: 200px;
+      min-width: 220px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     [data-theme="dark"] .mobile-menu { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-
     .mobile-menu.open { display: block; }
-
     .mobile-menu a {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 10px 18px;
+      min-height: 44px;
       font-size: 15px;
       color: var(--text-muted);
       text-decoration: none;
@@ -461,11 +522,12 @@
     }
     .mobile-menu a:hover { background: var(--border); color: var(--text); }
     .mobile-menu a.active { color: var(--accent); font-weight: 600; }
+    .mobile-menu .mm-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
 
     /* === RESPONSIVE === */
     @media (max-width: 767px) {
       .header { padding: 0 16px; }
-      .nav-links { display: none; }
+      .werkzeuge-wrap { display: none !important; }
       .hamburger { display: flex; }
       .main { padding: 24px 16px 40px; }
       .page-title { font-size: 22px; }
@@ -501,38 +563,42 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <a href="/" class="logo">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#2563EB"/><text x="16" y="23" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="system-ui,-apple-system,sans-serif">T</text></svg>
       <span><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></span>
     </a>
     <div class="header-right">
-      <nav class="nav-links">
-        <a href="/passwort-generator/">Passwort</a>
-        <a href="/zeichenzaehler/">Zeichen</a>
-        <a href="/woerter-zaehlen/">W&ouml;rter</a>
-        <a href="/lesbarkeit/">Lesbarkeit</a>
-        <a href="/lorem-ipsum-deutsch/">Lorem</a>
-        <a href="/text-formatierung/" class="active">Format</a>
-        <a href="/umlaut-konverter/">Umlaut</a>
-        <a href="/textvergleich/">Vergleich</a>
-        <a href="/zufallszahlen/">Zufall</a>
-      </nav>
+      <div class="werkzeuge-wrap" id="werkzeugeWrap">
+        <button class="werkzeuge-btn" id="werkzeugeBtn" aria-expanded="false" aria-haspopup="true">
+          Werkzeuge <span class="werkzeuge-arrow">&#x25BE;</span>
+        </button>
+        <nav class="werkzeuge-dropdown" id="werkzeugeDropdown">
+          <a href="/passwort-generator/"><span class="dd-icon">&#x1F510;</span> Passwort Generator</a>
+          <a href="/zeichenzaehler/"><span class="dd-icon">&#x1F524;</span> Zeichenz&auml;hler</a>
+          <a href="/woerter-zaehlen/"><span class="dd-icon">&#x1F4DD;</span> W&ouml;rter z&auml;hlen</a>
+          <a href="/lesbarkeit/"><span class="dd-icon">&#x1F4CA;</span> Lesbarkeit pr&uuml;fen</a>
+          <a href="/lorem-ipsum-deutsch/"><span class="dd-icon">&#x1F4C4;</span> Lorem Ipsum Deutsch</a>
+          <a href="/text-formatierung/"><span class="dd-icon">&#x1F520;</span> Text Formatierung</a>
+          <a href="/umlaut-konverter/"><span class="dd-icon">&#x1F504;</span> Umlaut Konverter</a>
+          <a href="/textvergleich/"><span class="dd-icon">&#x1F50D;</span> Textvergleich</a>
+          <a href="/zufallszahlen/"><span class="dd-icon">&#x1F3B2;</span> Zufallszahlen Generator</a>
+        </nav>
+      </div>
       <button class="hamburger" id="hamburgerBtn" aria-label="Men&uuml; &ouml;ffnen">&#x2630;</button>
-      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">&#127769;</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten"></button>
     </div>
     <nav class="mobile-menu" id="mobileMenu">
-      <a href="/passwort-generator/">Passwort Generator</a>
-      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
-      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
-      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
-      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a>
-      <a href="/text-formatierung/" class="active">Text Formatierung</a>
-      <a href="/umlaut-konverter/">Umlaut Konverter</a>
-      <a href="/textvergleich/">Textvergleich</a>
-      <a href="/zufallszahlen/">Zufallszahlen</a>
-      <a href="/kontakt.html">Kontakt</a>
+      <a href="/passwort-generator/"><span class="mm-icon">&#x1F510;</span> Passwort Generator</a>
+      <a href="/zeichenzaehler/"><span class="mm-icon">&#x1F524;</span> Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/"><span class="mm-icon">&#x1F4DD;</span> W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/"><span class="mm-icon">&#x1F4CA;</span> Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/"><span class="mm-icon">&#x1F4C4;</span> Lorem Ipsum Deutsch</a>
+      <a href="/text-formatierung/"><span class="mm-icon">&#x1F520;</span> Text Formatierung</a>
+      <a href="/umlaut-konverter/"><span class="mm-icon">&#x1F504;</span> Umlaut Konverter</a>
+      <a href="/textvergleich/"><span class="mm-icon">&#x1F50D;</span> Textvergleich</a>
+      <a href="/zufallszahlen/"><span class="mm-icon">&#x1F3B2;</span> Zufallszahlen</a>
+      <a href="/kontakt.html"><span class="mm-icon">&#x2709;&#xFE0F;</span> Kontakt</a>
     </nav>
   </header>
 
@@ -1696,12 +1762,13 @@
       updateCounts();
     });
 
-    /* === DARK MODE === */
+    /* === THEME TOGGLE === */
     var themeToggle = document.getElementById('themeToggle');
     function updateThemeIcon() {
       var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
     }
+    updateThemeIcon();
     themeToggle.addEventListener('click', function() {
       var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       if (isDark) {
@@ -1713,7 +1780,15 @@
       }
       updateThemeIcon();
     });
-    updateThemeIcon();
+
+    /* === WERKZEUGE DROPDOWN === */
+    var werkzeugeWrap = document.getElementById('werkzeugeWrap');
+    var werkzeugeBtn = document.getElementById('werkzeugeBtn');
+    werkzeugeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = werkzeugeWrap.classList.toggle('open');
+      werkzeugeBtn.setAttribute('aria-expanded', isOpen);
+    });
 
     /* === HAMBURGER MENU === */
     var hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -1721,12 +1796,35 @@
     hamburgerBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       mobileMenu.classList.toggle('open');
+      werkzeugeWrap.classList.remove('open');
     });
+
     document.addEventListener('click', function(e) {
+      if (!werkzeugeWrap.contains(e.target)) {
+        werkzeugeWrap.classList.remove('open');
+        werkzeugeBtn.setAttribute('aria-expanded', 'false');
+      }
       if (!mobileMenu.contains(e.target) && e.target !== hamburgerBtn) {
         mobileMenu.classList.remove('open');
       }
     });
+
+    /* === ACTIVE STATE === */
+    (function() {
+      var path = window.location.pathname;
+      var ddLinks = document.querySelectorAll('.werkzeuge-dropdown a');
+      for (var i = 0; i < ddLinks.length; i++) {
+        if (ddLinks[i].getAttribute('href') === path) {
+          ddLinks[i].classList.add('active');
+        }
+      }
+      var mmLinks = document.querySelectorAll('.mobile-menu a');
+      for (var j = 0; j < mmLinks.length; j++) {
+        if (mmLinks[j].getAttribute('href') === path) {
+          mmLinks[j].classList.add('active');
+        }
+      }
+    })();
 
     updateCounts();
   </script>
