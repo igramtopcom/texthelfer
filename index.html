@@ -79,6 +79,7 @@
       background: var(--bg);
     }
 
+    /* === HEADER === */
     .header {
       height: 56px;
       background: var(--bg);
@@ -109,36 +110,95 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
+    /* FIX-1: Theme toggle — rounded rect, semi-transparent bg */
     .theme-toggle {
       width: 44px;
       height: 44px;
       border-radius: 8px;
-      background: var(--bg-card);
+      background: rgba(0,0,0,0.06);
       border: 1px solid var(--border);
       cursor: pointer;
       font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: opacity 0.2s;
+    }
+    [data-theme="dark"] .theme-toggle {
+      background: rgba(255,255,255,0.08);
+    }
+    .theme-toggle:hover { opacity: 0.75; }
+
+    /* FIX-4: Werkzeuge dropdown */
+    .werkzeuge-wrap {
+      position: relative;
+    }
+    .werkzeuge-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 8px;
       transition: background 0.15s;
     }
-    .theme-toggle:hover { background: var(--border); }
+    .werkzeuge-btn:hover { background: var(--bg-alt); }
+    .werkzeuge-arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+    .werkzeuge-wrap.open .werkzeuge-arrow {
+      transform: rotate(180deg);
+    }
+
+    .werkzeuge-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 0;
+      min-width: 240px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 300;
+    }
+    [data-theme="dark"] .werkzeuge-dropdown {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .werkzeuge-wrap.open .werkzeuge-dropdown {
+      display: block;
+    }
+    .werkzeuge-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      min-height: 44px;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .werkzeuge-dropdown a:hover {
+      background: var(--bg-alt);
+    }
+    .werkzeuge-dropdown .dd-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
 
     .main {
       max-width: 900px;
@@ -187,10 +247,15 @@
     }
 
     /* === CARD GRID === */
+    /* FIX-2: justify-content center so last row centers */
     .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
+    }
+    .tools-grid .tool-card {
+      width: calc(33.333% - 14px);
     }
 
     .tool-card {
@@ -217,7 +282,7 @@
 
     /* === HERO CARD (Passwort Generator) === */
     .tool-card.hero {
-      grid-column: 1 / -1;
+      width: 100%;
       border: 2px solid var(--accent);
       position: relative;
       padding: 28px 32px;
@@ -315,13 +380,16 @@
     .seo-section a:hover { text-decoration: underline; }
 
     /* === F&Uuml;R WEN CARDS === */
+    /* FIX-3: flex wrap + center so last row centers */
     .audience-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 16px;
+      justify-content: center;
       margin-top: 16px;
     }
     .audience-card {
+      width: calc(33.333% - 11px);
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -371,6 +439,7 @@
     .faq-section-home .faq-answer a:hover { text-decoration: underline; }
 
     /* === FOOTER === */
+    /* FIX-5: 3-column grid layout */
     .footer {
       border-top: 1px solid var(--border);
       padding: 32px 24px;
@@ -379,13 +448,34 @@
       color: var(--text-muted);
       margin-top: 48px;
     }
-    .footer a {
+    .footer-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px 16px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .footer-tools a {
       color: var(--text-muted);
       text-decoration: none;
+      padding: 6px 4px;
+      font-size: 14px;
+      transition: color 0.15s;
     }
-    .footer a:hover { color: var(--accent); }
+    .footer-tools a:hover { color: var(--accent); text-decoration: underline; }
+    .footer-legal {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+    .footer-legal a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .footer-legal a:hover { color: var(--accent); }
 
-    /* === HAMBURGER MENU === */
+    /* === HAMBURGER MENU (mobile) === */
     .hamburger {
       display: none;
       width: 44px;
@@ -410,29 +500,30 @@
       border-radius: 8px;
       padding: 8px 0;
       z-index: 200;
-      min-width: 200px;
+      min-width: 220px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     [data-theme="dark"] .mobile-menu { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-
     .mobile-menu.open { display: block; }
-
     .mobile-menu a {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 10px 18px;
+      min-height: 44px;
       font-size: 15px;
       color: var(--text-muted);
       text-decoration: none;
       transition: background 0.15s, color 0.15s;
     }
     .mobile-menu a:hover { background: var(--border); color: var(--text); }
-    .mobile-menu a.active { color: var(--accent); font-weight: 600; }
+    .mobile-menu .mm-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
 
     /* === RESPONSIVE === */
     @media (max-width: 767px) {
-      .nav-links { display: none !important; }
+      .werkzeuge-wrap { display: none !important; }
       .hamburger { display: flex; }
-      .tools-grid { grid-template-columns: 1fr; }
+      .tools-grid .tool-card { width: 100%; }
       .tool-card.hero {
         flex-direction: column;
         text-align: center;
@@ -441,14 +532,15 @@
       .hero-title { font-size: 28px; }
       .main { padding: 32px 16px; }
       .trust-badges { gap: 8px; }
-      .audience-grid { grid-template-columns: 1fr; }
+      .audience-card { width: 100%; }
       .steps-section { margin-left: -16px; margin-right: -16px; border-radius: 0; }
+      .footer-tools { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (min-width: 768px) and (max-width: 900px) {
-      .tools-grid { grid-template-columns: repeat(2, 1fr); }
-      .tool-card.hero { grid-column: 1 / -1; }
-      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid .tool-card { width: calc(50% - 10px); }
+      .tool-card.hero { width: 100%; }
+      .audience-card { width: calc(50% - 8px); }
     }
   </style>
 </head>
@@ -460,31 +552,38 @@
       <span><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></span>
     </a>
     <div class="header-right">
-      <nav class="nav-links">
-        <a href="/passwort-generator/">Passwort</a>
-        <a href="/zeichenzaehler/">Zeichen</a>
-        <a href="/woerter-zaehlen/">W&ouml;rter</a>
-        <a href="/lesbarkeit/">Lesbarkeit</a>
-        <a href="/lorem-ipsum-deutsch/">Lorem</a>
-        <a href="/text-formatierung/">Format</a>
-        <a href="/umlaut-konverter/">Umlaut</a>
-        <a href="/textvergleich/">Vergleich</a>
-        <a href="/zufallszahlen/">Zufall</a>
-      </nav>
+      <!-- FIX-4: Werkzeuge dropdown (desktop) -->
+      <div class="werkzeuge-wrap" id="werkzeugeWrap">
+        <button class="werkzeuge-btn" id="werkzeugeBtn" aria-expanded="false" aria-haspopup="true">
+          Werkzeuge <span class="werkzeuge-arrow">&#x25BE;</span>
+        </button>
+        <nav class="werkzeuge-dropdown" id="werkzeugeDropdown">
+          <a href="/passwort-generator/"><span class="dd-icon">&#x1F510;</span> Passwort Generator</a>
+          <a href="/zeichenzaehler/"><span class="dd-icon">&#x1F524;</span> Zeichenz&auml;hler</a>
+          <a href="/woerter-zaehlen/"><span class="dd-icon">&#x1F4DD;</span> W&ouml;rter z&auml;hlen</a>
+          <a href="/lesbarkeit/"><span class="dd-icon">&#x1F4CA;</span> Lesbarkeit pr&uuml;fen</a>
+          <a href="/lorem-ipsum-deutsch/"><span class="dd-icon">&#x1F4C4;</span> Lorem Ipsum Deutsch</a>
+          <a href="/text-formatierung/"><span class="dd-icon">&#x1F520;</span> Text Formatierung</a>
+          <a href="/umlaut-konverter/"><span class="dd-icon">&#x1F504;</span> Umlaut Konverter</a>
+          <a href="/textvergleich/"><span class="dd-icon">&#x1F50D;</span> Textvergleich</a>
+          <a href="/zufallszahlen/"><span class="dd-icon">&#x1F3B2;</span> Zufallszahlen Generator</a>
+        </nav>
+      </div>
       <button class="hamburger" id="hamburgerBtn" aria-label="Men&uuml; &ouml;ffnen">&#x2630;</button>
       <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten"></button>
     </div>
+    <!-- Mobile menu with icons -->
     <nav class="mobile-menu" id="mobileMenu">
-      <a href="/passwort-generator/">Passwort Generator</a>
-      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
-      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
-      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
-      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a>
-      <a href="/text-formatierung/">Text Formatierung</a>
-      <a href="/umlaut-konverter/">Umlaut Konverter</a>
-      <a href="/textvergleich/">Textvergleich</a>
-      <a href="/zufallszahlen/">Zufallszahlen</a>
-      <a href="/kontakt.html">Kontakt</a>
+      <a href="/passwort-generator/"><span class="mm-icon">&#x1F510;</span> Passwort Generator</a>
+      <a href="/zeichenzaehler/"><span class="mm-icon">&#x1F524;</span> Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/"><span class="mm-icon">&#x1F4DD;</span> W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/"><span class="mm-icon">&#x1F4CA;</span> Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/"><span class="mm-icon">&#x1F4C4;</span> Lorem Ipsum Deutsch</a>
+      <a href="/text-formatierung/"><span class="mm-icon">&#x1F520;</span> Text Formatierung</a>
+      <a href="/umlaut-konverter/"><span class="mm-icon">&#x1F504;</span> Umlaut Konverter</a>
+      <a href="/textvergleich/"><span class="mm-icon">&#x1F50D;</span> Textvergleich</a>
+      <a href="/zufallszahlen/"><span class="mm-icon">&#x1F3B2;</span> Zufallszahlen</a>
+      <a href="/kontakt.html"><span class="mm-icon">&#x2709;&#xFE0F;</span> Kontakt</a>
     </nav>
   </header>
 
@@ -663,17 +762,20 @@
     </section>
   </main>
 
+  <!-- FIX-5: Footer with 3-column tool grid -->
   <footer class="footer">
-    <a href="/passwort-generator/">Passwort Generator</a> |
-    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
-    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
-    <a href="/lesbarkeit/">Lesbarkeit</a> |
-    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
-    <a href="/text-formatierung/">Text Formatierung</a> |
-    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
-    <a href="/textvergleich/">Textvergleich</a> |
-    <a href="/zufallszahlen/">Zufallszahlen</a>
-    <div style="margin-top:8px;">
+    <nav class="footer-tools">
+      <a href="/passwort-generator/">Passwort Generator</a>
+      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a>
+      <a href="/text-formatierung/">Text Formatierung</a>
+      <a href="/umlaut-konverter/">Umlaut Konverter</a>
+      <a href="/textvergleich/">Textvergleich</a>
+      <a href="/zufallszahlen/">Zufallszahlen</a>
+    </nav>
+    <div class="footer-legal">
       <a href="/impressum/">Impressum</a> |
       <a href="/datenschutz/">Datenschutz</a> |
       <a href="/kontakt.html">Kontakt</a>
@@ -682,14 +784,15 @@
   </footer>
 
   <script>
-    const themeToggle = document.getElementById('themeToggle');
+    /* === THEME TOGGLE === */
+    var themeToggle = document.getElementById('themeToggle');
     function updateThemeIcon() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
     }
     updateThemeIcon();
     themeToggle.addEventListener('click', function() {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       if (isDark) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('texthelfer-theme', 'light');
@@ -700,14 +803,31 @@
       updateThemeIcon();
     });
 
-    /* === HAMBURGER MENU === */
+    /* === WERKZEUGE DROPDOWN (desktop) === */
+    var werkzeugeWrap = document.getElementById('werkzeugeWrap');
+    var werkzeugeBtn = document.getElementById('werkzeugeBtn');
+    werkzeugeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = werkzeugeWrap.classList.toggle('open');
+      werkzeugeBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    /* === HAMBURGER MENU (mobile) === */
     var hamburgerBtn = document.getElementById('hamburgerBtn');
     var mobileMenu = document.getElementById('mobileMenu');
     hamburgerBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       mobileMenu.classList.toggle('open');
+      /* Close werkzeuge if open */
+      werkzeugeWrap.classList.remove('open');
     });
+
+    /* Close all dropdowns on outside click */
     document.addEventListener('click', function(e) {
+      if (!werkzeugeWrap.contains(e.target)) {
+        werkzeugeWrap.classList.remove('open');
+        werkzeugeBtn.setAttribute('aria-expanded', 'false');
+      }
       if (!mobileMenu.contains(e.target) && e.target !== hamburgerBtn) {
         mobileMenu.classList.remove('open');
       }
