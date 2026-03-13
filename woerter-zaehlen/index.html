@@ -456,21 +456,6 @@
     }
     @keyframes toastOut { from { opacity: 1; } to { opacity: 0; } }
 
-    /* === AD PLACEHOLDERS === */
-    .ad-placeholder {
-      border: 2px dashed var(--border);
-      min-height: 90px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 12px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin: 24px 0;
-      background: var(--bg-card);
-    }
 
     /* === SEO CONTENT === */
     .seo-section h2 {
@@ -523,8 +508,32 @@
       color: var(--text-muted);
       margin-top: 48px;
     }
-    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
-    .footer a:hover { color: var(--accent); }
+    .footer-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px 16px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .footer-tools a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 4px;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+    .footer-tools a:hover { color: var(--accent); text-decoration: underline; }
+    .footer-legal {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+    .footer-legal a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .footer-legal a:hover { color: var(--accent); }
 
     /* === HAMBURGER MENU === */
     .hamburger {
@@ -581,6 +590,7 @@
       .tool-layout { flex-direction: column; }
       .tool-sidebar { width: 100%; }
       #textInput { min-height: 200px; font-size: 16px; }
+      .footer-tools { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* Verwandte Tools */
@@ -714,9 +724,6 @@
 
     </div>
 
-    <!-- AD: TOP -->
-    <div class="ad-placeholder" id="ad-top">Werbung</div>
-
     <!-- SEO CONTENT -->
     <section class="seo-section">
       <h2>Wie funktioniert der Wörter-Zähler?</h2>
@@ -732,9 +739,6 @@
       <p>&Uuml;bersetzer berechnen ihre Preise oft pro Wort. Journalisten arbeiten mit festen Umfangsvorgaben. Autoren verfolgen den Fortschritt ihres Manuskripts kapitelweise. In all diesen Situationen ist eine exakte Wortz&auml;hlung kein Nice-to-have, sondern Arbeitsgrundlage.</p>
     </section>
 
-    <!-- AD: MIDDLE -->
-    <div class="ad-placeholder" id="ad-middle">Werbung</div>
-
     <section class="seo-section">
       <h2>F&uuml;r wen ist der W&ouml;rter-Z&auml;hler geeignet?</h2>
       <ul>
@@ -745,9 +749,6 @@
         <li><strong>Autoren</strong>, die den Fortschritt ihres Manuskripts Kapitel f&uuml;r Kapitel verfolgen</li>
       </ul>
     </section>
-
-    <!-- AD: BOTTOM -->
-    <div class="ad-placeholder" id="ad-bottom">Werbung</div>
 
     <!-- FAQ -->
     <section class="seo-section">
@@ -821,19 +822,20 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <a href="/passwort-generator/">Passwort Generator</a> |
-    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
-    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
-    <a href="/lesbarkeit/">Lesbarkeit</a> |
-    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
-    <a href="/text-formatierung/">Text Formatierung</a> |
-    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
-    <a href="/textvergleich/">Textvergleich</a> |
-    <a href="/zufallszahlen/">Zufallszahlen</a>
-    <div style="margin-top:8px;">
+    <nav class="footer-tools">
+      <a href="/passwort-generator/">Passwort Generator</a>
+      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a>
+      <a href="/text-formatierung/">Text Formatierung</a>
+      <a href="/umlaut-konverter/">Umlaut Konverter</a>
+      <a href="/textvergleich/">Textvergleich</a>
+      <a href="/zufallszahlen/">Zufallszahlen</a>
+    </nav>
+    <div class="footer-legal">
       <a href="/impressum/">Impressum</a> |
       <a href="/datenschutz/">Datenschutz</a> |
-      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a> |
       <a href="/kontakt.html">Kontakt</a>
     </div>
     <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>

@@ -384,18 +384,6 @@
     }
     .btn-reset:hover { border-color: var(--danger); color: var(--danger); }
 
-    /* === AD PLACEHOLDERS === */
-    .ad-placeholder {
-      background: var(--bg-card);
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
     /* === SEO SECTIONS === */
     .seo-section {
       margin-bottom: 32px;
@@ -470,14 +458,37 @@
     /* === FOOTER === */
     .footer {
       border-top: 1px solid var(--border);
-      padding: 24px;
+      padding: 32px 24px;
       text-align: center;
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 2;
     }
-    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
-    .footer a:hover { color: var(--accent); }
+    .footer-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px 16px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .footer-tools a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 4px;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+    .footer-tools a:hover { color: var(--accent); text-decoration: underline; }
+    .footer-legal {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+    .footer-legal a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .footer-legal a:hover { color: var(--accent); }
 
     /* === HAMBURGER MENU === */
     .hamburger {
@@ -544,6 +555,7 @@
       .btn-swap { width: 100%; }
       .btn-copy { flex: 1; }
       .btn-reset { flex: 1; }
+      .footer-tools { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* Verwandte Tools */
@@ -641,9 +653,6 @@
       </div>
     </div>
 
-    <!-- AD TOP -->
-    <div class="ad-placeholder" id="ad-top" style="margin-top: 32px;">Anzeige</div>
-
     <!-- SEO SECTION 1 -->
     <section class="seo-section">
       <h2>Wie funktioniert die Text Formatierung?</h2>
@@ -669,9 +678,6 @@
       <p>Die Funktion &bdquo;Text bereinigen&ldquo; entfernt doppelte Leerzeichen und &uuml;berfl&uuml;ssige Zeilenumbr&uuml;che. Wer regelm&auml;&szlig;ig Texte aus PDFs oder E-Mails &uuml;bernimmt, spart damit Minuten an manueller Nacharbeit. Und mit dem Tauschen-Button kannst du mehrere Formatierungen hintereinander anwenden, ohne zwischen verschiedenen Tools zu wechseln.</p>
     </section>
 
-    <!-- AD MIDDLE -->
-    <div class="ad-placeholder" id="ad-middle">Anzeige</div>
-
     <!-- SEO SECTION 2 -->
     <section class="seo-section">
       <h2>F&uuml;r wen ist die Text Formatierung geeignet?</h2>
@@ -687,9 +693,6 @@
         deutschen Platzhaltertext mit dem <a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a> Generator.
       </p>
     </section>
-
-    <!-- AD BOTTOM -->
-    <div class="ad-placeholder" id="ad-bottom">Anzeige</div>
 
     <!-- FAQ -->
     <section class="faq-section">
@@ -771,19 +774,20 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <a href="/passwort-generator/">Passwort Generator</a> |
-    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
-    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
-    <a href="/lesbarkeit/">Lesbarkeit</a> |
-    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
-    <a href="/text-formatierung/">Text Formatierung</a> |
-    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
-    <a href="/textvergleich/">Textvergleich</a> |
-    <a href="/zufallszahlen/">Zufallszahlen</a>
-    <div style="margin-top:8px;">
+    <nav class="footer-tools">
+      <a href="/passwort-generator/">Passwort Generator</a>
+      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a>
+      <a href="/text-formatierung/">Text Formatierung</a>
+      <a href="/umlaut-konverter/">Umlaut Konverter</a>
+      <a href="/textvergleich/">Textvergleich</a>
+      <a href="/zufallszahlen/">Zufallszahlen</a>
+    </nav>
+    <div class="footer-legal">
       <a href="/impressum/">Impressum</a> |
       <a href="/datenschutz/">Datenschutz</a> |
-      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a> |
       <a href="/kontakt.html">Kontakt</a>
     </div>
     <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>

@@ -473,18 +473,6 @@
       color: var(--text);
     }
 
-    /* === AD === */
-    .ad-placeholder {
-      background: var(--bg-card);
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      padding: 14px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 13px;
-      margin: 28px 0;
-    }
-
     /* === SEO SECTIONS === */
     .seo-section {
       margin-bottom: 32px;
@@ -560,17 +548,38 @@
 
     /* === FOOTER === */
     .footer {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 32px 20px;
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
       text-align: center;
       font-size: 14px;
       color: var(--text-muted);
-      border-top: 1px solid var(--border);
     }
-
-    .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
-    .footer a:hover { color: var(--accent); }
+    .footer-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px 16px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .footer-tools a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 4px;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+    .footer-tools a:hover { color: var(--accent); text-decoration: underline; }
+    .footer-legal {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+    .footer-legal a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .footer-legal a:hover { color: var(--accent); }
 
     /* === TOAST === */
     .toast {
@@ -660,6 +669,7 @@
       }
 
       .action-btn { width: 100%; }
+      .footer-tools { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* Verwandte Tools */
@@ -758,9 +768,6 @@
       <button class="action-btn" id="csvBtn">Als CSV exportieren</button>
     </div>
 
-    <!-- AD TOP -->
-    <div class="ad-placeholder" id="ad-top">Anzeige</div>
-
     <!-- HISTORY -->
     <section class="history-section" id="historySection">
       <div class="history-title">Verlauf</div>
@@ -782,9 +789,6 @@
       <p>Ein besonderes Feature ist der CSV-Export. Andere Online-Generatoren zeigen die Zahlen nur an. Bei uns kannst du sie direkt als Datei herunterladen und in Excel oder Google Sheets &ouml;ffnen. F&uuml;r Lehrer, die Gruppeneinteilungen dokumentieren m&uuml;ssen, oder Statistiker, die Stichproben archivieren, spart das einen zus&auml;tzlichen Arbeitsschritt. Die Option &bdquo;Keine Duplikate&ldquo; stellt sicher, dass jede Zahl nur einmal vorkommt, perfekt f&uuml;r Losnummern oder Teilnehmerlisten.</p>
     </section>
 
-    <!-- AD MIDDLE -->
-    <div class="ad-placeholder" id="ad-middle">Anzeige</div>
-
     <!-- SEO: F&uuml;r wen -->
     <section class="seo-section">
       <h2>F&uuml;r wen ist der Zufallszahlen Generator geeignet?</h2>
@@ -797,9 +801,6 @@
       </ul>
       <p style="margin-top: 12px;">Vergleichen Sie Ihre Ergebnisse mit dem <a href="/textvergleich/">Textvergleich</a> oder z&auml;hlen Sie Zeichen mit dem <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>.</p>
     </section>
-
-    <!-- AD BOTTOM -->
-    <div class="ad-placeholder" id="ad-bottom">Anzeige</div>
 
     <!-- FAQ -->
     <section class="faq-section">
@@ -881,19 +882,20 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <a href="/passwort-generator/">Passwort Generator</a> |
-    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
-    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
-    <a href="/lesbarkeit/">Lesbarkeit</a> |
-    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
-    <a href="/text-formatierung/">Text Formatierung</a> |
-    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
-    <a href="/textvergleich/">Textvergleich</a> |
-    <a href="/zufallszahlen/">Zufallszahlen</a>
-    <div style="margin-top:8px;">
+    <nav class="footer-tools">
+      <a href="/passwort-generator/">Passwort Generator</a>
+      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a>
+      <a href="/text-formatierung/">Text Formatierung</a>
+      <a href="/umlaut-konverter/">Umlaut Konverter</a>
+      <a href="/textvergleich/">Textvergleich</a>
+      <a href="/zufallszahlen/">Zufallszahlen</a>
+    </nav>
+    <div class="footer-legal">
       <a href="/impressum/">Impressum</a> |
       <a href="/datenschutz/">Datenschutz</a> |
-      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a> |
       <a href="/kontakt.html">Kontakt</a>
     </div>
     <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
