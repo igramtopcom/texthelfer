@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="1i35qIHvSiRVE8XEYBeMSJUxj7xg1AoSEymf7Fw1wkI" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVY152B7GE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EVY152B7GE');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerkl&auml;rung | TextHelfer</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://texthelfer.net/datenschutz/">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <script>
+    (function(){var t=localStorage.getItem("texthelfer-theme");if(t==="dark"||t===null){document.documentElement.setAttribute("data-theme","dark")}})();
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --border: #334155;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .header {
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 8px;
+    }
+    .logo svg { flex-shrink: 0; }
+    .logo-text { color: #2563EB; }
+    .logo-helfer { color: #1E3A5F; }
+    [data-theme="dark"] .logo-helfer { color: #93C5FD; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .theme-toggle:hover { background: var(--border); }
+
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 19px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    ul {
+      margin: 0 0 16px 24px;
+      line-height: 1.75;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 48px;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .footer a:hover { color: var(--accent); }
+
+    /* === HAMBURGER MENU === */
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 22px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 56px;
+      right: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 0;
+      z-index: 200;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] .mobile-menu { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      padding: 10px 18px;
+      font-size: 15px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .mobile-menu a:hover { background: var(--border); color: var(--text); }
+
+    @media (max-width: 767px) {
+      .nav-links { display: none !important; }
+      .hamburger { display: flex; }
+      h1 { font-size: 26px; }
+      .main { padding: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="/" class="logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#2563EB"/><text x="16" y="23" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="system-ui,-apple-system,sans-serif">T</text></svg>
+      <span><span class="logo-text">Text</span><span class="logo-helfer">Helfer</span></span>
+    </a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a href="/passwort-generator/">Passwort</a>
+        <a href="/zeichenzaehler/">Zeichen</a>
+        <a href="/woerter-zaehlen/">W&ouml;rter</a>
+        <a href="/lesbarkeit/">Lesbarkeit</a>
+        <a href="/lorem-ipsum-deutsch/">Lorem</a>
+        <a href="/text-formatierung/">Format</a>
+        <a href="/umlaut-konverter/">Umlaut</a>
+        <a href="/textvergleich/">Vergleich</a>
+        <a href="/zufallszahlen/">Zufall</a>
+      </nav>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Men&uuml; &ouml;ffnen">&#x2630;</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten"></button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="/passwort-generator/">Passwort Generator</a>
+      <a href="/zeichenzaehler/">Zeichenz&auml;hler</a>
+      <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a>
+      <a href="/lesbarkeit/">Lesbarkeit pr&uuml;fen</a>
+      <a href="/lorem-ipsum-deutsch/">Lorem Ipsum Deutsch</a>
+      <a href="/text-formatierung/">Text Formatierung</a>
+      <a href="/umlaut-konverter/">Umlaut Konverter</a>
+      <a href="/textvergleich/">Textvergleich</a>
+      <a href="/zufallszahlen/">Zufallszahlen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <h1>Datenschutzerkl&auml;rung</h1>
+
+    <h2>1. Datenschutz auf einen Blick</h2>
+    <p>TextHelfer erhebt keine personenbezogenen Daten. Es ist keine Registrierung erforderlich, und alle Berechnungen laufen lokal in Ihrem Browser. Kein Text, den Sie eingeben, wird an einen Server &uuml;bertragen.</p>
+
+    <h2>2. Verantwortliche Stelle</h2>
+    <p>
+      RIVERNET TECHNOLOGY PTE. LTD.<br>
+      Peninsula Shopping Complex<br>
+      3 Coleman Street #03-024<br>
+      Singapore 179804<br><br>
+      E-Mail: <a href="mailto:support@texthelfer.net">support@texthelfer.net</a>
+    </p>
+
+    <h2>3. Datenerhebung auf dieser Website</h2>
+
+    <h3>3.1 Cookies und lokale Speicherung</h3>
+    <p>Diese Website verwendet keine Tracking-Cookies. Es wird ausschlie&szlig;lich der localStorage-Eintrag <code>texthelfer-theme</code> genutzt, um Ihre Pr&auml;ferenz f&uuml;r den Hell- oder Dunkel-Modus zu speichern. Dieser Eintrag enth&auml;lt keine personenbezogenen Daten.</p>
+
+    <h3>3.2 Server-Log-Dateien</h3>
+    <p>Unser Hosting-Provider (Cloudflare) speichert automatisch technische Zugriffsdaten in Server-Log-Dateien. Diese umfassen:</p>
+    <ul>
+      <li>IP-Adresse (anonymisiert)</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Angeforderte Seite</li>
+      <li>Browsertyp und Betriebssystem</li>
+    </ul>
+    <p>Diese Daten werden nicht mit anderen Datenquellen zusammengef&uuml;hrt und nicht an Dritte weitergegeben.</p>
+
+    <h3>3.3 Google Analytics</h3>
+    <p>Diese Website nutzt Google Analytics 4 (GA4), einen Webanalysedienst der Google Ireland Limited. GA4 verwendet Cookies, um die Nutzung der Website zu analysieren. Die durch Cookies erzeugten Informationen werden in der Regel an einen Server von Google &uuml;bertragen und dort gespeichert. Die IP-Anonymisierung ist aktiviert.</p>
+    <p>Sie k&ouml;nnen die Erfassung durch Google Analytics verhindern, indem Sie das Browser-Add-on zur Deaktivierung von Google Analytics installieren: <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer" target="_blank">https://tools.google.com/dlpage/gaoptout</a></p>
+
+    <h2>4. Google AdSense</h2>
+    <p>Diese Website plant den Einsatz von Google AdSense zur Anzeige von Werbung. Google AdSense verwendet Cookies zur Anzeigenpersonalisierung. Wenn Google AdSense aktiviert wird, k&ouml;nnen Sie die personalisierte Werbung unter folgender Adresse deaktivieren:</p>
+    <p><a href="https://www.google.com/settings/ads" rel="noopener noreferrer" target="_blank">https://www.google.com/settings/ads</a></p>
+
+    <h2>5. Ihre Rechte</h2>
+    <p>Nach der Datenschutz-Grundverordnung (DSGVO) haben Sie folgende Rechte:</p>
+    <ul>
+      <li><strong>Auskunft</strong> (Art. 15 DSGVO): Sie k&ouml;nnen Auskunft &uuml;ber Ihre verarbeiteten personenbezogenen Daten verlangen.</li>
+      <li><strong>Berichtigung</strong> (Art. 16 DSGVO): Sie k&ouml;nnen die Berichtigung unrichtiger Daten verlangen.</li>
+      <li><strong>L&ouml;schung</strong> (Art. 17 DSGVO): Sie k&ouml;nnen die L&ouml;schung Ihrer Daten verlangen, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</li>
+      <li><strong>Einschr&auml;nkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+      <li><strong>Daten&uuml;bertragbarkeit</strong> (Art. 20 DSGVO)</li>
+      <li><strong>Widerspruch</strong> (Art. 21 DSGVO)</li>
+    </ul>
+    <p>F&uuml;r Anfragen wenden Sie sich bitte an: <a href="mailto:support@texthelfer.net">support@texthelfer.net</a></p>
+  </main>
+
+  <footer class="footer">
+    <a href="/passwort-generator/">Passwort Generator</a> |
+    <a href="/zeichenzaehler/">Zeichenz&auml;hler</a> |
+    <a href="/woerter-zaehlen/">W&ouml;rter z&auml;hlen</a> |
+    <a href="/lesbarkeit/">Lesbarkeit</a> |
+    <a href="/lorem-ipsum-deutsch/">Lorem Ipsum</a> |
+    <a href="/text-formatierung/">Text Formatierung</a> |
+    <a href="/umlaut-konverter/">Umlaut Konverter</a> |
+    <a href="/textvergleich/">Textvergleich</a> |
+    <a href="/zufallszahlen/">Zufallszahlen</a>
+    <div style="margin-top:8px;">
+      <a href="/impressum/">Impressum</a> |
+      <a href="/datenschutz/">Datenschutz</a> |
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a> |
+      <a href="/kontakt.html">Kontakt</a>
+    </div>
+    <div style="margin-top:12px;">&copy; 2026 TextHelfer</div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    function updateThemeIcon() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+    updateThemeIcon();
+    themeToggle.addEventListener('click', function() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('texthelfer-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('texthelfer-theme', 'dark');
+      }
+      updateThemeIcon();
+    });
+
+    var hamburgerBtn = document.getElementById('hamburgerBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.contains(e.target) && e.target !== hamburgerBtn) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
