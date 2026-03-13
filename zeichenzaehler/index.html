@@ -1115,7 +1115,178 @@
         }
       }
     })();
-  
+
+    /* === COUNTING FUNCTIONS === */
+    function countChars(text) {
+      return text.length;
+    }
+
+    function countCharsNoSpaces(text) {
+      return text.replace(/\s/g, '').length;
+    }
+
+    function countWords(text) {
+      var trimmed = text.trim();
+      if (trimmed === '') return 0;
+      return trimmed.split(/\s+/).length;
+    }
+
+    function countSentences(text) {
+      var trimmed = text.trim();
+      if (trimmed === '') return 0;
+      var matches = trimmed.match(/[.!?]+/g);
+      return matches ? matches.length : 0;
+    }
+
+    function countParagraphs(text) {
+      var trimmed = text.trim();
+      if (trimmed === '') return 0;
+      return trimmed.split(/\n\s*\n|\n/).filter(function(p) {
+        return p.trim().length > 0;
+      }).length;
+    }
+
+    function calcReadTime(wordCount) {
+      if (wordCount === 0) return '0 Min.';
+      if (wordCount < 200) return '< 1 Min.';
+      return Math.ceil(wordCount / 200) + ' Min.';
+    }
+
+    /* === DOM ELEMENTS === */
+    var textInput = document.getElementById('textInput');
+    var statChars = document.getElementById('statChars');
+    var statCharsNoSpace = document.getElementById('statCharsNoSpace');
+    var statWords = document.getElementById('statWords');
+    var statSentences = document.getElementById('statSentences');
+    var statParagraphs = document.getElementById('statParagraphs');
+    var statReadTime = document.getElementById('statReadTime');
+    var btnCopy = document.getElementById('btnCopy');
+    var btnDelete = document.getElementById('btnDelete');
+    var confirmDialog = document.getElementById('confirmDialog');
+    var btnConfirmYes = document.getElementById('btnConfirmYes');
+    var btnConfirmNo = document.getElementById('btnConfirmNo');
+
+    /* === PLATFORM LIMIT ITEMS === */
+    var limitItems = document.querySelectorAll('.limit-item');
+
+    /* === UPDATE STATS === */
+    function updateStats() {
+      var text = textInput.value;
+      var chars = countChars(text);
+      var charsNoSpace = countCharsNoSpaces(text);
+      var words = countWords(text);
+      var sentences = countSentences(text);
+      var paragraphs = countParagraphs(text);
+      var readTime = calcReadTime(words);
+
+      statChars.textContent = chars;
+      statCharsNoSpace.textContent = charsNoSpace;
+      statWords.textContent = words;
+      statSentences.textContent = sentences;
+      statParagraphs.textContent = paragraphs;
+      statReadTime.textContent = readTime;
+
+      /* Update platform limits */
+      limitItems.forEach(function(item) {
+        var limit = parseInt(item.getAttribute('data-limit'));
+        var currentEl = item.querySelector('.limit-current');
+        var fillEl = item.querySelector('.limit-bar-fill');
+        var overLimit = chars > limit;
+
+        currentEl.textContent = overLimit ? (limit - chars) : chars;
+
+        var percent = limit > 0 ? (chars / limit) * 100 : 0;
+        if (percent > 100) percent = 100;
+        fillEl.style.width = percent + '%';
+
+        fillEl.classList.remove('color-green', 'color-orange', 'color-red');
+        if (overLimit) {
+          fillEl.classList.add('color-red');
+          item.classList.add('over-limit');
+        } else if (percent > 90) {
+          fillEl.classList.add('color-red');
+          item.classList.remove('over-limit');
+        } else if (percent > 75) {
+          fillEl.classList.add('color-orange');
+          item.classList.remove('over-limit');
+        } else {
+          fillEl.classList.add('color-green');
+          item.classList.remove('over-limit');
+        }
+      });
+    }
+
+    /* === REAL-TIME COUNTING === */
+    textInput.addEventListener('input', updateStats);
+
+    /* === COPY BUTTON === */
+    btnCopy.addEventListener('click', function() {
+      var text = textInput.value;
+      if (!text) {
+        showToast('Kein Text zum Kopieren');
+        return;
+      }
+
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('Kopiert!');
+      }).catch(function() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Kopiert!');
+      });
+    });
+
+    /* === DELETE BUTTON WITH CONFIRM === */
+    btnDelete.addEventListener('click', function() {
+      var text = textInput.value;
+      if (!text) return;
+
+      if (text.length > 50) {
+        confirmDialog.classList.add('visible');
+      } else {
+        clearText();
+      }
+    });
+
+    btnConfirmYes.addEventListener('click', function() {
+      clearText();
+      confirmDialog.classList.remove('visible');
+    });
+
+    btnConfirmNo.addEventListener('click', function() {
+      confirmDialog.classList.remove('visible');
+    });
+
+    function clearText() {
+      textInput.value = '';
+      updateStats();
+      textInput.focus();
+      showToast('Text gel\u00f6scht');
+    }
+
+    /* === TOAST === */
+    function showToast(message) {
+      var existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+
+      var toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(function() {
+        toast.remove();
+      }, 2200);
+    }
+
+    /* === INIT === */
+    updateStats();
   </script>
 
 </body>

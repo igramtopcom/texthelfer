@@ -988,7 +988,256 @@
         }
       }
     })();
-  
+
+    /* === SLIDER === */
+    const lengthSlider = document.getElementById('lengthSlider');
+    const lengthValue = document.getElementById('lengthValue');
+    lengthSlider.addEventListener('input', function() {
+      lengthValue.textContent = this.value;
+    });
+
+    /* === CHARACTER POOLS === */
+    const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    const NUMBERS = '0123456789';
+    const SPECIAL = '!@#$%^&*()_+-=[]{}|;:,.?';
+
+    const VOWELS = 'aeiou';
+    const CONSONANTS = 'bdfghklmnprstvw';
+    const VOWELS_UPPER = 'AEIOU';
+    const CONSONANTS_UPPER = 'BDFGHKLMNPRSTVW';
+
+    /* === CRYPTO RANDOM === */
+    function secureRandom(max) {
+      const array = new Uint32Array(1);
+      crypto.getRandomValues(array);
+      return array[0] % max;
+    }
+
+    function secureRandomChar(pool) {
+      return pool[secureRandom(pool.length)];
+    }
+
+    /* === GENERATE PASSWORD === */
+    function generatePassword(length, useUpper, useLower, useNumbers, useSpecial, phonetisch) {
+      if (phonetisch) {
+        return generatePhoneticPassword(length, useUpper, useLower, useNumbers, useSpecial);
+      }
+
+      let pool = '';
+      const required = [];
+
+      if (useUpper)   { pool += UPPER;   required.push(secureRandomChar(UPPER)); }
+      if (useLower)   { pool += LOWER;   required.push(secureRandomChar(LOWER)); }
+      if (useNumbers) { pool += NUMBERS; required.push(secureRandomChar(NUMBERS)); }
+      if (useSpecial) { pool += SPECIAL; required.push(secureRandomChar(SPECIAL)); }
+
+      if (pool.length === 0) return '';
+
+      const result = [];
+      for (let i = 0; i < length; i++) {
+        result.push(secureRandomChar(pool));
+      }
+
+      /* Ensure at least one char from each selected type */
+      for (let i = 0; i < required.length && i < length; i++) {
+        const pos = secureRandom(length);
+        result[pos] = required[i];
+      }
+
+      return result.join('');
+    }
+
+    function generatePhoneticPassword(length, useUpper, useLower, useNumbers, useSpecial) {
+      const result = [];
+      let isConsonant = secureRandom(2) === 0;
+
+      for (let i = 0; i < length; i++) {
+        /* Randomly insert a number or special char (~20% chance if enabled) */
+        if ((useNumbers || useSpecial) && result.length > 0 && secureRandom(5) === 0) {
+          let extras = '';
+          if (useNumbers) extras += NUMBERS;
+          if (useSpecial) extras += SPECIAL;
+          if (extras.length > 0) {
+            result.push(secureRandomChar(extras));
+            continue;
+          }
+        }
+
+        if (isConsonant) {
+          if (useUpper && useLower) {
+            result.push(secureRandom(4) === 0 ? secureRandomChar(CONSONANTS_UPPER) : secureRandomChar(CONSONANTS));
+          } else if (useUpper) {
+            result.push(secureRandomChar(CONSONANTS_UPPER));
+          } else {
+            result.push(secureRandomChar(CONSONANTS));
+          }
+        } else {
+          if (useUpper && useLower) {
+            result.push(secureRandom(4) === 0 ? secureRandomChar(VOWELS_UPPER) : secureRandomChar(VOWELS));
+          } else if (useUpper) {
+            result.push(secureRandomChar(VOWELS_UPPER));
+          } else {
+            result.push(secureRandomChar(VOWELS));
+          }
+        }
+        isConsonant = !isConsonant;
+      }
+
+      return result.join('');
+    }
+
+    /* === STRENGTH CALCULATION === */
+    function calcStrength(length, typesUsed) {
+      if (length < 8 || typesUsed <= 1) return { level: 'Schwach', color: '#EF4444', width: '25%' };
+      if (length <= 11 && typesUsed >= 2) return { level: 'Mittel', color: '#F97316', width: '50%' };
+      if (length <= 15 && typesUsed >= 3) return { level: 'Stark', color: '#22C55E', width: '75%' };
+      if (length >= 16 && typesUsed >= 4) return { level: 'Sehr stark', color: '#15803D', width: '100%' };
+      /* Fallback logic for edge cases */
+      if (length >= 16 && typesUsed >= 3) return { level: 'Stark', color: '#22C55E', width: '75%' };
+      if (length >= 12 && typesUsed >= 2) return { level: 'Stark', color: '#22C55E', width: '75%' };
+      return { level: 'Mittel', color: '#F97316', width: '50%' };
+    }
+
+    /* === UI ELEMENTS === */
+    const cbUpper = document.getElementById('cbUpper');
+    const cbLower = document.getElementById('cbLower');
+    const cbNumbers = document.getElementById('cbNumbers');
+    const cbSpecial = document.getElementById('cbSpecial');
+    const cbPhonetisch = document.getElementById('cbPhonetisch');
+    const btnGenerate = document.getElementById('btnGenerate');
+    const errorMsg = document.getElementById('errorMsg');
+    const passwordList = document.getElementById('passwordList');
+    const strengthRow = document.getElementById('strengthRow');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
+
+    function getSelectedCount() {
+      const radios = document.querySelectorAll('input[name="count"]');
+      for (const r of radios) {
+        if (r.checked) return parseInt(r.value);
+      }
+      return 1;
+    }
+
+    /* === MAIN GENERATE HANDLER === */
+    btnGenerate.addEventListener('click', function() {
+      const useUpper = cbUpper.checked;
+      const useLower = cbLower.checked;
+      const useNumbers = cbNumbers.checked;
+      const useSpecial = cbSpecial.checked;
+      const phonetisch = cbPhonetisch.checked;
+      const length = parseInt(lengthSlider.value);
+      const count = getSelectedCount();
+
+      /* Validation */
+      if (!useUpper && !useLower && !useNumbers && !useSpecial) {
+        errorMsg.style.display = 'block';
+        return;
+      }
+      errorMsg.style.display = 'none';
+
+      /* Count character types */
+      let typesUsed = 0;
+      if (useUpper) typesUsed++;
+      if (useLower) typesUsed++;
+      if (useNumbers) typesUsed++;
+      if (useSpecial) typesUsed++;
+
+      /* Strength */
+      const strength = calcStrength(length, typesUsed);
+      strengthRow.style.display = 'flex';
+      strengthFill.style.width = strength.width;
+      strengthFill.style.background = strength.color;
+      strengthText.textContent = strength.level;
+      strengthText.style.color = strength.color;
+
+      /* Generate passwords */
+      const passwords = [];
+      for (let i = 0; i < count; i++) {
+        passwords.push(generatePassword(length, useUpper, useLower, useNumbers, useSpecial, phonetisch));
+      }
+
+      /* Render */
+      passwordList.innerHTML = '';
+      passwords.forEach(function(pw, idx) {
+        const row = document.createElement('div');
+        row.className = 'password-row';
+
+        const display = document.createElement('div');
+        display.className = 'password-display';
+        display.textContent = pw;
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'btn-copy';
+        copyBtn.innerHTML = '\uD83D\uDCCB';
+        copyBtn.setAttribute('aria-label', 'Passwort kopieren');
+        copyBtn.addEventListener('click', function() {
+          copyToClipboard(pw, copyBtn);
+        });
+
+        row.appendChild(display);
+        row.appendChild(copyBtn);
+        passwordList.appendChild(row);
+      });
+    });
+
+    /* === COPY TO CLIPBOARD === */
+    function copyToClipboard(text, btn) {
+      navigator.clipboard.writeText(text).then(function() {
+        btn.innerHTML = '\u2713';
+        btn.classList.add('copied');
+        showToast('Kopiert!');
+        setTimeout(function() {
+          btn.innerHTML = '\uD83D\uDCCB';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        /* Fallback */
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.innerHTML = '\u2713';
+        btn.classList.add('copied');
+        showToast('Kopiert!');
+        setTimeout(function() {
+          btn.innerHTML = '\uD83D\uDCCB';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    /* === TOAST === */
+    function showToast(message) {
+      const existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(function() {
+        toast.remove();
+      }, 2200);
+    }
+
+    /* === HIDE ERROR ON CHECKBOX CHANGE === */
+    [cbUpper, cbLower, cbNumbers, cbSpecial].forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        if (cbUpper.checked || cbLower.checked || cbNumbers.checked || cbSpecial.checked) {
+          errorMsg.style.display = 'none';
+        }
+      });
+    });
+
+    /* === AUTO-GENERATE ON LOAD === */
+    btnGenerate.click();
   </script>
 
 </body>
